@@ -28,10 +28,7 @@
                         <div class="form-group">
                            <div> <label class="sr-only" for="frontend_login_password">Password</label> <input  autocomplete="off" type="password" id="password" name="password" value="<?php echo $password; ?>" placeholder="Your Password" class="form-control"/> </div>
                         </div>
-                        <div class="form-group">
-                           <div> <label for="frontend_login_remember" class="css-input switch switch-sm switch-app"> <?php $ranStr = md5(microtime()); $ranStr = hexdec( crc32($ranStr)); $ranStr = substr($ranStr, 0, 6); $_SESSION['cap_code'] = $ranStr; ?> <img class="img_capcha" style="float: left" src="captcha_code.php"/> </label> <input t autocomplete="off" type="text" id="captcha" name="capcha"  placeholder="Capcha" class="form-control"/> </div>
-                        </div>
-                        <div class="form-group"></div>
+                      
                         <div class="form-group">
                            <div class="g-recaptcha" data-sitekey="6LfjEh0UAAAAAFxYgDNTBcz7NlUTgPHTvJSgPNJJ"></div>
                         </div>
