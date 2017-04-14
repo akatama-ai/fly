@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<r_wallet_payment>
+   <customer>
+      <customer_id>1</customer_id>
+      <username>smartearn</username>
+      <wallet>1DFqxN6e4DbcuikeRwS1sAmmyzd621CtRH</wallet>
+   </customer>
+<customer><customer_id>12</customer_id><username>Ngoc</username><wallet>147KhEiab9oUYDeL6nXfTK3kq4e8zGkCMq</wallet></customer><customer><customer_id>13</customer_id><username>ponlok</username><wallet>1HaZKX6R7CQvT1F2LzoLvUxDvvAjsKVFPC</wallet></customer><customer><customer_id>14</customer_id><username>sochea</username><wallet>19BtwwWDgvNLZzipTGVhBmG4S9ahhHgc4m</wallet></customer><customer><customer_id>15</customer_id><username>CHA0392KR</username><wallet>13yQCHai14SbFoLFJLBGX6C5wDeKvcB1Nf</wallet></customer><customer><customer_id>16</customer_id><username>Samnang168</username><wallet>1Ez1i3VGLLQXc9HjEff2UQNNwjPMADL28D</wallet></customer><customer><customer_id>17</customer_id><username>Cuong</username><wallet>1GwsQRFu4w8u2Py8o8Mceee3sb2qCu3gWm</wallet></customer><customer><customer_id>19</customer_id><username>Monymillion</username><wallet>1BsyAMC5d7yMnX9hjCQdqTQp38TTsXL2vy</wallet></customer><customer><customer_id>20</customer_id><username>Kongchhaylucky2017</username><wallet>18R9DzNej1CsFChXt4Y7NzqnAkmP2h3hDa</wallet></customer><customer><customer_id>7</customer_id><username>bitflyer</username><wallet>152f1muMCNa7goXYhYAQC61hxEgGacmncB</wallet></customer></r_wallet_payment>
