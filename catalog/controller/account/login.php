@@ -337,33 +337,37 @@ class ControllerAccountLogin extends Controller {
 	      $api_url     = 'https://www.google.com/recaptcha/api/siteverify';
 		$site_key    = '6LfjEh0UAAAAAFxYgDNTBcz7NlUTgPHTvJSgPNJJ';
 		$secret_key  = '6LfjEh0UAAAAAF7ExX33W5OKkGtaRf2om4vbCWmt';
-		!$_POST['g-recaptcha-response'] && die();
-		$site_key_post    = $_POST['g-recaptcha-response'];
-		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
-	        $remoteip = $_SERVER['HTTP_CLIENT_IP'];
-	    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
-	        $remoteip = $_SERVER['HTTP_X_FORWARDED_FOR'];
-	    } else {
-	        $remoteip = $_SERVER['REMOTE_ADDR'];
-	    }
+		if (!$_POST['g-recaptcha-response']) {
+			$this->error['warning'] = "Warning: No match for Capcha";
+		} else{
+			$site_key_post    = $_POST['g-recaptcha-response'];
+			if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+		        $remoteip = $_SERVER['HTTP_CLIENT_IP'];
+		    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		        $remoteip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+		    } else {
+		        $remoteip = $_SERVER['REMOTE_ADDR'];
+		    }
 
-	    $api_url = $api_url.'?secret='.$secret_key.'&response='.$site_key_post.'&remoteip='.$remoteip;
-	    $response = file_get_contents($api_url);
-	    $response = json_decode($response);
-	    if(!isset($response->success))
-	    {
-	        $json['captcha'] = -1;
-	    }
-	    if($response->success == true)
-	    {
-	        $json['captcha'] = 1;
-	    }else{
-	       $json['captcha'] = -1;
-	    }
-	    if (intval($json['captcha']) === -1) {
-	    	$this->error['warning'] = "Warning: No match for Capcha";
-	    }
-	    
+		    $api_url = $api_url.'?secret='.$secret_key.'&response='.$site_key_post.'&remoteip='.$remoteip;
+		    $response = file_get_contents($api_url);
+		    $response = json_decode($response);
+		    if(!isset($response->success))
+		    {
+		        $json['captcha'] = -1;
+		    }
+		    if($response->success == true)
+		    {
+		        $json['captcha'] = 1;
+		    }else{
+		       $json['captcha'] = -1;
+		    }
+		    if (intval($json['captcha']) === -1) {
+		    	$this->error['warning'] = "Warning: No match for Capcha";
+		    }
+		}
+		
+
 		$customer_info = $this->model_account_customer->getCustomerByUsername($_POST['email']);
 
 		if ($customer_info && intval($customer_info['status']) === 8) {
