@@ -33,7 +33,7 @@
                         </div>
                         <div class="form-group"></div>
                         <div class="form-group">
-                           <div class="g-recaptcha" data-sitekey="6LcWxxwUAAAAAHZ4bi8QGKVNUcKTB3VX5BCH_uXh"></div>
+                           <div class="g-recaptcha" data-sitekey="6LfjEh0UAAAAAFxYgDNTBcz7NlUTgPHTvJSgPNJJ"></div>
                         </div>
                         <button type="submit" class="btn btn-app btn-block">Login</button> 
                      </form>
