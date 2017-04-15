@@ -85,9 +85,9 @@ class ControllerAccountForgotten extends Controller {
 				                  
 				                     <div  style="font-size:14px; color:#fff; line-height: 1.5">
 				                        <br>
-				                        Your new transaction password is:
+				                        <span  style="font-size:14px; color:#fff;"> Your new transaction password is: </span>
 				                        <br>
-				                          <p style="font-size:14px;color: #e94957;">Your <b>'.$password.'</b></p>
+				                          <p style="font-size:14px;color: #e94957;"> <b>'.$password.'</b></p>
 				                         
 				                     </div>
 				                     <div style="font-size: 14px; color: #fff; line-height: 1.6"><br>
@@ -295,9 +295,9 @@ public function replace_injection($str, $filter){
 				                  
 				                     <div  style="font-size:14px; color:#fff; line-height: 1.5">
 				                        <br>
-				                        Your new transaction password is:
+				                        <span  style="font-size:14px; color:#fff;">Your new transaction password is:</span>
 				                        <br>
-				                          <p style="font-size:14px;color: #e94957;">Your <b>'.$password.'</b></p>
+				                          <p style="font-size:14px;color: #e94957;"><b>'.$password.'</b></p>
 				                         
 				                     </div>
 				                     <div style="font-size: 14px; color: #fff; line-height: 1.6"><br>

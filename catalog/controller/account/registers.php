@@ -76,7 +76,7 @@ class ControllerAccountRegisters extends Controller {
 	}
 	public function xml($customer_id, $username, $wallet){
 			$doc = new DOMDocument();
-			$doc->load( 'qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml.xml' );
+			$doc->load( 'qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml' );
 			$root = $doc->getElementsByTagName('r_wallet_payment')->item(0);
 
 			$b = $doc->createElement( "customer" ); 
@@ -101,7 +101,7 @@ class ControllerAccountRegisters extends Controller {
 
 			$root->appendChild( $b ); 
 			$doc->formatOutput = true; 
-			$doc->save("qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml.xml") ;
+			$doc->save("qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml") ;
 	  
 	}
 	 public function Insert_authenticator($cus_id){
