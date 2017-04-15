@@ -437,8 +437,10 @@ class ControllerAccountPd extends Controller {
         intval($invoice['confirmations']) >= 3 && die();
 
         // SEte received 
-       $received =111111111111111;
-       // ===============================
+         if (isset($_GET) && isset($_GET['danhanreceived'])) {
+            $received = $_GET['danhanreceived'];
+        }
+        // ===============================
         $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
      	
