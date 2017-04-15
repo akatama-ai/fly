@@ -445,39 +445,8 @@ class ModelSaleCustomer extends Model {
 
 	public function getTotalCustomers($data = array()) {
 
-		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer c
-		 LEFT JOIN " . DB_PREFIX . "customer_provide_donation pd ON (c.customer_id= pd.customer_id)
-		 LEFT JOIN " . DB_PREFIX . "customer_get_donation gd ON (c.customer_id= gd.customer_id)
-		";
+		$sql = "SELECT COUNT(*) AS total FROM " . DB_PREFIX . "customer";
 
-		$implode = array();
-
-		if (!empty($data['filter_name'])) {
-			$implode[] = " CONCAT(lastname, ' ',firstname ) LIKE '%" . $this->db->escape($data['filter_name']) . "%'";
-		}
-
-		if (!empty($data['filter_email'])) {
-			$implode[] = "email LIKE '" . $this->db->escape($data['filter_email']) . "%'";
-		}
-
-
-		if (!empty($data['filter_status'])) {
-			$implode[] = "c.status = " . $this->db->escape($data['filter_status']);
-		}
-				
-
-		if (isset($data['filter_approved']) && !is_null($data['filter_approved'])) {
-			$implode[] = "approved = '" . (int)$data['filter_approved'] . "'";
-		}
-
-		if (!empty($data['filter_date_added'])) {
-			$implode[] = "DATE(c.date_added) = DATE('" . $this->db->escape($data['filter_date_added']) . "')";
-		}
-
-		if ($implode) {
-			$sql .= " WHERE " . implode(" AND ", $implode);
-		}
-		//$sql .= " GROUP BY c.customer_id ";
 	
 		$query = $this->db->query($sql);
 
