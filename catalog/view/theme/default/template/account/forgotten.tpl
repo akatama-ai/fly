@@ -17,7 +17,7 @@
                         </div>
                         <?php } ?> 
                      </div>
-                     <form class="js-validation-bootstrap form-horizontal" action="lock.html" method="post">
+                     <form class="js-validation-bootstrap form-horizontal" action="forgot.html" method="post">
                         <div class="form-group">
                            <div> <label class="sr-only" for="frontend_login_username">Username</label> <input t autocomplete="off" type="text" id="email" name="email" placeholder="Your Username" class="form-control"/> </div>
                         </div>
