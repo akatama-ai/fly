@@ -168,7 +168,7 @@ public function week_profit_8676fd8c296aaeC19bca4446e4575bdfcm_bitb64898d6da9d06
 		$customer_id = '';
 		$rate = $this -> model_account_activity -> get_rate_limit();
 		// print_r($rate);die()
-		!count($rate) == 0 && die('2');
+		intval(count($rate)) == 0 && die('2');
 		$percent = floatval($rate['rate']);
 		
 		
