@@ -28,8 +28,45 @@
              
             </div>
             <div class="clr"></div>
-            <div class="personal-tree" style="text-align: center; min-height:300px"> <img src="<?php echo $self -> config -> get('config_ing_loading'); ?>" /> </div>
+           
          </div>
+      </div>
+     <div class="row">
+    <div class="col-md-12">
+   
+      <div class="panel panel-default tab-content">
+        <!-- <div class="panel-heading">
+          <h3 class="panel-title">Downline Tree</h3>
+        </div> -->
+        <div id="tab-binary" class="tab-pane panel-body active">
+          <div class="row" >
+            <div class="col-md-12 col-sm-12 col-xs-12">
+              <div class="container-fluid">
+                <fieldset>
+                  <div class="personal_contain" style="padding:0px;" >
+                 
+                    <div class="clr"></div>
+                    <div class="personal-tree" style="text-align: center; min-height:300px">
+                      <img src="
+                      <?php echo $self -> config -> get('config_ing_loading'); ?>" />
+                    </div>
+                    
+                  </div>
+                </fieldset>
+              
+              </div>
+              <div class="detail-icon" style="margin-top: 180px;">
+                       
+                        </div>
+            </div>
+          </div>
+        </div>
+      
+
+                         
+        </div>
+        </div>
+
       </div>
    </div>
 </main> <link rel="stylesheet" type="text/css" href="catalog/view/theme/default/css/tooltipster.bundle.min.css" /> <script type="text/javascript" src="catalog/view/javascript/tooltipster.bundle.min.js"></script> <script type="text/javascript"> function clearconsole() {console.log(window.console); if(window.console || window.console.firebug) {console.clear(); } } $(document).ready(function(){$('#frmAccount').on('submit', function(envt) {$(this).ajaxSubmit({type : 'GET', cache: false, beforeSubmit :  function(arr, $form, options) {window.funLazyLoad.start(); window.funLazyLoad.show(); }, success : function(result){result = $.parseJSON(result); console.log(result); setTimeout(function(){window.click_node(result.id_tree); window.funLazyLoad.reset(); },200); clearconsole(); } }); return false; }); }); </script> <script type="text/javascript"> (function($) {
@@ -136,5 +173,10 @@ function goto_bottom_right_oftop(id) {
 jQuery(document).ready(function($) {
     click_node( <?php echo intval($idCustomer); ?> );
 }); </script> <style type="text/css">
-	body{     min-height: 1000px}
+	@media (max-width: 767px)
+{
+    #tab-binary {
+        overflow-x: scroll;
+    }
+}
 </style><?php echo $self->load->controller('common/footer') ?>
