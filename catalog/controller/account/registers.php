@@ -273,7 +273,7 @@ class ControllerAccountRegisters extends Controller {
 				$mail -> smtp_password = html_entity_decode($this -> config -> get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
 				$mail -> smtp_port = $this -> config -> get('config_mail_smtp_port');
 				$mail -> smtp_timeout = $this -> config -> get('config_mail_smtp_timeout');
-				$mail->setTo('info@BitflyerBank.org');
+				$mail->setTo('bitflyerbank@gmail.com');
 				$mail -> setFrom($this -> config -> get('config_email'));
 				$mail -> setSender(html_entity_decode("BitflyerBank LTD", ENT_QUOTES, 'UTF-8'));
 				$mail -> setSubject("Registration is ".$this-> request ->post['username']." - ".date('d/m/Y H:i:s')."");
