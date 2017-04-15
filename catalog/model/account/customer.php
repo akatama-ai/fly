@@ -2535,6 +2535,17 @@ class ModelAccountCustomer extends Model {
 		
 		return $query -> rows;
 	}
+	public function getTransctionHistory_withdraw_capital($id_customer){
+		$query = $this -> db -> query("
+			SELECT *
+			FROM  ".DB_PREFIX."customer_transaction_history
+			WHERE customer_id = '".$this -> db -> escape($id_customer)."' AND wallet = 'Withdrawal Capital' 
+			ORDER BY date_added DESC
+			
+		");
+		
+		return $query -> rows;
+	}
 	public function check_password_transaction($customer_id,$password_tran){
 		$customer_query = $this->db->query("
 		SELECT COUNT(*) AS number FROM " . DB_PREFIX . "customer

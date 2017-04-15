@@ -54,14 +54,14 @@
             <th>Wallet</th>
     
             <th>BTC Send</th>
-          <th>Amount USD</th>
+            <th>Amount USD</th>
              <th>Date</th>
      			</tr>
      		</thead>
      		<tbody>
         <?php 
           $i = 0;
-          //print_r($_SESSION); die;
+       
           foreach ($code as $value) {
             $i++;
         ?>
@@ -74,7 +74,7 @@
   
             <td><?php echo ($value['amount']/100000000) ?> BTC</td>
             <td><?php echo ($value['amount_usd']/1000000) ?> USD</td>
-             <td><?php echo date('d/m/Y',strtotime($value['date'])); ?></td>
+            <td><?php echo date('d/m/Y',strtotime($value['date'])); ?></td>
           </tr>
          <?php
           }

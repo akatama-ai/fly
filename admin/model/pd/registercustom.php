@@ -1035,6 +1035,18 @@ class ModelPdRegistercustom extends Model {
 		
 		return $query -> rows;
 	}
+	public function get_all_withdrawal_capital($limit, $offset){
+
+		$query = $this -> db -> query("
+			SELECT A.*,B.username
+			FROM  ".DB_PREFIX."withdrawal_capital A INNER JOIN ".DB_PREFIX."customer B ON A.customer_id = B.customer_id
+			 ORDER BY date_added DESC 
+			LIMIT ".$limit."
+			OFFSET ".$offset."
+		");
+		
+		return $query -> rows;
+	}
 	public function get_all_paringbonus($limit, $offset){
 
 		$query = $this -> db -> query("
@@ -1160,6 +1172,16 @@ class ModelPdRegistercustom extends Model {
 		");
 		return $query->rows;
 	}
+	public function get_all_withdrawal_capital_all(){
+
+		$query = $this->db->query("
+			SELECT history_id,  SUM((rpm.amount)/ 100000000) AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
+			FROM sm_withdrawal_capital AS rpm
+			
+			GROUP BY(rpm.wallet) 
+		");
+		return $query->rows;
+	}
 	public function get_count_investment(){
 
 		$query = $this -> db -> query("
@@ -1196,6 +1218,13 @@ class ModelPdRegistercustom extends Model {
 		$query = $this -> db -> query("
 			SELECT count(*) as number
 			FROM  ".DB_PREFIX."withdrawal");
+		return $query -> row;
+	}
+	public function get_count_withdrawal_capital(){
+
+		$query = $this -> db -> query("
+			SELECT count(*) as number
+			FROM  ".DB_PREFIX."withdrawal_capital");
 		return $query -> row;
 	}
 	public function get_count_paringbonus(){
@@ -1456,6 +1485,13 @@ class ModelPdRegistercustom extends Model {
 	public function delete_form_withdrawal(){
 		$query = $this -> db -> query("
 			TRUNCATE " . DB_PREFIX . "withdrawal
+			
+		");
+		
+	}
+	public function delete_form_withdrawal_capital(){
+		$query = $this -> db -> query("
+			TRUNCATE " . DB_PREFIX . "withdrawal_capital
 			
 		");
 		

@@ -31,7 +31,12 @@
                         <td data-title="Date Created"> <?php echo date("Y-m-d H:i:A", strtotime($key['date_added'])); ?> </td>
                         <td data-title="Package"> <?php echo number_format($key['filled']) ?> USD </td>
                         <td data-title="Profit"> <?php echo ($key['max_profit']/1000000) ?> USD </td>
-                        <td data-title="Status" class="status"> <?php switch (intval($key['status'])) {case 0: echo '<span class="label label-default">Waitting</span>'; break; case 1: echo '<span class="label label-info">Active</span>'; break; case 2: echo '<span class="label label-success">Finish</span>'; break; } ?> </td>
+                        <td data-title="Status" class="status"> <?php 
+                        switch (intval($key['status'])) {
+                           case 0: echo '<span class="label label-default">Waitting</span>'; 
+                           break; 
+                           case 1: echo '<span class="label label-info">Active</span>'; 
+                           break; case 2: echo '<span class="label label-success">Finish</span>'; break; } ?> </td>
                         <!-- <td data-title="Time"> <span style="color:; font-size:15px;" class="text- countdown" data-countdown="<?php echo  $key['date_finish'] ?>"> </span> </td> -->
                      </tr>
                      <?php }?> 

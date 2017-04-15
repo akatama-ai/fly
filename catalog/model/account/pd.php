@@ -319,7 +319,14 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 		");
 		return $query -> row;
 	}
-
+	public function getPD_r_payment($id){
+		$query = $this -> db -> query("
+			SELECT * 
+			FROM ". DB_PREFIX . "customer_r_wallet_payment
+			WHERE transfer_id = '".$this->db->escape($id)."'
+		");
+		return $query -> row;
+	}
 	public function updateAmountInvoicePd($invoice_id_hash, $amount){
 		$query = $this -> db -> query("
 			UPDATE " . DB_PREFIX . "customer_invoice_pd SET
@@ -335,5 +342,17 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 			WHERE customer_id = '".$customer_id."' ORDER BY date_created DESC LIMIT 1
 		");
 		return $query -> row['confirmations'];
+	}
+
+	public function update_package($id) {
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "customer_provide_donation SET
+			status = 2, date_finish = NOW()
+			WHERE id = ". $id."");
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "customer_r_wallet_payment SET
+			date_end = NOW()
+			WHERE transfer_id = ". $id."");
+		return $query;
 	}
 }

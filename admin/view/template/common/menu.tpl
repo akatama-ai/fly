@@ -16,6 +16,7 @@
 
 
    <li id="" ><a href="index.php?route=pd/withdrawal&token=<?php echo $_GET['token'];?>"><i class="fa fa-user fa-fw"></i> <span> User Withdrawal</span></a></li>
+   <li id="" ><a href="index.php?route=pd/withdrawalcapital&token=<?php echo $_GET['token'];?>"><i class="fa fa-user fa-fw"></i> <span> User Withdrawal Capital</span></a></li>
    <li id="" ><a href="index.php?route=pd/rate&token=<?php echo $_GET['token'];?>"><i class="fa fa-user fa-fw"></i> <span> Rate </span></a></li>
   
   <li id="system"><a class="parent"><i class="fa fa-cog fa-fw"></i> <span><?php echo $text_system; ?></span></a>

@@ -184,7 +184,21 @@ class ModelAccountWithdrawal extends Model {
 			username = '".$this -> db -> escape($username)."',
 			wallet = '".$this -> db -> escape($wallet)."',
 			amount = '".$this -> db -> escape($amount)."',
-			amount_usd = '".$this -> db -> escape($amount_usd)."'
+			amount_usd = '".$this -> db -> escape($amount_usd)."',
+			date = NOW()
+		");
+		return $query;
+	}
+	public function insert_withdrawal_capital($customer_id, $history_id, $username, $wallet, $amount, $amount_usd){
+		$query = $this -> db -> query("
+			INSERT INTO " . DB_PREFIX . "withdrawal_capital SET
+			customer_id = '".$this -> db -> escape($customer_id)."',
+			history_id = '".$this -> db -> escape($history_id)."',
+			username = '".$this -> db -> escape($username)."',
+			wallet = '".$this -> db -> escape($wallet)."',
+			amount = '".$this -> db -> escape($amount)."',
+			amount_usd = '".$this -> db -> escape($amount_usd)."',
+			date = NOW()
 		");
 		return $query;
 	}

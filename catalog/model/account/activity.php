@@ -44,6 +44,8 @@ class ModelAccountActivity extends Model {
 
 		return $query->row;
 	}
+	
+
 	public function get_rate_limit() {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "rate WHERE status = 0 order by id DESC LIMIT 1");
 		return $query->row;

@@ -366,10 +366,12 @@ class ControllerAccountWithdraw extends Controller {
 		
 		$session_id = $this -> session -> data['customer_id'];
 		$this -> load -> model('account/pd');
+		$this -> load -> model('account/customer');
 		$data = array();
 		$data['self'] = $this;
 		$data['pd'] = $this -> model_account_pd -> get_package_active($this->session->data['customer_id']);
-		
+
+		$data['histotys'] = $this -> model_account_customer -> getTransctionHistory_withdraw_capital($this -> session -> data['customer_id']);
 
 		if (file_exists(DIR_TEMPLATE . $this -> config -> get('config_template') . '/template/account/withdraw_capital.tpl')) {
 			$this -> response -> setOutput($this -> load -> view($this -> config -> get('config_template') . '/template/account/withdraw_capital.tpl', $data));
@@ -378,15 +380,49 @@ class ControllerAccountWithdraw extends Controller {
 		}
     }
 
+    public function check_date($id){
+    	$this -> load -> model('account/pd');
+    	$pd = $this -> model_account_pd -> getPD_r_payment(intval($id));
+			
+		$date_30 = strtotime(date("Y-m-d", strtotime($pd['date_added'])) . " + 30 days");
+		
+		$date_90 = strtotime(date("Y-m-d", strtotime($pd['date_added'])) . " + 90 days");
+		
+		$date_180 = strtotime(date("Y-m-d", strtotime($pd['date_added'])) . " + 180 days");
+		
+		$this -> load -> model('account/activity');
+		$servertime = $this -> model_account_activity -> server_time();
+		$servertime = date("Y-m-d", strtotime($servertime['servertime']));
+		$servertime = strtotime($servertime);
+
+		if ($servertime > $date_30) {
+		   	$percent = 70;
+		}
+		if ($servertime > $date_90) {
+		   	$percent = 80;
+		}
+		if ($servertime > $date_180) {
+		   	$percent = 90;
+		}
+		if ($servertime < $date_30) {
+		   	$percent = 0;
+		}
+
+		return intval($percent) > 0 ? $percent : 0;
+    }
+
     public function submit_capital(){
     	!$this -> customer -> isLogged() && die('Disconect');
     	!$_POST && die();
-    	die();
+    	$json = array();
+    	
     	$this -> load -> model('account/customer');
+    	$this -> load -> model('account/pd');
+    	$this -> load -> model('account/withdrawal');
     	$id = array_key_exists('number', $this -> request -> post) ? $_POST['number'] : "Error";
 			
 		$password_transaction = array_key_exists('transaction_password', $this -> request -> post) ? $_POST['transaction_password'] : "Error";
-		$json = array();
+		
 		
 		if ($id == '' || $password_transaction == '') {
 			$json['input'] = -1;
@@ -395,8 +431,67 @@ class ControllerAccountWithdraw extends Controller {
 			$check_id = $this -> model_account_customer -> check_pd($this->session->data['customer_id'], intval($id));
 			
 			if ($check_password_transaction > 0 && $check_id > 0) {
+				$pd = $this -> model_account_pd -> getPD_r_payment(intval($id));
+					
+				$date_30 = strtotime(date("Y-m-d", strtotime($pd['date_added'])) . " + 30 days");
 				
-				$json['error_value'] = 1;
+				$date_90 = strtotime(date("Y-m-d", strtotime($pd['date_added'])) . " + 90 days");
+				
+				$date_180 = strtotime(date("Y-m-d", strtotime($pd['date_added'])) . " + 180 days");
+				
+				$this -> load -> model('account/activity');
+				$servertime = $this -> model_account_activity -> server_time();
+				$servertime = date("Y-m-d", strtotime($servertime['servertime']));
+				$servertime = strtotime($servertime);
+
+				if ($servertime > $date_30) {
+				   	$percent = 70;
+				}
+				if ($servertime > $date_90) {
+				   	$percent = 80;
+				}
+				if ($servertime > $date_180) {
+				   	$percent = 90;
+				}
+				if ($servertime < $date_30) {
+				   	$percent = 0;
+				}
+
+				if ($percent > 0) {
+
+					$amount_usd = $pd['profit_daily'];
+					$price = $percent/100;
+					$amount = $amount_usd*$price;
+					
+					$customer = $this -> model_account_customer ->getCustomer($this -> session -> data['customer_id']);
+
+					$url = "https://blockchain.info/tobtc?currency=USD&value=".$amount;
+	                $amountbtc = file_get_contents($url);
+					$wallet_btc = $this -> model_account_customer -> getWallet_BTC($this -> session -> data['customer_id']);
+					$wallet = $wallet_btc['wallet'];
+					$amounts = round($amountbtc,8);
+
+					$id_his = $this -> model_account_customer -> saveTranstionHistory(
+				                        $this -> session -> data['customer_id'],
+				                        'Withdrawal Capital', 
+				                        '- ' . ($amounts) . ' BTC ('.$amount_usd.' USD)',
+				                        "Withdrawal Capital ".$percent."% ".$amount_usd." USD",
+				                        ' ');
+					$customer_id = $this -> session -> data['customer_id'];
+					$history_id = $id_his;
+					$username = $customer['username'];
+					$wallet = $wallet;
+					$amount_usd = $amount*1000000;
+					$amount = $amounts*100000000;
+					$this -> model_account_withdrawal -> insert_withdrawal_capital($customer_id, $history_id, $username, $wallet, $amount, $amount_usd);
+					$this -> model_account_pd -> update_package(intval($id));
+
+					$json['error_value'] = 1;
+				}else{
+					$json['error_value'] = -1;
+				}
+
+				
 			}else{
 				$json['error_value'] = -1;
 			}
