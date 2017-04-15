@@ -30,6 +30,12 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 		");
 		return $query -> row;
 	}
+	public function check_in_ml($customer_id){
+		$query = $this -> db -> query("
+			SELECT COUNT(*) as number FROM `sm_customer_ml` WHERE `left` = '". $customer_id ."' OR `right` = '". $customer_id ."'
+		");
+		return $query -> row['number'];
+	}
 	public function getAllInvoiceByCustomerTotal($customer_id){
 		$query = $this -> db -> query("
 			SELECT COUNT(*) AS number
