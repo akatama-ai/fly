@@ -1,4 +1,4 @@
-<?php $self->document->setTitle("Home"); echo $self->load->controller('common/header_home'); ?> 
+<?php $self->document->setTitle("Home"); echo $self->load->controller('common/header_home'); ?>  <script src='https://www.google.com/recaptcha/api.js'></script>
 <main class="app-layout-content frm" style="overflow: hidden;" >
    <!-- Page header --> <!-- End Page header --> <!-- Page content --> 
    <div class="page-content" style="min-height: 700px; overflow: hidden;">
