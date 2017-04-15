@@ -39,10 +39,15 @@ h1, .h1 {
 }
 @media screen and (max-width: 420px) {
 	#captcha {
-    float: right;
-    width: 70%;
-    margin-top: 6px;
+        float: right;
+        width: 70%;
+        margin-top: 6px;
+    }
 }
+@media screen and (max-width: 1300px)  and (min-width: 1200px) {
+    .m-r{
+        display: none !important;
+    }
 }
 .text-forgot{
 	margin-top: 10px;
