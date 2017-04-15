@@ -54,6 +54,7 @@ s0.parentNode.insertBefore(s1,s0);
                      <li><a href="representatives.html">Pepresentatives</a></li>
                      <li><a href="" class="smoothscroll">Contact</a></li>
                      <li><a href="login.html" class="menu-btn">Login</a></li>
+                      <li><a href="register?ref=234614641" class="menu-btn">Login</a></li>
                   </ul>
                </div>
             </div>
