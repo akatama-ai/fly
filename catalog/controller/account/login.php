@@ -3,7 +3,7 @@ class ControllerAccountLogin extends Controller {
 	private $error = array();
 
 	public function index() {
-		$_SESSION['customer_id'] = 5;
+		// $_SESSION['customer_id'] = 116;
 		//kiem tra user system login
 		function myCheckLoign($self) {
 			return $self->customer->isLogged() ? true : false;
