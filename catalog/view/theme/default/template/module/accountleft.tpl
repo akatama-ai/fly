@@ -9,7 +9,7 @@
         
          <li class="nav-item nav-drawer-header" style=" color: #fff; opacity: 1; text-transform: capitalize; ">
          <?php $date = new DateTime($servertime['servertime']); ?>
-         <span class="blinking"> Server Time: <?php echo date_format($date, 'g:ia \o\n l jS F Y'); ?> </span>
+         <span class="blinking"> Server Time: <?php echo date_format($date, 'l jS \of F Y H:i:s A'); ?> </span>
         
          </li>
          
