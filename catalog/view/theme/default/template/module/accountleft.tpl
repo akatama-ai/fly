@@ -7,7 +7,7 @@
          <ul class="nav nav-drawer">
  
         
-         <li class="nav-item nav-drawer-header" style=" color: #fff; opacity: 1; text-transform: capitalize; ">
+         <li class="nav-item nav-drawer-header" style="color: #f5d11b; opacity: 1; text-transform: capitalize; font-size: 14px;">
          <?php $date = new DateTime($servertime['servertime']); ?>
          <span class="blinking"> Server Time: <?php echo date_format($date, 'l jS \of F Y H:i:s A'); ?> </span>
         
