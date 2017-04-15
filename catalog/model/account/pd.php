@@ -300,6 +300,14 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 		");
 		return $query -> row;
 	}
+	public function get_package_active($customer_id){
+		$query = $this -> db -> query("
+			SELECT *
+			FROM ". DB_PREFIX . "customer_provide_donation
+			WHERE customer_id = ".$customer_id." AND status = 1
+		");
+		return $query -> rows;
+	}
 
 	public function get_invoide($pd_id){
 		$query = $this -> db -> query("

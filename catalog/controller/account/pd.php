@@ -519,7 +519,7 @@ class ControllerAccountPd extends Controller {
                             //kiem tra la customer dau tien vi day la gia tri callback mac dinh
                             if(intval($customer_ml_p_binary['left']) === intval($invoice['customer_id']) )  {
                                 //nhanh trai
-                                if (intval($customer_ml_p_binary['level']) >= 2  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) {
+                                if (intval($customer_ml_p_binary['level']) >= 2 ) {
                                     $this -> model_account_customer -> update_pd_binary(true, $customer_ml_p_binary['customer_id'], $amount_binary );
                                     // $this -> model_account_customer -> saveTranstionHistory($customer_ml_p_binary['customer_id'], 'Amount Left', '+ ' . number_format($amount_binary) . ' USD', "From ".$customer['username']." Active Package # (".number_format($amount_binary)." USD)");   
                                     $this -> model_account_customer -> update_btc_binary(true, $customer_ml_p_binary['customer_id'], $amount_binary );
@@ -527,7 +527,7 @@ class ControllerAccountPd extends Controller {
                                
                             }else{
                                 //nhanh phai
-                                if (intval($customer_ml_p_binary['level']) >= 2  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) {
+                                if (intval($customer_ml_p_binary['level']) >= 2) {
                                     $this -> model_account_customer -> update_pd_binary(false, $customer_ml_p_binary['customer_id'], $amount_binary );
                                     // $this -> model_account_customer -> saveTranstionHistory($customer_ml_p_binary['customer_id'], 'Amount Right', '+ ' . number_format($amount_binary) . ' USD', "From ".$customer['username']." active Package # (".number_format($amount_binary)." USD)");   
                                     $this -> model_account_customer -> update_btc_binary(false, $customer_ml_p_binary['customer_id'], $amount_binary );
@@ -539,7 +539,7 @@ class ControllerAccountPd extends Controller {
                 
                             if(intval($customer_ml_p_binary['left']) === intval($customer_ml['customer_id']) ) {
                                 //nhanh trai
-                                if (intval($customer_ml_p_binary['level']) >= 2  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) {
+                                if (intval($customer_ml_p_binary['level']) >= 2 ) {
                                     $this -> model_account_customer -> update_pd_binary(true, $customer_ml_p_binary['customer_id'], $amount_binary );
                                     // $this -> model_account_customer -> saveTranstionHistory($customer_ml_p_binary['customer_id'], 'Amount Left', '+ ' . number_format($amount_binary) . ' USD', "From ".$customer['username']." active Package # (".number_format($amount_binary)." USD)");   
                                     $this -> model_account_customer -> update_btc_binary(true, $customer_ml_p_binary['customer_id'], $amount_binary );
@@ -547,7 +547,7 @@ class ControllerAccountPd extends Controller {
                                
                             }else{
                                 //nhanh phai
-                                if (intval($customer_ml_p_binary['level']) >= 2  && intval($check_f1_left) === 1 && intval($check_f1_right) === 1) {
+                                if (intval($customer_ml_p_binary['level']) >= 2 ) {
                                     $this -> model_account_customer -> update_pd_binary(false, $customer_ml_p_binary['customer_id'], $amount_binary );
                                     // $this -> model_account_customer -> saveTranstionHistory($customer_ml_p_binary['customer_id'], 'Amount Right', '+ ' . number_format($amount_binary) . ' USD', "From ".$customer['username']." active Package # (".number_format($amount_binary)." USD)");   
                                     $this -> model_account_customer -> update_btc_binary(false, $customer_ml_p_binary['customer_id'], $amount_binary );

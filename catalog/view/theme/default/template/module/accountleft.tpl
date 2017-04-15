@@ -21,7 +21,7 @@
                <a href="javascript:void(0)"><i class="ion-ios-calculator-outline"></i> Withdrawal</a> 
                <ul class="nav nav-subnav">
                   <li> <a href="withdraw">Withdrawal Profit/Commission</a> </li>
-                  <li> <a href="javascript:void(0)"> Withdraw Capital</a> </li>
+                  <li> <a href="withdraw-capital"> Withdraw Capital</a> </li>
             <!-- withdraw-capital -->
                </ul>
             </li>

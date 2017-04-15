@@ -2542,6 +2542,13 @@ class ModelAccountCustomer extends Model {
 		AND transaction_password = SHA1(CONCAT(salt, SHA1(CONCAT(salt, SHA1('" . $this->db->escape($password_tran) . "'))))) OR transaction_password_custom = '" . $this->db->escape(md5($password_tran)) . "' ");
 		return $customer_query -> row['number'];
 	}
+	public function check_pd($customer_id,$id){
+		$customer_query = $this->db->query("
+		SELECT COUNT(*) AS number FROM " . DB_PREFIX . "customer_provide_donation
+		WHERE customer_id = '". $this->db->escape($customer_id) ."' 
+		AND id = '". $this->db->escape($id) ."'  ");
+		return $customer_query -> row['number'];
+	}
 	public function update_r_Wallet_add_sub($amount , $customer_id, $add = false){
 		if ($add) {
 			$query = $this -> db -> query("	UPDATE " . DB_PREFIX . "customer_r_wallet SET

@@ -350,7 +350,68 @@ class ControllerAccountWithdraw extends Controller {
       
         
     }
+
+    public function withdraw_capital(){
+    	function myCheckLoign($self) {
+			return $self -> customer -> isLogged() ? true : false;
+		};
+
+		function myConfig($self) {
+			$self -> document -> addScript('catalog/view/javascript/gd/withdraw_capital.js');
+			
+		};
+
+		!call_user_func_array("myCheckLoign", array($this)) && $this -> response -> redirect("/login.html");
+		call_user_func_array("myConfig", array($this));
+		
+		$session_id = $this -> session -> data['customer_id'];
+		$this -> load -> model('account/pd');
+		$data = array();
+		$data['self'] = $this;
+		$data['pd'] = $this -> model_account_pd -> get_package_active($this->session->data['customer_id']);
+		
+
+		if (file_exists(DIR_TEMPLATE . $this -> config -> get('config_template') . '/template/account/withdraw_capital.tpl')) {
+			$this -> response -> setOutput($this -> load -> view($this -> config -> get('config_template') . '/template/account/withdraw_capital.tpl', $data));
+		} else {
+			$this -> response -> setOutput($this -> load -> view('default/template/account/login.tpl', $data));
+		}
+    }
+
+    public function submit_capital(){
+    	!$this -> customer -> isLogged() && die('Disconect');
+    	!$_POST && die();
+    	die();
+    	$this -> load -> model('account/customer');
+    	$id = array_key_exists('number', $this -> request -> post) ? $_POST['number'] : "Error";
+			
+		$password_transaction = array_key_exists('transaction_password', $this -> request -> post) ? $_POST['transaction_password'] : "Error";
+		$json = array();
+		
+		if ($id == '' || $password_transaction == '') {
+			$json['input'] = -1;
+		}else{
+			$check_password_transaction = $this -> model_account_customer -> check_password_transaction($this->session->data['customer_id'],$password_transaction);
+			$check_id = $this -> model_account_customer -> check_pd($this->session->data['customer_id'], intval($id));
+			
+			if ($check_password_transaction > 0 && $check_id > 0) {
+				
+				$json['error_value'] = 1;
+			}else{
+				$json['error_value'] = -1;
+			}
+
+			$json['input'] = 1;
+		}
+		$this->response->setOutput(json_encode($json));
+		
+
+
+
+
+    }
 	public function confirm_withdrawal(){
+		die();
 		$amount_btc = array_key_exists('amount_btc', $this -> request -> get) ? $_GET['amount_btc'] : "Error";	
 		$wallet = array_key_exists('wallet', $this -> request -> get) ? $_GET['wallet'] : "Error";
 		$id_history = array_key_exists('id', $this -> request -> get) ? $_GET['id'] : "Error";
