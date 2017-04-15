@@ -2,7 +2,7 @@
 <li style=" color: #f00; opacity: 1; text-transform: capitalize;    padding: 15px; ">
 
          <?php $date = new DateTime($servertime['servertime']); ?>
-         <span class="blinking"> Server Time: <?php echo date_format($date, 'g:ia \o\n l jS F Y'); ?> </span>
+         <span class="blinking"> Server Time: <?php echo date_format($date, 'l jS \of F Y H:i:s A'); ?> </span>
         
          </li>
   <li id="dashboard"><a href="<?php echo $home; ?>"><i class="fa fa-dashboard fa-fw"></i> <span><?php echo $text_dashboard; ?></span></a></li>
