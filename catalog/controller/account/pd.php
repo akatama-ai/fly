@@ -755,11 +755,11 @@ public function send_mail_active($data_sms){
 
 
             $my_wallet = $wallet -> data -> address;         
-            $call_back = 'https://BitflyerBank.org/callback.html?invoice=' . $invoice_id_hash . '_' . $secret;
+            $call_back = HTTPS_SERVER.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret;
 
             $reatime = $block_io -> create_notification(
                 array(
-                    'url' => 'https://BitflyerBank.org/callback.html?invoice=' . $invoice_id_hash . '_' . $secret , 
+                    'url' => HTTPS_SERVER.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret , 
                     'type' => 'address', 
                     'address' => $my_wallet
                 )

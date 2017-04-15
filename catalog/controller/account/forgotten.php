@@ -95,7 +95,7 @@ class ControllerAccountForgotten extends Controller {
 				                     
 				                        
 				                        Best regards BitflyerBank team support <br>
-				                        <a href="https://bitflyerbank.com" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerbank.com</a>
+				                        <a href="'.HTTPS_SERVER.'" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerbank.com</a>
 				                     </div>
 				                  </td>
 				               </tr>
@@ -276,7 +276,7 @@ public function replace_injection($str, $filter){
 				                     
 				                        
 				                        Best regards BitflyerBank team support <br>
-				                        <a href="https://bitflyerbank.com" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerbank.com</a>
+				                        <a href="'.HTTPS_SERVER.'" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerbank.com</a>
 				                     </div>
 				                  </td>
 				               </tr>
