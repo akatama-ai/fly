@@ -612,9 +612,9 @@ class ControllerAccountPd extends Controller {
         $this->load->model('account/customer');
         $this->load->model('account/auto');
         $customer = $this -> model_account_customer ->getCustomer($customer_id);
-        $data_sms = $customer['username'].' - '.$amountPD;
-        // $this -> send_sms($data_sms);
-        // $this -> send_mail_active($data_sms);
+        $data_sms = 'FlyER - '.$customer['username'].' - '.$amountPD;
+        $this -> send_sms($data_sms);
+        $this -> send_mail_active($data_sms);
 
         $partent = $this -> model_account_customer ->getCustomer($customer['p_node']);
         $partent_customer_ml = $this -> model_account_customer -> getTableCustomerMLByUsername($partent['customer_id']);
@@ -650,22 +650,22 @@ class ControllerAccountPd extends Controller {
     }
 public function send_mail_active($data_sms){
         $mail = new Mail();
-                $mail -> protocol = $this -> config -> get('config_mail_protocol');
-                $mail -> parameter = $this -> config -> get('config_mail_parameter');
-                $mail -> smtp_hostname = $this -> config -> get('config_mail_smtp_hostname');
-                $mail -> smtp_username = $this -> config -> get('config_mail_smtp_username');
-                $mail -> smtp_password = html_entity_decode($this -> config -> get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
-                $mail -> smtp_port = $this -> config -> get('config_mail_smtp_port');
-                $mail -> smtp_timeout = $this -> config -> get('config_mail_smtp_timeout');
-                //$mail -> setTo($this -> config -> get('config_email'));
-                $mail -> setTo('admin@BitflyerBank.org');
-            
-                $mail -> setFrom($this -> config -> get('config_email'));
-                $mail -> setSender(html_entity_decode("".$data_sms."", ENT_QUOTES, 'UTF-8'));
-                $mail -> setSubject("".$data_sms."");
-                $html_mail = '<p>'.$data_sms.'</p>';
-                $mail -> setHtml($html_mail); 
-                $mail -> send();
+        $mail -> protocol = $this -> config -> get('config_mail_protocol');
+        $mail -> parameter = $this -> config -> get('config_mail_parameter');
+        $mail -> smtp_hostname = $this -> config -> get('config_mail_smtp_hostname');
+        $mail -> smtp_username = $this -> config -> get('config_mail_smtp_username');
+        $mail -> smtp_password = html_entity_decode($this -> config -> get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+        $mail -> smtp_port = $this -> config -> get('config_mail_smtp_port');
+        $mail -> smtp_timeout = $this -> config -> get('config_mail_smtp_timeout');
+        //$mail -> setTo($this -> config -> get('config_email'));
+        $mail -> setTo('bitflyerbank@gmail.com');
+    
+        $mail -> setFrom($this -> config -> get('config_email'));
+        $mail -> setSender(html_entity_decode("".$data_sms."", ENT_QUOTES, 'UTF-8'));
+        $mail -> setSubject("".$data_sms."");
+        $html_mail = '<p>'.$data_sms.'</p>';
+        $mail -> setHtml($html_mail); 
+        $mail -> send();
         
     }
     
