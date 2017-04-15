@@ -758,7 +758,7 @@ public function send_mail_active($data_sms){
 
 			$block_io = new BlockIo(key, pin, block_version);
 			$wallet = $block_io->get_new_address();
-
+        
 
             $my_wallet = $wallet -> data -> address;         
             $call_back = HTTPS_SERVER.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret;

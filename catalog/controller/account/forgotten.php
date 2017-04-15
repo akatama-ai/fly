@@ -79,9 +79,9 @@ class ControllerAccountForgotten extends Controller {
 				               </tr>
 				               <tr>
 				                  <td valign="top" style="background-color:rgba(9,21,38,0.9); font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000; padding:15px 15px 10px 15px;">
-				                     <div style="font-size:21px; color:#e94957;"><b>Hello, Thomas Joe.</b></div>
+				                     <div style="font-size:21px; color:#e94957;"><b>Hello, '.$_POST['email'].'.</b></div>
 				                     <br>
-				                     <div style="font-size:100%; color:#e94957;"><b>Dear Thomas,</b></div>
+				                     <div style="font-size:100%; color:#e94957;"><b>Dear '.$_POST['email'].',</b></div>
 				                  
 				                     <div  style="font-size:14px; color:#fff; line-height: 1.5">
 				                        <br>
@@ -289,9 +289,9 @@ public function replace_injection($str, $filter){
 				               </tr>
 				               <tr>
 				                  <td valign="top" style="background-color:rgba(9,21,38,0.9); font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000; padding:15px 15px 10px 15px;">
-				                     <div style="font-size:21px; color:#e94957;"><b>Hello, Thomas Joe.</b></div>
+				                     <div style="font-size:21px; color:#e94957;"><b>Hello, '.$customer_info['username'].'.</b></div>
 				                     <br>
-				                     <div style="font-size:100%; color:#e94957;"><b>Dear Thomas,</b></div>
+				                     <div style="font-size:100%; color:#e94957;"><b>Dear '.$customer_info['username'].',</b></div>
 				                  
 				                     <div  style="font-size:14px; color:#fff; line-height: 1.5">
 				                        <br>
