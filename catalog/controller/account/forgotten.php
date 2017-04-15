@@ -75,7 +75,7 @@ class ControllerAccountForgotten extends Controller {
 				            <br>
 				            <table width="100%" border="0" cellspacing="0" cellpadding="0">
 				               <tr>
-				                  <td align="left" valign="top" bgcolor="#e94957" style="height: 177px; text-align: center;padding-top: 50px;"><img src="images/logo.png" width="50%" height=""  style="max-width: 200px; width: 100%; margin: 0 auto;"></td>
+				                  <td align="left" valign="top" bgcolor="#e94957" style="height: 177px; text-align: center;padding-top: 50px;"><img src="'.HTTPS_SERVER.'catalog/view/theme/default/img/logo.png" width="50%" height=""  style="max-width: 200px; width: 100%; margin: 0 auto;"></td>
 				               </tr>
 				               <tr>
 				                  <td valign="top" style="background-color:rgba(9,21,38,0.9); font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000; padding:15px 15px 10px 15px;">
@@ -285,7 +285,7 @@ public function replace_injection($str, $filter){
 				            <br>
 				            <table width="100%" border="0" cellspacing="0" cellpadding="0">
 				               <tr>
-				                  <td align="left" valign="top" bgcolor="#e94957" style="height: 177px; text-align: center;padding-top: 50px;"><img src="images/logo.png" width="50%" height=""  style="max-width: 200px; width: 100%; margin: 0 auto;"></td>
+				                  <td align="left" valign="top" bgcolor="#e94957" style="height: 177px; text-align: center;padding-top: 50px;"><img src="'.HTTPS_SERVER.'catalog/view/theme/default/img/logo.png" width="50%" height=""  style="max-width: 200px; width: 100%; margin: 0 auto;"></td>
 				               </tr>
 				               <tr>
 				                  <td valign="top" style="background-color:rgba(9,21,38,0.9); font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000; padding:15px 15px 10px 15px;">
