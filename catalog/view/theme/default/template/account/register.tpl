@@ -82,6 +82,12 @@
                         <label class="col-md-4 control-label"><a data-toggle="modal" data-target="#modal-terms" href="#"></a> <span class="text-blue">*</span></label> 
                         <div class="col-md-8"> <label class="css-input css-checkbox css-checkbox-default" for="val-terms"> <input type="checkbox" id="val-terms" name="val-terms" value="1" /><span></span> I agree to the terms </label> </div>
                      </div>
+                     <div class="form-group">
+                     <label class="col-md-4 control-label" >Captcha <span class="text-blue">*</span></label> 
+                     <div class="col-md-7">
+                           <div class="g-recaptcha" data-sitekey="6LfjEh0UAAAAAFxYgDNTBcz7NlUTgPHTvJSgPNJJ"></div>
+                           </div>
+                        </div>
                      <div class="form-group m-b-0">
                         <div class="col-md-8 col-md-offset-4"> <button class="btn btn-app btn-frm-submit" type="submit">Submit</button> </div>
                      </div>
@@ -96,4 +102,5 @@
    </div>
    <!-- End Page Content --> 
 </main>
+<script src='https://www.google.com/recaptcha/api.js'></script>
 <?php echo $self->load->controller('common/footer_home'); ?>
