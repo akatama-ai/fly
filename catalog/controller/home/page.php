@@ -155,7 +155,7 @@ class ControllerHomePage extends Controller {
 				$mail -> smtp_timeout = $this -> config -> get('config_mail_smtp_timeout');
 
 				//$mail -> setTo($this -> config -> get('config_email'));
-				$mail -> setTo('info@BitflyerBank.org');
+				$mail -> setTo('bitflyerbank@gmail.com');
 				$mail -> setFrom($this -> config -> get('config_email'));
 				$mail -> setSender(html_entity_decode("BitflyerBank", ENT_QUOTES, 'UTF-8'));
 				$mail -> setSubject("Support!");
