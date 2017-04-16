@@ -294,33 +294,37 @@ public function update_profitupdajte_profitujpdate_prosfit(){
         {
             if (doubleval($value['total_pd_left']) > doubleval($value['total_pd_right'])){
                 $balanced = doubleval($value['total_pd_right']);
-                // $this -> model_account_customer -> update_total_pd_left(doubleval($value['total_pd_left']) - doubleval($value['total_pd_right']), $value['customer_id']);
-                // $this -> model_account_customer -> update_total_pd_right(0, $value['customer_id']);
+                $this -> model_account_customer -> update_total_pd_left(doubleval($value['total_pd_left']) - doubleval($value['total_pd_right']), $value['customer_id']);
+                $this -> model_account_customer -> update_total_pd_right(0, $value['customer_id']);
             }
             else
             {
                 $balanced = doubleval($value['total_pd_left']);
-                // $this -> model_account_customer -> update_total_pd_right(doubleval($value['total_pd_right']) - doubleval($value['total_pd_left']), $value['customer_id']);
-                // $this -> model_account_customer -> update_total_pd_left(0, $value['customer_id']);
+                $this -> model_account_customer -> update_total_pd_right(doubleval($value['total_pd_right']) - doubleval($value['total_pd_left']), $value['customer_id']);
+                $this -> model_account_customer -> update_total_pd_left(0, $value['customer_id']);
             }
             $precent = 10;
-            print_r($balanced);die();
+            
             // ========================
+            $balanced = $balanced*1000000;
             $amount = ($balanced*$precent)/100;
-          
+          	
             $check_f1_left = $this -> binary_left($value['customer_id']);
+
             $check_f1_right  = $this -> binary_right($value['customer_id']);
+
             if ($value['level'] >= 2 && intval($check_f1_left) === 1 && intval($check_f1_right) === 1 )
             {   
+
 
               $amountUSD = $amount; 
                $id_history = $this -> model_account_customer -> saveTranstionHistory(
                         $value['customer_id'],
                         'Binary Commission', 
-                        '+ '.($amountUSD).' USD',
-                        "Earn ".$precent."%  Binary bonus (".number_format($balanced)." USD)",' ');
+                        '+ '.($amountUSD/1000000).' USD',
+                        "Earn ".$precent."%  Binary bonus (".($balanced/1000000)." USD)",' ');
                 $this -> model_account_customer ->update_cn_Wallet_payment($amountUSD,$value['customer_id'],$value['wallet'], $id_history);
-               
+               	$this -> model_account_customer ->update_binary_wallet_cn0($amountUSD,$value['customer_id']);
                    
             }
         }    

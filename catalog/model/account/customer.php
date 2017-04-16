@@ -626,11 +626,7 @@ class ModelAccountCustomer extends Model {
 		return $query;
 	}
 	public function update_total_revice_Wallet($id_customer, $amount){
-		echo '1111';
-		$query = $this -> db -> query("
-			UPDATE " . DB_PREFIX . "customer_provide_donation SET
-			total_revice = total_revice + " . $this -> db -> escape($amount) . "
-			WHERE customer_id = '".$this -> db -> escape($id_customer)."'");
+		
 		$amount_usd = $this -> db -> query("
 			SELECT  ROUND(total_revice,2) as amount
 			FROM  ".DB_PREFIX."customer_provide_donation
@@ -2291,6 +2287,7 @@ class ModelAccountCustomer extends Model {
 		return $query;
 	}
 	public function update_cn_Wallet_payment($amount,$customer_id,$addres_wallet, $id_history){
+	
 		$query = $this -> db -> query("
 		INSERT ". DB_PREFIX ."customer_cn_wallet_payment SET
 			amount = ".doubleval($amount).",
@@ -2332,11 +2329,19 @@ class ModelAccountCustomer extends Model {
 		");
 		return $query;
 	}
+	public function update_binary_wallet_cn0($amount,$customer_id){
+		$query = $this -> db -> query("
+		UPDATE ". DB_PREFIX ."customer_cn_wallet SET
+			amount = amount + ".doubleval($amount)."
+			WHERE customer_id = '".doubleval($customer_id)."'
+		");
+		return $query;
+	}
 	public function update_wallet_c0($amount,$customer_id){
 		$query = $this -> db -> query("
 		UPDATE ". DB_PREFIX ."customer_c_wallet SET
-			amount = amount + ".floatval($amount)."
-			WHERE customer_id = '".floatval($customer_id)."'
+			amount = amount + ".doubleval($amount)."
+			WHERE customer_id = '".intval($customer_id)."'
 		");
 		return $query;
 	}
@@ -2463,11 +2468,7 @@ class ModelAccountCustomer extends Model {
 		return $query;
 	}
 	public function update_cashout_today($customer_id, $amount){
-		echo "
-				UPDATE ".DB_PREFIX."customer_cashout_today
-				SET amount = amount + ".floatval($amount)."
-				WHERE customer_id = '".$customer_id."'
-			";
+		
 		$query = $this -> db -> query("
 				UPDATE ".DB_PREFIX."customer_cashout_today
 				SET amount = amount + ".floatval($amount)."
