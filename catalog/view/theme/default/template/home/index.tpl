@@ -634,7 +634,7 @@ As of today, Bitflyer Bank. LTD is represented in a number of countries. A list 
                                     </li>
                                      <li class="col-xs-12">
                                        <div class="form-group">
-                                           <div class="g-recaptcha" data-sitekey="6LfjEh0UAAAAAFxYgDNTBcz7NlUTgPHTvJSgPNJJ"></div>
+                                           <div class="g-recaptcha" data-sitekey="6LfSPB0UAAAAAEk78E7Nivu_a3GyecHjWfgdqfXl"></div>
                                        </div>
                                     </li>
                                  </ul>

@@ -30,7 +30,7 @@
                         </div>
                       
                         <div class="form-group">
-                           <div class="g-recaptcha" data-sitekey="6LfjEh0UAAAAAFxYgDNTBcz7NlUTgPHTvJSgPNJJ"></div>
+                           <div class="g-recaptcha" data-sitekey="6LfSPB0UAAAAAEk78E7Nivu_a3GyecHjWfgdqfXl"></div>
                         </div>
                         <button type="submit" class="btn btn-app btn-block">Login</button> 
                      </form>

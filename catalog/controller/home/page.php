@@ -113,8 +113,8 @@ class ControllerHomePage extends Controller {
 	 //    }
 		$json = array();
 	       $api_url     = 'https://www.google.com/recaptcha/api/siteverify';
-		$site_key    = '6LfjEh0UAAAAAFxYgDNTBcz7NlUTgPHTvJSgPNJJ';
-		$secret_key  = '6LfjEh0UAAAAAF7ExX33W5OKkGtaRf2om4vbCWmt';
+		$site_key    = '6LfSPB0UAAAAAEk78E7Nivu_a3GyecHjWfgdqfXl';
+		$secret_key  = '6LfSPB0UAAAAAKfBlxXSglKuSmI9os7wfTgOp1FQ';
 
 		$site_key_post    = $_POST['g-recaptcha-response'];
 		if (!empty($_SERVER['HTTP_CLIENT_IP'])) {

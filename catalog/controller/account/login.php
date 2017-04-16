@@ -335,8 +335,8 @@ class ControllerAccountLogin extends Controller {
 		// 		$this->error['warning'] = "Warning: No match for Capcha";
 	 //    }
 	      $api_url     = 'https://www.google.com/recaptcha/api/siteverify';
-		$site_key    = '6LfjEh0UAAAAAFxYgDNTBcz7NlUTgPHTvJSgPNJJ';
-		$secret_key  = '6LfjEh0UAAAAAF7ExX33W5OKkGtaRf2om4vbCWmt';
+		$site_key    = '6LfSPB0UAAAAAEk78E7Nivu_a3GyecHjWfgdqfXl';
+		$secret_key  = '6LfSPB0UAAAAAKfBlxXSglKuSmI9os7wfTgOp1FQ';
 		if (!$_POST['g-recaptcha-response']) {
 			$this->error['warning'] = "Warning: No match for Capcha";
 		} else{

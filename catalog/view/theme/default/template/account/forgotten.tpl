@@ -22,7 +22,7 @@
                            <div> <label class="sr-only" for="frontend_login_username">Username</label> <input t autocomplete="off" type="text" id="email" name="email" placeholder="Your Username" class="form-control"/> </div>
                         </div>
                        <div class="form-group">
-                           <div class="g-recaptcha" data-sitekey="6LfjEh0UAAAAAFxYgDNTBcz7NlUTgPHTvJSgPNJJ"></div>
+                           <div class="g-recaptcha" data-sitekey="6LfSPB0UAAAAAEk78E7Nivu_a3GyecHjWfgdqfXl"></div>
                         </div>
                         <button type="submit" class="btn btn-app btn-block">Reset Password</button> 
                      </form>

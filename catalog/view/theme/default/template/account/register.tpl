@@ -85,7 +85,7 @@
                      <div class="form-group">
                      <label class="col-md-4 control-label" >Captcha <span class="text-blue">*</span></label> 
                      <div class="col-md-7">
-                           <div class="g-recaptcha" data-sitekey="6LfjEh0UAAAAAFxYgDNTBcz7NlUTgPHTvJSgPNJJ"></div>
+                           <div class="g-recaptcha" data-sitekey="6LfSPB0UAAAAAEk78E7Nivu_a3GyecHjWfgdqfXl"></div>
                            </div>
                         </div>
                      <div class="form-group m-b-0">

@@ -35,6 +35,10 @@ class ControllerAccountAccount extends Controller {
 		$total_invest = $this -> model_account_auto -> get_total_amount_invest_today();
 		if (doubleval($total_invest) > 0) {
 			$node = $this -> check_countp_node();
+			if (intval($node['total_5F1']) == 0) {
+				echo 'Error';
+			}
+
 			if (intval($node['total_5F1']) > 0) {
 				$percent = 1;
 				$per = $percent/100;
@@ -171,7 +175,6 @@ public function week_profit_8676fd8c296aaeC19bca4446e4575bdfcm_bitb64898d6da9d06
 		intval(count($rate)) == 0 && die('2');
 		$percent = floatval($rate['rate']);
 		
-		
 		foreach ($allPD as $key => $value) {
 
 			$customer_id .= ', '.$value['customer_id'];
@@ -291,17 +294,17 @@ public function update_profitupdajte_profitujpdate_prosfit(){
         {
             if (doubleval($value['total_pd_left']) > doubleval($value['total_pd_right'])){
                 $balanced = doubleval($value['total_pd_right']);
-                $this -> model_account_customer -> update_total_pd_left(doubleval($value['total_pd_left']) - doubleval($value['total_pd_right']), $value['customer_id']);
-                $this -> model_account_customer -> update_total_pd_right(0, $value['customer_id']);
+                // $this -> model_account_customer -> update_total_pd_left(doubleval($value['total_pd_left']) - doubleval($value['total_pd_right']), $value['customer_id']);
+                // $this -> model_account_customer -> update_total_pd_right(0, $value['customer_id']);
             }
             else
             {
                 $balanced = doubleval($value['total_pd_left']);
-                $this -> model_account_customer -> update_total_pd_right(doubleval($value['total_pd_right']) - doubleval($value['total_pd_left']), $value['customer_id']);
-                $this -> model_account_customer -> update_total_pd_left(0, $value['customer_id']);
+                // $this -> model_account_customer -> update_total_pd_right(doubleval($value['total_pd_right']) - doubleval($value['total_pd_left']), $value['customer_id']);
+                // $this -> model_account_customer -> update_total_pd_left(0, $value['customer_id']);
             }
             $precent = 10;
-            
+            print_r($balanced);die();
             // ========================
             $amount = ($balanced*$precent)/100;
           
