@@ -6,8 +6,8 @@ class ControllerPdInvestment extends Controller {
 		$this->load->model('pd/registercustom');
 		$data['self'] =$this;
 		$page = isset($this -> request -> get['page']) ? $this -> request -> get['page'] : 1;
-		$this -> document -> addScript('../catalog/view/javascript/countdown/jquery.countdown.min.js');
-		$this -> document -> addScript('../catalog/view/javascript/transaction/countdown.js');
+		// $this -> document -> addScript('../catalog/view/javascript/countdown/jquery.countdown.min.js');
+		// $this -> document -> addScript('../catalog/view/javascript/transaction/countdown.js');
 		$limit = 10;
 		$start = ($page - 1) * 10;
 
@@ -25,15 +25,38 @@ class ControllerPdInvestment extends Controller {
 		$data['code'] =  $this-> model_pd_registercustom->get_all_invesment($limit, $start);
 		
 		$data['pagination'] = $pagination -> render();
-		
+		$data['linkdate'] = HTTPS_SERVER.'index.php?route=pd/investment/totalpd&token='.$this->session->data['token'];
 		$data['token'] = $this->session->data['token'];
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['footer'] = $this->load->controller('common/footer');
 
+
+
 		$this->response->setOutput($this->load->view('pd/investment.tpl', $data));
 	}
 	
+	public function totalpd($date = false){
+		
+		$this->load->model('pd/registercustom');
+		// $date = '14-04-2017';
+		// $date =  date("Y-m-d", strtotime($date) );
+		if ($this -> request -> server['REQUEST_METHOD'] === 'POST') {
+ 			$json=array();
+ 			$date =  date("Y-m-d", strtotime($_POST['date']));
+ 			$total = $this -> model_pd_registercustom -> get_total_pd($date);
+ 			$json['total'] = $total > 0 ? $total : '0';
+ 			$this->response->setOutput(json_encode($json));
+		}else{
+
+			$total = $this -> model_pd_registercustom -> get_total_pd($date);
+
+			return $total > 0 ? $total : 0;
+		}
+				
+		
+	}
+
 	public function get_username($customer_id){
 		$this->load->model('pd/registercustom');
 		return $this -> model_pd_registercustom -> get_username($customer_id);

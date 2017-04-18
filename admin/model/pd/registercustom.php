@@ -30,6 +30,15 @@ class ModelPdRegistercustom extends Model {
 		");
 		return $query->rows;
 	}
+	public function get_total_pd($date = false){
+		if ($date) {
+			$query = $this->db->query("SELECT SUM(filled) as total FROM " . DB_PREFIX . "customer_provide_donation  WHERE status = 1 AND DATE( date_added ) = '".$this -> db -> escape($date)."'");
+		}else{
+			$query = $this->db->query("SELECT SUM(filled) as total FROM " . DB_PREFIX . "customer_provide_donation  WHERE status = 1 AND DATE( date_added ) = CURDATE()");
+		}
+		
+		return $query->row['total'];
+	}
 	public function get_rate_limit() {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "rate  order by id DESC LIMIT 1");
 		return $query->row;

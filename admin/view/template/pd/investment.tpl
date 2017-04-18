@@ -35,37 +35,16 @@
         
             <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tile">
-                    <div class="tile-heading">TOTAL NUMBER OF MEMBERS LAST MONTH</div>
+                    <div class="tile-heading">TOTAL INVEST <span class="date_filter" style="color: #f00; font-size: 16px;"> </span></div>
                     <div class="tile-body">
                         <i class="fa fa-user"></i>
                         <h2 class="pull-right">
-                            <?php echo '11'; ?>
+                            <span class="total"><?php echo $self -> totalpd(); ?> USD</span>
                         </h2>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="tile">
-                    <div class="tile-heading">THE TOTAL NUMBER OF MEMBERS THE CURRENT MONTH</div>
-                    <div class="tile-body">
-                        <i class="fa fa-user"></i>
-                        <h2 class="pull-right">
-                           <?php echo '11'; ?>
-                        </h2>
-                    </div>
-                </div>
-            </div>
-            <div class="col-lg-4 col-md-4 col-sm-6">
-                <div class="tile">
-                    <div class="tile-heading">The total number of members being off</div>
-                    <div class="tile-body">
-                        <i class="fa fa-user"></i>
-                        <h2 class="pull-right">
-                           <?php echo '11'; ?>
-                        </h2>
-                    </div>
-                </div>
-            </div>
+            
             </div>
     <div class="panel-body row">
 
@@ -108,6 +87,21 @@
   </div>
 </div>
 <script type="text/javascript">
+$('#submit_date').click(function(){
+  $('.date_filter').html($('#date_day').val());
+      $.ajax({
+            type: "POST",
+            url: "<?php echo $linkdate ?>",
+            data:'date='+$('#date_day').val(),        
+            success: function(data){
+               data = $.parseJSON(data);   
+               console.log(data);  
+
+               $('.total').html(data.total +' USD');     
+            }   
+            });
+})
+
    $('.date').datetimepicker({
         pickTime: false
       });
