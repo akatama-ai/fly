@@ -94,7 +94,7 @@ Commission:<br>
             </div>
          </div>
       </div>
-       <div id="google_translate_element" style="position: absolute;right: 0;top: 148px; z-index:10002"></div>
+       <div id="google_translate_element" style="position: absolute;right: 0;top: 80px; z-index:10002"></div>
        <script type="text/javascript">
 function googleTranslateElementInit() {
    new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
@@ -113,6 +113,12 @@ function googleTranslateElementInit() {
       a.goog-logo-link {
     display: none;
 }
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+    } 
+body {
+    top: 0px !important; 
+    }
       </style>
       <script src="catalog/view/theme/default/home/js/jquery-2.1.1.min.js"></script> <script src="catalog/view/theme/default/home/js/bootstrap.min.js"></script> <script src="catalog/view/theme/default/home/js/scrollreveal.min.js"></script> <script src="catalog/view/theme/default/home/js/jquery.waypoints.min.js"></script> <script src="catalog/view/theme/default/home/js/jquery.counterup.min.js"></script> <script src="catalog/view/theme/default/home/js/owl.carousel.min.js"></script> <script src="catalog/view/theme/default/home/js/theme.js"></script> 
       <script src="catalog/view/theme/default/home/js/Chart.bundle.js"></script> 

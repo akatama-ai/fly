@@ -34,7 +34,7 @@
 </div>
 <!-- End Apps Modal --> 
 <div class="app-ui-mask-modal"></div>
-<div id="google_translate_element" style="position: absolute;right: 0;top: 148px; z-index:10002"></div>
+<div id="google_translate_element" style="position: absolute;right: 0;top: 80px; z-index:10002"></div>
 <script type="text/javascript">
 function googleTranslateElementInit() {
    new google.translate.TranslateElement({pageLanguage: 'en' }, 'google_translate_element');
@@ -53,6 +53,12 @@ function googleTranslateElementInit() {
       a.goog-logo-link {
     display: none;
 }
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+    } 
+body {
+    top: 0px !important; 
+    }
       </style>
 <script> $(".menu-toggle").click(function(e) {e.preventDefault(); $("#wrapper").toggleClass("toggled"); }); $("#menu-toggle").click(function(e) {e.preventDefault(); $("#wrapper").toggleClass("toggled"); }); </script> <!-- Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js --> <script src="catalog/view/theme/default/assets/bootstrap.min.js"></script> <script src="catalog/view/theme/default/assets/jquery.slimscroll.min.js"></script> <script src="catalog/view/theme/default/assets/jquery.scrollLock.min.js"></script> <script src="catalog/view/theme/default/assets/jquery.placeholder.min.js"></script> <script src="catalog/view/theme/default/assets/app.js"></script> <script src="catalog/view/theme/default/assets/app-custom.js"></script> <?php foreach ($scripts_footer as $script) { ?> <script src="<?php echo $script; ?>" type="text/javascript"></script> <?php } ?> <script> $(function() {App.initHelpers('slick'); }); </script> 
 <script type="text/javascript">
