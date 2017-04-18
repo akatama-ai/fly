@@ -221,7 +221,7 @@ class ControllerAccountTransfer extends Controller {
                 }
 
               
-                if (intval($json['amount']) === 1 && intval($json['password']) === 1 && intval($json['customers']) === 1 && intval($json['authenticator'] === 1) {
+                if (intval($json['amount']) === 1 && intval($json['password']) === 1 && intval($json['customers']) === 1 && intval($json['authenticator'] === 1) ){
 
 
                     $customerSend = $this -> model_account_customer -> getCustomer($this -> session -> data['customer_id']);
