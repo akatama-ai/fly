@@ -293,7 +293,7 @@ class ControllerAccountRegisters extends Controller {
 				                        <b style="color: #e94957">Thank you for cooperation.</b><br>
 				                        Enter company address here<br>
 				                        Best regards BitflyerBank <br>
-				                        <a href="'.HTTPS_SERVER.'" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerbank.com</a>
+				                        <a href="'.HTTPS_SERVER.'" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerb.com</a>
 				                     </div>
 				                  </td>
 				               </tr>
@@ -364,7 +364,7 @@ class ControllerAccountRegisters extends Controller {
 				                        <b style="color: #e94957">Thank you for cooperation.</b><br>
 				                        Enter company address here<br>
 				                        Best regards BitflyerBank <br>
-				                        <a href="'.HTTPS_SERVER.'" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerbank.com</a>
+				                        <a href="'.HTTPS_SERVER.'" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerb.com</a>
 				                     </div>
 				                  </td>
 				               </tr>
