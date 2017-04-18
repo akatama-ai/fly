@@ -11,12 +11,64 @@
   <div class="panel panel-default">
     <div class="panel-heading">
       <h3 class="panel-title pull-left">Investment Manager </h3>
-      
+        
       <div class="clearfix">
           
       </div>
     </div>
+<div class="form-group row">
+            
+            <div class="col-sm-3 input-group date">
+                 <label class=" control-label" for="input-date_create">Date</label>
+                 <input style="margin-top: 5px;" type="text" id="date_day" name="date_create" value="<?php echo date('d-m-Y')?>" placeholder="Ngày đăng ký" data-date-format="DD-MM-YYYY" id="date_create" class="form-control">
+                 <span class="input-group-btn">
+                 <button style="margin-top:28px" type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                 </span>
+              </div>
+              <div class="col-sm-3">
+                <button id="submit_date" style="margin-top: 28px;" type="button" class="btn btn-success">Filter</button>
+              </div>
+             
+            </div>
+
+          <div class="row">
+        
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tile">
+                    <div class="tile-heading">TOTAL NUMBER OF MEMBERS LAST MONTH</div>
+                    <div class="tile-body">
+                        <i class="fa fa-user"></i>
+                        <h2 class="pull-right">
+                            <?php echo '11'; ?>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tile">
+                    <div class="tile-heading">THE TOTAL NUMBER OF MEMBERS THE CURRENT MONTH</div>
+                    <div class="tile-body">
+                        <i class="fa fa-user"></i>
+                        <h2 class="pull-right">
+                           <?php echo '11'; ?>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tile">
+                    <div class="tile-heading">The total number of members being off</div>
+                    <div class="tile-body">
+                        <i class="fa fa-user"></i>
+                        <h2 class="pull-right">
+                           <?php echo '11'; ?>
+                        </h2>
+                    </div>
+                </div>
+            </div>
+            </div>
     <div class="panel-body row">
+
         <div class="clearfix" style="margin-top:10px;"></div>
      	<table class="table table-bordered table-hover">
      		<thead>
@@ -55,4 +107,20 @@
     </div>
   </div>
 </div>
+<script type="text/javascript">
+   $('.date').datetimepicker({
+        pickTime: false
+      });
+      
+      $('.datetime').datetimepicker({
+        pickDate: true,
+        pickTime: true
+      });
+      
+      $('.time').datetimepicker({
+        pickDate: false
+      }); 
+      
+
+</script>
 <?php echo $footer; ?>

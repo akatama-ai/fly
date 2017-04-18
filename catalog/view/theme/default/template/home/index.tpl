@@ -624,6 +624,26 @@ As of today, Bitflyer Bank. LTD is represented in a number of countries. A list 
             </div>
          </div>
       </div>
+       <div id="google_translate_element" style="position: absolute;right: 0;top: 148px; z-index:10002"></div>
+       <script type="text/javascript">
+function googleTranslateElementInit() {
+   new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+      <style type="text/css">
+      #google_translate_element select{
+        border: 1px solid #d03543;
+    padding: 10px;
+    border-radius: 5px;
+    background: #d03543;
+    color: #fff;
+      }
+      a.goog-logo-link {
+    display: none;
+}
+      </style>
       <script src="catalog/view/theme/default/home/js/jquery-2.1.1.min.js"></script> <script src="catalog/view/theme/default/home/js/bootstrap.min.js"></script> <script src="catalog/view/theme/default/home/js/scrollreveal.min.js"></script> <script src="catalog/view/theme/default/home/js/jquery.waypoints.min.js"></script> <script src="catalog/view/theme/default/home/js/jquery.counterup.min.js"></script> <script src="catalog/view/theme/default/home/js/owl.carousel.min.js"></script> <script src="catalog/view/theme/default/home/js/theme.js"></script> 
       <script src='https://www.google.com/recaptcha/api.js'></script>
       <script src="catalog/view/theme/default/home/js/Chart.bundle.js"></script> 

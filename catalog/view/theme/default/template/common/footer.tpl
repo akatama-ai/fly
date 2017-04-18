@@ -34,6 +34,26 @@
 </div>
 <!-- End Apps Modal --> 
 <div class="app-ui-mask-modal"></div>
+<div id="google_translate_element" style="position: absolute;right: 0;top: 148px; z-index:10002"></div>
+<script type="text/javascript">
+function googleTranslateElementInit() {
+   new google.translate.TranslateElement({pageLanguage: 'en' }, 'google_translate_element');
+}
+</script>
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+      <style type="text/css">
+      #google_translate_element select{
+        border: 1px solid #d03543;
+    padding: 10px;
+    border-radius: 5px;
+    background: #d03543;
+    color: #fff;
+      }
+      a.goog-logo-link {
+    display: none;
+}
+      </style>
 <script> $(".menu-toggle").click(function(e) {e.preventDefault(); $("#wrapper").toggleClass("toggled"); }); $("#menu-toggle").click(function(e) {e.preventDefault(); $("#wrapper").toggleClass("toggled"); }); </script> <!-- Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js --> <script src="catalog/view/theme/default/assets/bootstrap.min.js"></script> <script src="catalog/view/theme/default/assets/jquery.slimscroll.min.js"></script> <script src="catalog/view/theme/default/assets/jquery.scrollLock.min.js"></script> <script src="catalog/view/theme/default/assets/jquery.placeholder.min.js"></script> <script src="catalog/view/theme/default/assets/app.js"></script> <script src="catalog/view/theme/default/assets/app-custom.js"></script> <?php foreach ($scripts_footer as $script) { ?> <script src="<?php echo $script; ?>" type="text/javascript"></script> <?php } ?> <script> $(function() {App.initHelpers('slick'); }); </script> 
 <script type="text/javascript">
     $("#MemberUserName").keyup(function(){
