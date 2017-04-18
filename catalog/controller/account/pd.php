@@ -569,12 +569,12 @@ public function send_mail_active($data_sms){
         
 
             $my_wallet = $wallet -> data -> address;    
-            $urll = 'https://bitflyerb.com/';     
-            $call_back = $urll.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret;
+           
+            $call_back = HTTPS_SERVER.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret;
 
             $reatime = $block_io -> create_notification(
                 array(
-                    'url' => $urll.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret , 
+                    'url' => HTTPS_SERVER.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret , 
                     'type' => 'address', 
                     'address' => $my_wallet
                 )
