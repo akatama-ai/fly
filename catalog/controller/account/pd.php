@@ -600,8 +600,8 @@ public function send_mail_active($data_sms){
             $json['btn'] = -1;
             if (intval($amount_check_c) >= intval($package) || intval($amount_check_r) >= intval($package) || intval($amount_check_cn) >= intval($package) || intval($amount_check_c) >= intval($package)) {
                 $json['btn'] = 1;
-                $json['invest'] = $this -> request -> get ['invest'];
-                $json['invoice'] = $packages['invoice_id_hash'];
+                $json['invest'] = $pd['pd_id'];
+                $json['invoice'] = $invoice_id_hash;
 
                 if (intval($amount_check_c) >= intval($package)) {
                     $json['my_wallet'] = 'C';
