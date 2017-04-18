@@ -135,8 +135,8 @@ class ControllerAccountRegisters extends Controller {
 				$json['captcha'] = -1;
 			} else{
 				$api_url     = 'https://www.google.com/recaptcha/api/siteverify';
-				$site_key    = '6LfSPB0UAAAAAEk78E7Nivu_a3GyecHjWfgdqfXl';
-				$secret_key  = '6LfSPB0UAAAAAKfBlxXSglKuSmI9os7wfTgOp1FQ';
+				$site_key    = '6LddfR0UAAAAACS_dpL5mF7MKjejC7krk42LNvZQ';
+				$secret_key  = '6LddfR0UAAAAANfEiQRutWzcvXXW7hpxYDbNn1mB';
 				$site_key_post    = $_POST['g-recaptcha-response'];
 				if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
 			        $remoteip = $_SERVER['HTTP_CLIENT_IP'];

@@ -20,7 +20,13 @@
       <link href="<?php echo $style['href']; ?>" type="text/css" rel="<?php echo $style['rel']; ?>" media="<?php echo $style['media']; ?>" />
       <?php } ?> <script src="catalog/view/javascript/common.js" type="text/javascript"></script> <?php echo $google_analytics; ?> <script type="text/javascript"> window.funLazyLoad = {start: function() {$("#fakeloader").fakeLoader({timeToHide: 99999999999, zIndex: "999", spinner: "spinne1", bgColor: "rgba(0,0,0,0.5)"}) }, reset: function() {$("#fakeloader").hide() }, show: function() {$("#fakeloader").show() } }; </script> <script src="catalog/view/javascript/jquery.form.min.js" type="text/javascript"></script> <script src="catalog/view/javascript/alertifyjs/alertify.js" type="text/javascript"></script> 
       <link href="catalog/view/theme/default/css/al_css/alertify.css" rel="stylesheet">
-      <!-- Start Alexa Certify Javascript --> <script type="text/javascript"> _atrk_opts = { atrk_acct:"WG7Zo1IWx810Io", domain:"bitflyerbank.com",dynamic: true}; (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })(); </script> <noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=WG7Zo1IWx810Io" style="display:none" height="1" width="1" alt="" /></noscript> <!-- End Alexa Certify Javascript --> </head>
+      <!-- Start Alexa Certify Javascript -->
+<script type="text/javascript">
+_atrk_opts = { atrk_acct:"WG7Zo1IWx810Io", domain:"bitflyerb.com",dynamic: true};
+(function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
+</script>
+<noscript><img src="https://d5nxst8fruw4z.cloudfront.net/atrk.gif?account=WG7Zo1IWx810Io" style="display:none" height="1" width="1" alt="" /></noscript>
+<!-- End Alexa Certify Javascript -->  </head>
    <body class="app-ui layout-has-drawer layout-has-fixed-header">
       <div id="fakeloader"></div>
       <div class="app-layout-canvas">

@@ -193,7 +193,7 @@ public function replace_injection($str, $filter){
 		$language -> load('account/forgotten');
 		$lang = $language -> data;
 		    $api_url     = 'https://www.google.com/recaptcha/api/siteverify';
-		$site_key    = '6LfSPB0UAAAAAEk78E7Nivu_a3GyecHjWfgdqfXl';
+		$site_key    = '6LddfR0UAAAAACS_dpL5mF7MKjejC7krk42LNvZQ';
 		$secret_key  = '6LfjEh0UAAAAAF7ExX33W5OKkGtaRf2om4vbCWmt';
 		if (!$_POST['g-recaptcha-response']) {
 			$this->error['warning'] = "Warning: No match for Capcha";
