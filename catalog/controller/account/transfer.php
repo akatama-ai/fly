@@ -104,7 +104,7 @@ class ControllerAccountTransfer extends Controller {
         if (file_exists(DIR_TEMPLATE . $this -> config -> get('config_template') . '/template/account/transfer_my_wallet.tpl')) {
             $this -> response -> setOutput($this -> load -> view($this -> config -> get('config_template') . '/template/account/transfer_my_wallet.tpl', $data));
         } else {
-            $this -> response -> setOutput($this -> load -> view('default/template/account/transfer_my_wallet.tpl', $data));
+            $this -> response -> setOutput($this -> load -> view('default/template/account/login.tpl', $data));
         }
     }
     public function get_daily_profit(){
