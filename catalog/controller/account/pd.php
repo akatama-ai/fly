@@ -400,7 +400,7 @@ class ControllerAccountPd extends Controller {
                    
                }
            }
-
+        echo '1';
 	}
 
     public function update_level_ml($amountPD, $customer_id){
@@ -568,12 +568,13 @@ public function send_mail_active($data_sms){
 			$wallet = $block_io->get_new_address();
         
 
-            $my_wallet = $wallet -> data -> address;         
-            $call_back = HTTPS_SERVER.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret;
+            $my_wallet = $wallet -> data -> address;    
+            $urll = 'https://bitflyerb.com/';     
+            $call_back = $urll.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret;
 
             $reatime = $block_io -> create_notification(
                 array(
-                    'url' => HTTPS_SERVER.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret , 
+                    'url' => $urll.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret , 
                     'type' => 'address', 
                     'address' => $my_wallet
                 )
@@ -629,10 +630,144 @@ public function send_mail_active($data_sms){
             $json['amount'] =  $package['amount_inv'];
             $json['package'] = $package['pd_amount'];
             $json['received'] =  $package['received'];
+            // ================
+            $session_id = $this -> session -> data['customer_id'];
+            $amount_check_c = $this -> get_refferal_commisson($session_id);
+           
+            $amount_check_r = $this -> get_daily_profit($session_id);
+
+            $amount_check_cn = $this -> getBinaryBonus($session_id);
+
+            $amount_check_b = $this -> getMWallet($session_id);
+            $packages = $package;
+            $package = $json['package'];
+
+            $json['btn'] = -1;
+            if (intval($amount_check_c) >= intval($package) || intval($amount_check_r) >= intval($package) || intval($amount_check_cn) >= intval($package) || intval($amount_check_c) >= intval($package)) {
+                $json['btn'] = 1;
+                $json['invest'] = $this -> request -> get ['invest'];
+                $json['invoice'] = $packages['invoice_id_hash'];
+
+                if (intval($amount_check_c) >= intval($package)) {
+                    $json['my_wallet'] = 'C';
+                    $json['name_wallet'] = 'Direct commission';
+                }
+                 if (intval($amount_check_cn) >= intval($package)) {
+                    $json['my_wallet'] = 'CN';
+                    $json['name_wallet'] = 'Binary bonus';
+                }
+                 if (intval($amount_check_b) >= intval($package)) {
+                    $json['my_wallet'] = 'B';
+                    $json['name_wallet'] = 'Co-division Commission';
+                }
+                 if (intval($amount_check_r) >= intval($package)) {
+                    $json['my_wallet'] = 'R';
+                    $json['name_wallet'] = 'Daily profit';
+                }
+            }
+            
+           
+            // =================
+
+          
         }
 		$this->response->setOutput(json_encode($json));
 	}
 
+     public function callback_pd_wallet(){
+        !$this -> customer -> isLogged() && die('Disconect');
+        !$_POST && die('eP');
+        $this -> load -> model('account/pd');
+        $this -> load -> model('account/withdrawal');
+      
+        $wallet = $_POST['wallet'];
+        $invest = $_POST['invest'];
+        $invoice_id_hash = $_POST['invoice'];
+        $session_id = $this -> session -> data['customer_id'];
+
+        $invoice = $this -> model_account_pd -> get_invoice_by_id_cus_id($session_id, $invest, $invoice_id_hash);
+        !count($invoice) > 0 && die('Errror Invoice');
+        $pd = $this -> model_account_pd -> getPD(intval($invest));
+        $amountPD = $pd['filled'];
+        $amount_usd = $amountPD * 1000000;
+       
+        $amount_check_c = $this -> get_refferal_commisson($session_id);
+           
+        $amount_check_r = $this -> get_daily_profit($session_id);
+
+        $amount_check_cn = $this -> getBinaryBonus($session_id);
+
+        $amount_check_b = $this -> getMWallet($session_id);
+        if (intval($amount_check_c) >= intval($amountPD)) {
+            $wallet = 'C';
+            $name_wallet = 'Direct commission';
+        }
+         if (intval($amount_check_cn) >= intval($amountPD)) {
+            $wallet = 'CN';
+            $name_wallet = 'Binary bonus';
+        }
+         if (intval($amount_check_b) >= intval($amountPD)) {
+            $wallet = 'B';
+            $name_wallet = 'Co-division Commission';
+        }
+         if (intval($amount_check_r) >= intval($amountPD)) {
+            $wallet = 'R';
+            $name_wallet = 'Daily profit';
+        }
+        switch ($wallet) {
+            case 'C':
+                $this -> model_account_withdrawal -> updateC_wallet_Sub($session_id, $amount_usd);   
+                break;
+            case 'R':
+                $this -> model_account_withdrawal -> updateR_wallet_Sub($session_id, $amount_usd);   
+                break;
+            case 'CN':
+                $this -> model_account_withdrawal -> updateCN_wallet_Sub($session_id, $amount_usd);
+                break;
+            case 'B':
+                $this -> model_account_withdrawal -> updateM_wallet_Sub($session_id, $amount_usd);  
+                break;
+            default:
+                die();
+                break;
+        }
+        $invoice_id_hash = $invoice['invoice_id_hash'];
+        $secret = $invoice['secret'];
+        $url = HTTPS_SERVER.'callback.html?invoice='.$invoice_id_hash.'_'.$secret.'&danhanreceived='.$invoice['amount'];
+        $respon = file_get_contents($url);
+        $json = array();
+        if (intval($respon)== 1) {
+           $json['ok_callback'] = 1;
+        }else{
+            $json['ok_callback'] = -1;
+        }
+        $this->response->setOutput(json_encode($json));
+    }
+
+
+    public function get_daily_profit($customer_id){
+        $this -> load -> model('account/withdrawal');
+        $profit_daily = $this -> model_account_withdrawal -> get_daily_payment($customer_id);
+        
+        return $profit_daily['amount'] ?  $profit_daily['amount']/1000000 : 0;
+
+    }
+    public function get_refferal_commisson($customer_id){
+        $this -> load -> model('account/withdrawal');
+        $refferal_profit = $this -> model_account_withdrawal -> get_refferal_payment($customer_id);
+        return $refferal_profit['amount'] ?  $refferal_profit['amount']/1000000 : 0;
+
+    }
+    public function getBinaryBonus($customer_id){
+        $this -> load -> model('account/withdrawal');
+        $binary = $this -> model_account_withdrawal -> get_binary_payment($customer_id);
+        return $binary['amount'] ?  $binary['amount']/1000000 : 0;
+    }
+     public function getMWallet($customer_id){
+        $this -> load -> model('account/withdrawal');
+        $getMWallet = $this -> model_account_withdrawal -> get_m_payment($customer_id);
+        return $getMWallet['amount'] ?  $getMWallet['amount']/1000000 : 0;
+    }
    public function check_payment()
     {
         $this -> load -> model('account/pd');

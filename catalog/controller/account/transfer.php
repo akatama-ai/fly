@@ -54,7 +54,59 @@ class ControllerAccountTransfer extends Controller {
             $this -> response -> setOutput($this -> load -> view('default/template/account/login.tpl', $data));
         }
     }
-    
+    public function transfer_my_wallet(){
+       function myCheckLoign($self) {
+            return $self -> customer -> isLogged() ? true : false;
+        };
+
+        function myConfig($self) {
+            $self -> document -> addScript('catalog/view/javascript/transfer/transfermoney.js');
+            
+        };
+
+        !call_user_func_array("myCheckLoign", array($this)) && $this -> response -> redirect("/login.html");
+        call_user_func_array("myConfig", array($this));
+        
+        $session_id = $this -> session -> data['customer_id'];
+        $this -> load -> model('account/customer');
+        $data = array();
+        $data['self'] = $this;
+        $data['customer'] = $customer = $this -> model_account_customer -> getCustomer($this -> session -> data['customer_id']);
+        
+        $page = isset($this -> request -> get['page']) ? $this -> request -> get['page'] : 1;
+
+        $limit = 10;
+        $start = ($page - 1) * 10;
+
+        $ts_history = $this -> model_account_customer -> getTotalTokenHistory($this -> session -> data['customer_id']);
+
+        $ts_history = $ts_history['number'];
+
+        $pagination = new Pagination();
+        $pagination -> total = $ts_history;
+        $pagination -> page = $page;
+        $pagination -> limit = $limit;
+        $pagination -> num_links = 5;
+        $pagination -> text = 'text';
+        $pagination -> url = HTTPS_SERVER . 'transfer-wallet&page={page}';
+        $data['histotys'] = $this -> model_account_customer -> getTokenHistoryById($this -> session -> data['customer_id'], $limit, $start);
+
+        $data['pagination'] = $pagination -> render();
+
+        $this -> load -> model('account/withdrawal');
+        
+        $data['profit_daily'] = $this -> get_daily_profit();
+        $data['refferal_profit'] = $this -> get_refferal_commisson();
+        $data['binary_bonus'] = $this -> getBinaryBonus($this -> session -> data['customer_id']);
+        $data['getMWallet'] = $this -> getMWallet($this -> session -> data['customer_id']);
+        $data['get_customer_setting'] = $get_customer_setting = $this -> model_account_customer -> get_customer_setting($this -> session -> data['customer_id']);
+
+        if (file_exists(DIR_TEMPLATE . $this -> config -> get('config_template') . '/template/account/transfer_my_wallet.tpl')) {
+            $this -> response -> setOutput($this -> load -> view($this -> config -> get('config_template') . '/template/account/transfer_my_wallet.tpl', $data));
+        } else {
+            $this -> response -> setOutput($this -> load -> view('default/template/account/login.tpl', $data));
+        }
+    }
     public function get_daily_profit(){
         $this -> load -> model('account/withdrawal');
         $profit_daily = $this -> model_account_withdrawal -> get_daily_payment($this -> session -> data['customer_id']);
@@ -158,9 +210,14 @@ class ControllerAccountTransfer extends Controller {
                 $json['customers'] = in_array($customer, $UTree) ? 1 : -1;
                 // ==============================
 
-                $ga = new PHPGangsta_GoogleAuthenticator();
-                $oneCode = $ga->getCode($get_customer_setting['key_authenticator']);
-                $oneCode == $authenticator ? $json['authenticator'] = 1 : $json['authenticator'] = -1;
+                $json['authenticator'] = 1;
+
+                if (intval($get_customer_setting['withdrawal_authenticator']) == 1) {
+                    $ga = new PHPGangsta_GoogleAuthenticator();
+                    $oneCode = $ga->getCode($get_customer_setting['key_authenticator']);
+                    $oneCode == $authenticator ? $json['authenticator'] = 1 : $json['authenticator'] = -1;
+        
+                }
 
               
                 if (intval($json['amount']) === 1 && intval($json['password']) === 1 && intval($json['customers']) === 1 && intval($json['authenticator'] = 1) === 1) {
@@ -220,5 +277,151 @@ class ControllerAccountTransfer extends Controller {
         }
         $this->response->setOutput(json_encode($json));
     }
-   
+    
+    public function submit_transfer_mywallet(){
+        
+        function myCheckLoign($self) {
+            return $self -> customer -> isLogged() ? true : false;
+        };
+
+        function myConfig($self) {
+            
+        };
+        !call_user_func_array("myCheckLoign", array($this)) && $this -> response -> redirect("/login.html");
+        call_user_func_array("myConfig", array($this));
+        $this -> load -> model('account/customer');
+        $this -> load -> model('account/withdrawal');
+  
+        if ($this -> request -> post){
+            $json = array();
+       
+           
+            $wallet = $_POST['wallet'];
+            $wallet_receive = $_POST['wallet_receive'];
+            $amount = $_POST['amount'];
+            $password_transaction = $_POST['password_transaction'];
+          
+         
+            $json['input'] = 1;
+            $json['ok'] = -1;
+            $authen = 1;
+            $json['authen'] = 1;
+            $get_customer_setting = $this -> model_account_customer -> get_customer_setting($this -> session -> data['customer_id']);
+          
+
+            if ($wallet_receive == '' || $wallet_receive == $wallet || $wallet == '' || $amount == '' || $password_transaction == ''|| $authen == -1) {
+              $json['input'] = -1;
+            }else{
+                
+                switch ($wallet) {
+                    case 'C':
+                        $wallet = 'Refferal Commission';
+                        $amount_check = $this -> get_refferal_commisson();
+                        break;
+                    case 'R':
+                         $wallet = 'Profit Daily';
+                         $amount_check = $this -> get_daily_profit();
+                        break;
+                    case 'CN':
+                        $wallet = 'Binary Bonuses';
+                        $amount_check = $this -> getBinaryBonus($this -> session -> data['customer_id']);
+                        break;
+                    case 'B':
+                        $wallet = 'Co-division Commission';
+                         $amount_check = $this -> getMWallet($this -> session -> data['customer_id']);
+                        break;
+                    default:
+                        die();
+                        break;
+                }
+                // check amount
+                $amount_usd = $_POST['amount']*1000000;
+                $amount_check = $amount_check * 1000000;
+                $json['amount'] = doubleval($amount_usd) > doubleval($amount_check) || doubleval($amount_usd) < 5000000 ? -1 : 1;
+                // check password
+
+                $check_password_transaction = $this -> model_account_customer -> check_password_transaction($this->session->data['customer_id'],$password_transaction);
+                $json['password'] = intval($check_password_transaction)> 0 ? 1 : -1;
+                // check username
+                
+             
+              
+                if (intval($json['amount']) === 1 && intval($json['password']) === 1 ) {
+
+
+                    $customerSend = $this -> model_account_customer -> getCustomer($this -> session -> data['customer_id']);
+
+                  
+                   $session_id = $this -> session -> data['customer_id'];
+                    switch ($_POST['wallet']) {
+                        case 'C':
+
+                            $this -> model_account_withdrawal -> updateC_wallet_Sub($this -> session -> data['customer_id'], $amount_usd);   
+                            if ($_POST['wallet_receive'] == 'CN') {
+                               $this -> model_account_withdrawal -> updateCN_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            if ($_POST['wallet_receive'] == 'R') {
+                               $this -> model_account_withdrawal -> updateR_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            if ($_POST['wallet_receive'] == 'B') {
+                               $this -> model_account_withdrawal -> updateM_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            break;
+                        case 'R':
+                       
+                            $this -> model_account_withdrawal -> updateR_wallet_Sub($this -> session -> data['customer_id'], $amount_usd);   
+                            if ($_POST['wallet_receive'] == 'CN') {
+                               $this -> model_account_withdrawal -> updateCN_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            if ($_POST['wallet_receive'] == 'C') {
+                               $this -> model_account_withdrawal -> updateC_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            if ($_POST['wallet_receive'] == 'B') {
+                               $this -> model_account_withdrawal -> updateM_wallet_Sub($session_id, $amount_usd, true);
+                            }
+
+                            break;
+                        case 'CN':
+                            $this -> model_account_withdrawal -> updateCN_wallet_Sub($this -> session -> data['customer_id'], $amount_usd);
+                            if ($_POST['wallet_receive'] == 'R') {
+                               $this -> model_account_withdrawal -> updateR_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            if ($_POST['wallet_receive'] == 'C') {
+                               $this -> model_account_withdrawal -> updateC_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            if ($_POST['wallet_receive'] == 'B') {
+                               $this -> model_account_withdrawal -> updateM_wallet_Sub($session_id, $amount_usd, true);
+                            }  
+
+                           
+                            break;
+                        case 'B':
+                            $this -> model_account_withdrawal -> updateM_wallet_Sub($this -> session -> data['customer_id'], $amount_usd);  
+                            if ($_POST['wallet_receive'] == 'R') {
+                               $this -> model_account_withdrawal -> updateR_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            if ($_POST['wallet_receive'] == 'C') {
+                               $this -> model_account_withdrawal -> updateC_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            if ($_POST['wallet_receive'] == 'CN') {
+                               $this -> model_account_withdrawal -> updateCN_wallet_Sub($session_id, $amount_usd, true);
+                            }  
+
+                           
+                            break;
+                        default:
+                            die();
+                            break;
+                    }
+                    $json['ok'] = 1;
+
+                }
+                
+            }
+
+        }else{
+            $json['ok'] = -1;
+        }
+        $this->response->setOutput(json_encode($json));
+    }
 }

@@ -11,7 +11,7 @@
             <!-- Colors -->
             <div class="card">
                <div class="card-header">
-                  <h4>Available for transfer</h4>
+                  <h4>Available for transfer to Member</h4>
                </div>
                <div class="card-block">
               

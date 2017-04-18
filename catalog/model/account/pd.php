@@ -343,6 +343,15 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 		");
 		return $query -> row['confirmations'];
 	}
+	public function get_invoice_by_id_cus_id($customer_id, $transfer_id, $invoice_id_hash){
+	
+		$query = $this -> db -> query("
+			SELECT *
+			FROM ". DB_PREFIX . "customer_invoice_pd
+			WHERE customer_id = '".$this->db->escape($customer_id)."' AND transfer_id = '".$this->db->escape($transfer_id)."' AND invoice_id_hash = '".$this->db->escape($invoice_id_hash)."'
+		");
+		return $query -> row;
+	}
 
 	public function update_package($id) {
 		$query = $this -> db -> query("

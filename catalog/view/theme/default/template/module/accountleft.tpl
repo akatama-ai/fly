@@ -25,7 +25,15 @@
             <!-- withdraw-capital -->
                </ul>
             </li>
-            <li class="nav-item "> <a href="transfer"><i class="ion-shuffle"></i> Transfer Money</a> </li>
+            
+             <li class="nav-item nav-item-has-subnav <?php echo $route==='account/transfer' || $route==='account/transfer/transfer_my_wallet' ? 'active open' : '' ?>">
+               <a href="javascript:void(0)"><i class="ion-ios-calculator-outline"></i> Transfer Money</a> 
+               <ul class="nav nav-subnav">
+                  <li> <a href="transfer">Transfer to Member</a> </li>
+                  <li> <a href="transfer-wallet"> Transfer In My Wallet</a> </li>
+            <!-- withdraw-capital -->
+               </ul>
+            </li>
             <li class="nav-item <?php echo $route==='account/refferal' ? 'active' : '' ?>"> <a href="refferal"><i class="ion-ios-people"></i> Refferal</a> </li>
    
             <li class="nav-item nav-item-has-subnav <?php echo $route==='account/personal' || $route==='account/personal/team_network' ? 'active open' : '' ?>">
