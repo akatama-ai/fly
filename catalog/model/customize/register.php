@@ -367,6 +367,13 @@ public function addCustomer_auto($data){
 		$this -> db -> query("INSERT INTO " . DB_PREFIX . "customer_wallet_btc_ SET 
 			customer_id = '" . (int)$customer_id . "',
 			wallet = '" . $this -> db -> escape($data['wallet']) . "'");
+		$position = $data['position'];
+		if ($data['p_node'] == '234614641') { 
+			$position = 'left';
+		}else{
+			$position = $data['position'];
+		}
+
 		$this -> db -> query("INSERT INTO " . DB_PREFIX . "customer_ml SET 
 			customer_id = '" . (int)$customer_id . "',
 			customer_code ='".hexdec(crc32(md5($data['username'])))."',
