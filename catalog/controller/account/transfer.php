@@ -154,7 +154,7 @@ class ControllerAccountTransfer extends Controller {
             $amount = $_POST['amount'];
             $password_transaction = $_POST['password_transaction'];
             $description = $_POST['description'];
-            $authenticator = $_POST['authenticator'];
+         
             $json['input'] = 1;
             $json['ok'] = -1;
             $authen = 1;
@@ -162,6 +162,7 @@ class ControllerAccountTransfer extends Controller {
             $get_customer_setting = $this -> model_account_customer -> get_customer_setting($this -> session -> data['customer_id']);
           
             if (intval($get_customer_setting['withdrawal_authenticator']) == 1) {
+                   $authenticator = $_POST['authenticator'];
                 if ($authenticator == '') {
                     $authen = -1;
                       $json['authen'] = -1;
@@ -220,7 +221,7 @@ class ControllerAccountTransfer extends Controller {
                 }
 
               
-                if (intval($json['amount']) === 1 && intval($json['password']) === 1 && intval($json['customers']) === 1 && intval($json['authenticator'] = 1) === 1) {
+                if (intval($json['amount']) === 1 && intval($json['password']) === 1 && intval($json['customers']) === 1 && intval($json['authenticator'] === 1) {
 
 
                     $customerSend = $this -> model_account_customer -> getCustomer($this -> session -> data['customer_id']);
