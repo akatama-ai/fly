@@ -584,6 +584,45 @@ public function send_mail_active($data_sms){
 			$json['amount'] =  $amount;
 	
 			$json['package'] = $package;
+
+              // ================
+            $session_id = $this -> session -> data['customer_id'];
+            $amount_check_c = $this -> get_refferal_commisson($session_id);
+           
+            $amount_check_r = $this -> get_daily_profit($session_id);
+
+            $amount_check_cn = $this -> getBinaryBonus($session_id);
+
+            $amount_check_b = $this -> getMWallet($session_id);
+            $packages = $package;
+            $package = $json['package'];
+
+            $json['btn'] = -1;
+            if (intval($amount_check_c) >= intval($package) || intval($amount_check_r) >= intval($package) || intval($amount_check_cn) >= intval($package) || intval($amount_check_c) >= intval($package)) {
+                $json['btn'] = 1;
+                $json['invest'] = $this -> request -> get ['invest'];
+                $json['invoice'] = $packages['invoice_id_hash'];
+
+                if (intval($amount_check_c) >= intval($package)) {
+                    $json['my_wallet'] = 'C';
+                    $json['name_wallet'] = 'Direct commission';
+                }
+                 if (intval($amount_check_cn) >= intval($package)) {
+                    $json['my_wallet'] = 'CN';
+                    $json['name_wallet'] = 'Binary bonus';
+                }
+                 if (intval($amount_check_b) >= intval($package)) {
+                    $json['my_wallet'] = 'B';
+                    $json['name_wallet'] = 'Co-division Commission';
+                }
+                 if (intval($amount_check_r) >= intval($package)) {
+                    $json['my_wallet'] = 'R';
+                    $json['name_wallet'] = 'Daily profit';
+                }
+            }
+            
+           
+            // =================
             
             $this->response->setOutput(json_encode($json));
    			

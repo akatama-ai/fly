@@ -134,14 +134,19 @@ function selectU(val) {
                      }
                      result = $.parseJSON(result);
                      var amount = result.amount / 100000000;
-                     
+                     if(_.has(result, 'btn') && result['btn'] === 1){
+                      var html = '<input type="hidden" id="my_wallet" name="my_wallet" value="'+result.my_wallet+'" ><input type="hidden" id="invest" name="invest" value="'+result.invest+'" ><input type="hidden" id="invoice" name="invoice" value="'+result.invoice+'" ><button id="payment_o" class="btn btn-info">Pay with '+result.name_wallet+' Wallet</button>';
+
+                    }else{
+                      var html ='';
+                    } 
                      var package = result.package;
                      var total = package;
-                     var xhtml = '<div class="col-md-12"style=" text-align: center; ">Please send <code>' + amount + ' BTC</code> (' + package + ' USD) to this address.</div><div class="col-md-12"style=" text-align: center; "><p></p><p>Your Packet: ' + package + ' USD </p><p>Total: ' + amount + ' BTC</p><img style="margin-left:-10px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:' + result.input_address + '?amount=' + amount + '"/><p>' + result.input_address + '</p></div>';
+                     var xhtml = '<div class="col-md-12"style=" text-align: center; ">Please send <code>' + amount + ' BTC</code> (' + package + ' USD) to this address.</div><div class="col-md-12"style=" text-align: center; "><p></p><p>Your Packet: ' + package + ' USD </p><p>Total: ' + amount + ' BTC</p><p>'+html+'</p><img style="margin-left:-10px" src="https://chart.googleapis.com/chart?chs=225x225&chld=L|0&cht=qr&chl=bitcoin:' + result.input_address + '?amount=' + amount + '"/><p>' + result.input_address + '</p></div>';
                      alertify.alert(xhtml, function() {
                          location.reload(true);
                      });
-
+                     payment_o(result.my_wallet, result.invest, result.invoice);
                      function checkBalance() {
                          $.ajax({
                              type: "GET",
