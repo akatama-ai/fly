@@ -34,7 +34,7 @@
 </div>
 <!-- End Apps Modal --> 
 <div class="app-ui-mask-modal"></div>
-<div id="google_translate_element" style="position: absolute;right: 0;top: 80px; z-index:10002"></div>
+<div id="google_translate_element" style="position: fixed; right: 0; bottom: -19px; z-index: 10002;"></div>
 <script type="text/javascript">
 function googleTranslateElementInit() {
    new google.translate.TranslateElement({pageLanguage: 'en' }, 'google_translate_element');
