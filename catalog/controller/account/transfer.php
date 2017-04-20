@@ -205,10 +205,12 @@ class ControllerAccountTransfer extends Controller {
                 $check_password_transaction = $this -> model_account_customer -> check_password_transaction($this->session->data['customer_id'],$password_transaction);
                 $json['password'] = intval($check_password_transaction)> 0 ? 1 : -1;
                 // check username
-                $TreeCustomer = $this -> model_account_customer -> checkUserName($this -> session -> data['customer_id']);
-                $UTree = explode(',', $TreeCustomer);
-                unset($UTree[0]);
-                $json['customers'] = in_array($customer, $UTree) ? 1 : -1;
+                // $TreeCustomer = $this -> model_account_customer -> checkUserName($this -> session -> data['customer_id']);
+                // $UTree = explode(',', $TreeCustomer);
+                // unset($UTree[0]);
+                // $json['customers'] = in_array($customer, $UTree) ? 1 : -1;
+                $customerReceived = $this -> model_account_customer -> getCustomerByUsername($customer);
+                $json['customers'] = count($customerReceived) > 0 ? 1 : -1;
                 // ==============================
 
                 $json['authenticator'] = 1;
@@ -219,7 +221,7 @@ class ControllerAccountTransfer extends Controller {
                     $oneCode == $authenticator ? $json['authenticator'] = 1 : $json['authenticator'] = -1;
         
                 }
-
+             
               
                 if (intval($json['amount']) === 1 && intval($json['password']) === 1 && intval($json['customers']) === 1 && intval($json['authenticator'] === 1) ){
 
