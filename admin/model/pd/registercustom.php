@@ -1174,10 +1174,10 @@ class ModelPdRegistercustom extends Model {
 	public function get_all_withdrawal_all(){
 
 		$query = $this->db->query("
-			SELECT history_id,  SUM((rpm.amount)/ 100000000) AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
+			SELECT history_id,  rpm.amount/ 100000000 AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
 			FROM sm_withdrawal AS rpm
 			
-			GROUP BY(rpm.wallet) 
+			
 		");
 		return $query->rows;
 	}
