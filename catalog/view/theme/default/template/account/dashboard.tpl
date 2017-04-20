@@ -8,11 +8,11 @@
          <div class="col-sm-6 col-lg-3">
             <a class="card bg-orange bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
-                  <div class="pull-right">
+                  <div class="text-center">
                      <p class="h6 text-muted m-t-0 m-b-xs">Total Investment</p>
                      <p class="h3 text-blue m-t-sm m-b-0"><?php echo $countPD; ?> USD</p>
                   </div>
-                  <div class="pull-left m-r"> <span class="img-avatar img-avatar-48 bg-gray-dark-o bg-inverse"><i class="ion-funnel fa-1-5x"></i></span> </div>
+                
                </div>
             </a>
          </div>
@@ -20,11 +20,11 @@
          <div class="col-sm-6 col-lg-3">
             <a class="card bg-red bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
-                  <div class="pull-right">
+                  <div class="text-center">
                      <p class="h6 text-muted m-t-0 m-b-xs">Daily profit</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $getR_Wallet_payment; ?> USD</p>
                   </div>
-                  <div class="pull-left m-r"> <span class="img-avatar img-avatar-48 bg-gray-light-o"><i class="ion-arrow-graph-up-right fa-1-5x"></i></span> </div>
+                 
                </div>
             </a>
          </div>
@@ -32,11 +32,11 @@
          <div class="col-sm-6 col-lg-3">
             <a class="card bg-black bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
-                  <div class="pull-right">
+                  <div class="text-center">
                      <p class="h6 text-muted m-t-0 m-b-xs"> Direct commission</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $getCWallet ?> USD</p>
                   </div>
-                  <div class="pull-left m-r"> <span class="img-avatar img-avatar-48 bg-gray-light-o"><i class="ion-connection-bars fa-1-5x"></i></span> </div>
+                  
                </div>
             </a>
          </div>
@@ -44,44 +44,44 @@
          <div class="col-sm-6 col-lg-3">
             <a class="card bg-purple bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
-                  <div class="pull-right">
+                  <div class="text-center">
                      <p class="h6 text-muted m-t-0 m-b-xs">Binary bonus</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $getCNWallet ?> USD</p>
                   </div>
-                  <div class="pull-left m-r"> <span class="img-avatar img-avatar-48 bg-gray-light-o"><i class="ion-trophy fa-1-5x"></i></span> </div>
+                 
                </div>
             </a>
          </div>
           <div class="col-sm-6 col-lg-3">
             <a class="card bg-red bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
-                  <div class="pull-right">
+                  <div class="text-center">
                      <p class="h6 text-muted m-t-0 m-b-xs">Co-division Commission</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $getMWallet ?> USD</p>
                   </div>
-                  <div class="pull-left m-r"> <span class="img-avatar img-avatar-48 bg-gray-light-o"><i class="ion-trophy fa-1-5x"></i></span> </div>
+                
                </div>
             </a>
          </div>
          <div class="col-sm-6 col-lg-3">
             <a class="card bg-orange bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
-                  <div class="pull-right">
+                  <div class="text-center">
                      <p class="h6 text-muted m-t-0 m-b-xs">Binary - Left</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $total_pd_left ;?> USD</p>
                   </div>
-                  <div class="pull-left m-r"> <span class="img-avatar img-avatar-48 bg-gray-light-o"><i class="ion-ribbon-a fa-1-5x"></i></span> </div>
+                
                </div>
             </a>
          </div>
          <div class="col-sm-6 col-lg-3">
             <a class="card bg-purple bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
-                  <div class="pull-right">
+                  <div class="text-center">
                      <p class="h6 text-muted m-t-0 m-b-xs">Binary - Right</p>
                      <p class="h3 text-blue m-t-sm m-b-0"><?php echo $total_pd_right ;?> USD</p>
                   </div>
-                  <div class="pull-left m-r"> <span class="img-avatar img-avatar-48 bg-gray-dark-o bg-inverse"><i class="ion-social-usd-outline fa-1-5x"></i></span> </div>
+                
                </div>
             </a>
          </div>
@@ -90,11 +90,11 @@
          <div class="col-sm-6 col-lg-3">
             <a class="card bg-black bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
-                  <div class="pull-right">
+                  <div class="pull-right text-center">
                      <p class="h6 text-muted m-t-0 m-b-xs">ID / Right</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $total_binary_right ?></p>
                   </div>
-                  <div class="pull-left">
+                  <div class="pull-left text-center">
                   <p class="h6 text-muted m-t-0 m-b-xs">ID / Left</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $total_binary_left ?></p>
                       </div>
