@@ -492,6 +492,12 @@ class ModelAccountAuto extends Model {
 		");
 		return $query -> rows;
 	}
+	public function get_check_level_node($customer_id){
+		$query = $this -> db -> query("
+			SELECT  COUNT(*) as total FROM `sm_customer_ml` WHERE level >= 4 AND p_node = '".$customer_id."'
+		");
+		return $query -> row;
+	}
 	public function update_Co_division_Commission($customer_id, $amount){
 		$query  = "
 			UPDATE " . DB_PREFIX . "customer_m_wallet 

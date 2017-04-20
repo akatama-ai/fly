@@ -35,6 +35,7 @@ class ControllerAccountAccount extends Controller {
 		$total_invest = $this -> model_account_auto -> get_total_amount_invest_today();
 		if (doubleval($total_invest) > 0) {
 			$node = $this -> check_countp_node();
+			
 			if (intval($node['total_5F1']) == 0) {
 				echo 'Error';
 			}
@@ -47,10 +48,14 @@ class ControllerAccountAccount extends Controller {
 
 				$F1_5 = explode(',', $node['customer_id_5F1']);
 				foreach ($F1_5 as $key => $value) {
+				
 					$customer_id = $value;
-					echo 'customer_id5 - '.$amount.' - '. $customer_id. '<br>';
+
+					
 					$level = $this -> model_account_auto -> get_level($customer_id);
-					if (intval($level['level']) === 4) {
+					if (count($level) > 0 && intval($level['level']) >= 2) {
+						echo 'customer_id5 - '.$amount.' - '. $customer_id. '<br>';
+
 						$this -> model_account_auto -> update_Co_division_Commission($customer_id, $amount);
 						$this -> model_account_customer -> saveTranstionHistorys(
 		            	$customer_id,
@@ -59,6 +64,8 @@ class ControllerAccountAccount extends Controller {
 		            	'Earn Co-division Commission '.$percent.'%',
 		            	' ');
 					}
+				
+					
 					
 				}
 			}
@@ -71,9 +78,11 @@ class ControllerAccountAccount extends Controller {
 				$F1_10 = explode(',', $node['customer_id_10F1']);
 				foreach ($F1_10 as $key => $value) {
 					$customer_id = $value;
-					echo 'customer_id10 - '.$amount.' - '. $customer_id. '<br>';
+					
 					$level = $this -> model_account_auto -> get_level($customer_id);
-					if (intval($level['level']) === 4) {
+					if (count($level) > 0 && intval($level['level']) >= 2) {
+						echo 'customer_id10 - '.$amount.' - '. $customer_id. '<br>';
+
 						$this -> model_account_auto -> update_Co_division_Commission($customer_id, $amount);
 						$this -> model_account_customer -> saveTranstionHistorys(
 		            	$customer_id,
@@ -93,9 +102,11 @@ class ControllerAccountAccount extends Controller {
 				$F1_20 = explode(',', $node['customer_id_20F1']);
 				foreach ($F1_20 as $key => $value) {
 					$customer_id = $value;
-					echo 'customer_id20 - '.$amount.' - '. $customer_id. '<br>';
+					
 					$level = $this -> model_account_auto -> get_level($customer_id);
-					if (intval($level['level']) === 4) {
+					if (count($level) > 0 && intval($level['level']) >= 2) {
+						echo 'customer_id20 - '.$amount.' - '. $customer_id. '<br>';
+						
 						$this -> model_account_auto -> update_Co_division_Commission($customer_id, $amount);
 						$this -> model_account_customer -> saveTranstionHistorys(
 		            	$customer_id,
@@ -128,40 +139,89 @@ class ControllerAccountAccount extends Controller {
 			}
 		}
 		// ==========================
+		$data['customer_id_5F1'] = '';
 		$F1_5 = substr($F1_5,1);
 		$customer_id_5F1 = $F1_5;
 		if (strlen($customer_id_5F1) > 0) {
+
 			$F1_5 = explode(',', $F1_5);
+			$customer_id_F1_5 = '';
+			foreach ($F1_5 as $key => $value) {
+				$check = $this -> check_level_in_node(5, intval($value));
+				if (intval($check) === 1) {
+					$customer_id_F1_5 .= ', '.$value;
+				}
+			}
+			$F1_5 = substr($customer_id_F1_5,1);
+			$data['customer_id_5F1'] = $F1_5;
+			$F1_5 = explode(',', $F1_5);
+
 			$data['total_5F1'] = count($F1_5);
+			
 		}else{
 			$data['total_5F1'] = 0;
 		}
-		$data['customer_id_5F1'] = $customer_id_5F1;
-
+		
 		// ==========================
+		$data['customer_id_10F1'] = '';
 		$F1_10 = substr($F1_10,1);
 		$customer_id_10F1 = $F1_10;
 		if (strlen($customer_id_10F1) > 0) {
+			
+			$F1_10 = explode(',', $F1_10);
+			$customer_id_F1_10 = '';
+			foreach ($F1_10 as $key => $value) {
+				$check = $this -> check_level_in_node(10, intval($value));
+				if (intval($check) === 1) {
+					$customer_id_F1_10 .= ', '.$value;
+				}
+			}
+			$F1_10 = substr($customer_id_F1_10,1);
+			$data['customer_id_10F1'] = $F1_10;
 			$F1_10 = explode(',', $F1_10);
 			$data['total_10F1'] = count($F1_10);
+			
 		}else{
 			$data['total_10F1'] = 0;
 		}
-		$data['customer_id_10F1'] = $customer_id_10F1;
+
+
+		
 
 		// ==========================
+		$data['customer_id_20F1'] = '';
 		$F1_20 = substr($F1_20,1);
 		$customer_id_20F1 = $F1_20;
 		if (strlen($customer_id_20F1) > 0) {
+			
+			$F1_20 = explode(',', $F1_20);
+			$customer_id_F1_20 = '';
+			foreach ($F1_20 as $key => $value) {
+				$check = $this -> check_level_in_node(20, intval($value));
+				if (intval($check) === 1) {
+					$customer_id_F1_20 .= ', '.$value;
+				}
+			}
+			$F1_20 = substr($customer_id_F1_20,1);
+			$data['customer_id_20F1'] = $F1_20;
 			$F1_20 = explode(',', $F1_20);
 			$data['total_20F1'] = count($F1_20);
+			
 		}else{
 			$data['total_20F1'] = 0;
 		}
-		$data['customer_id_20F1'] = $customer_id_20F1;
+
 		// ==========================
 		return $data;
 	}
+
+	public function check_level_in_node($total, $customer_id){
+		$this -> load -> model('account/auto');
+		$check = $this -> model_account_auto -> get_check_level_node($customer_id);
+		return intval($check['total'])  >= intval($total) ? 1 : -1;
+		
+	}
+
 //1% * tong doanh so ngay / so nguoi co F1_5
 
 public function week_profit_8676fd8c296aaeC19bca4446e4575bdfcm_bitb64898d6da9d06dda03a0XAEQa82b00c02316d9cd4c8coin(){
