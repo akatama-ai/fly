@@ -81,7 +81,7 @@
                </div>
                <div class="card-block card-block-full bg-black bg-inverse">
                   <div class="h1 m-y-sm">10 USD</div>
-                  <div class="h5 font-300 text-muted m-t-0">Earn 1% daily</div>
+                  <div class="h5 font-300 text-muted m-t-0">Earn 1.5% - 5% weekly</div>
                </div>
                <div class="card-block">
                   <table class="table table-borderless table-condensed">
@@ -130,7 +130,7 @@
                </div>
                <div class="card-block card-block-full bg-red bg-inverse">
                   <div class="h1 m-y-sm">50 USD</div>
-                  <div class="h5 font-300 text-muted m-t-0">Earn 1% daily</div>
+                  <div class="h5 font-300 text-muted m-t-0">Earn 1.5% - 5% weekly</div>
                </div>
                <div class="card-block">
                   <table class="table table-borderless table-condensed">
@@ -179,7 +179,7 @@
                </div>
                <div class="card-block card-block-full bg-purple bg-inverse">
                   <div class="h1 m-y-sm">100 USD</div>
-                  <div class="h5 font-300 text-muted m-t-0">Earn 1.2% daily</div>
+                  <div class="h5 font-300 text-muted m-t-0">Earn 1.5% - 5% weekly</div>
                </div>
                <div class="card-block">
                   <table class="table table-borderless table-condensed">
