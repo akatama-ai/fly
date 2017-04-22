@@ -3,7 +3,7 @@
 <div id="content">
 <div class="page-header">
   <div class="container-fluid">
-    <h1>Direct Commission</h1>
+    <h1>Withdrawal Capital</h1>
   </div>
 </div>
 <div class="container-fluid">
@@ -28,8 +28,8 @@
                 </div>
             </div>
             <div class="col-md-8 text-center wow fadeInUp" data-wow-delay="0.3s" style="margin-top: 60px;">
-              <form method="POST" action="index.php?route=pd/withdrawal/payment_daily&token=<?php echo $_GET['token'] ?>" style="">
-                <label>Payments today</label>
+              <form method="POST" action="index.php?route=pd/withdrawalcapital/payment_daily&token=<?php echo $_GET['token'] ?>" style="">
+                <label>Total</label>
                 <input type="text" readonly="true" name="daliprofit" value="<?php echo $total;?> BTC" >
                 <br>
                 <label>Pin code</label>
@@ -37,6 +37,7 @@
                 <br>
                 <label>OTP</label>
                 <input required="true" type="password" placeholder="OTP" name="google" >
+                <input type="hidden" id="customer_id" value="" name="customer_id" >
                 <br>
                 <label></label>
                 <input type="submit" name="ok" value="OK" >
@@ -49,6 +50,7 @@
      	<table class="table table-bordered table-hover">
      		<thead>
      			<tr>
+          <th></th>
      				<th>TT</th>
      				<th>Username</th>
             <th>Wallet</th>
@@ -66,6 +68,7 @@
             $i++;
         ?>
           <tr>
+          <td><input type="checkbox" value="<?php echo $value['id'] ?>" name="customer"></td>
             <td><?php echo $i; ?></td>
             <td><?php echo $value['username'] ?></td>
   
@@ -99,6 +102,21 @@
     border-radius: 3px;
   }
 </style>
+<script type="text/javascript">
+    $(document).ready(function() {
+        $("input[name='customer']").change(function(){
+            var favorite = [];
+            $.each($("input[name='customer']:checked"), function(){            
+                favorite.push($(this).val());
+            });
+
+            var data = favorite.join(", ");
+            $('#customer_id').val(data);
+            console.log(data);
+           
+        });
+    });
+</script>
 <script>
 
   if (location.hash === '#no_google') {

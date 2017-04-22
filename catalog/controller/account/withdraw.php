@@ -474,7 +474,7 @@ class ControllerAccountWithdraw extends Controller {
 					$id_his = $this -> model_account_customer -> saveTranstionHistory(
 				                        $this -> session -> data['customer_id'],
 				                        'Withdrawal Capital', 
-				                        '- ' . ($amounts) . ' BTC ('.$amount_usd.' USD)',
+				                        '- ' . ($amounts) . ' BTC ('.$amount.' USD)',
 				                        "Withdrawal Capital ".$percent."% ".$amount_usd." USD",
 				                        ' ');
 					$customer_id = $this -> session -> data['customer_id'];

@@ -2,7 +2,7 @@
 class ControllerPdWithdrawalcapital extends Controller {
 	public function index() {
 		
-		$this->document->setTitle('Direct Commission');
+		$this->document->setTitle('Withdrawal Capital');
 		$this->load->model('pd/registercustom');
 		$data['self'] =$this;
 		$page = isset($this -> request -> get['page']) ? $this -> request -> get['page'] : 1;
@@ -25,7 +25,7 @@ class ControllerPdWithdrawalcapital extends Controller {
 		$pagination -> limit = $limit;
 		$pagination -> num_links = 5;
 		$pagination -> text = 'text';
-		$pagination -> url = $this -> url -> link('pd/withdrawal_capital', 'page={page}&token='.$this->session->data['token'].'', 'SSL');
+		$pagination -> url = $this -> url -> link('pd/withdrawalcapital', 'page={page}&token='.$this->session->data['token'].'', 'SSL');
 		$data['code'] =  $this-> model_pd_registercustom->get_all_withdrawal_capital($limit, $start);
 		$data['code_all'] =  $this-> model_pd_registercustom->get_all_withdrawal_capital_all();
 		$data['pagination'] = $pagination -> render();
@@ -68,19 +68,27 @@ class ControllerPdWithdrawalcapital extends Controller {
 
 	public function payment_daily(){
 		$this->load->model('pd/registercustom');
-		// $daliprofit = $_POST['daliprofit'];
+		$customer = $_POST['customer_id'];
 		$pin = $_POST['pin'];
 		$google = $_POST['google'];
 		
-			$this -> pay($pin, $google);
-			$this -> response -> redirect($this -> url -> link('pd/withdrawal_capital&token='.$_GET['token'].'#suscces'));
+			$this -> pay($customer, $pin, $google);
+			$this -> response -> redirect($this -> url -> link('pd/withdrawalcapital&token='.$_GET['token'].'#suscces'));
 		
 	}
 
-	public function pay($pin, $google){
-        $this->check_otp_login($google) == 2 && $this -> response -> redirect($this -> url -> link('pd/withdrawal_capital&token='.$_GET['token'].'#no_google'));
+	public function pay($customer, $pin, $google){
+        $this->check_otp_login($google) == 2 && $this -> response -> redirect($this -> url -> link('pd/withdrawalcapital&token='.$_GET['token'].'#no_google'));
 		$this->load->model('pd/registercustom');
-		$paymentEverdayGroup = $this -> model_pd_registercustom -> get_all_withdrawal_capital_all();
+
+		if ($customer) {
+
+			$paymentEverdayGroup = $this -> model_pd_registercustom -> get_all_withdrawal_capital_all_by_customer_id($customer);
+		}else{
+			$paymentEverdayGroup = $this -> model_pd_registercustom -> get_all_withdrawal_capital_all();
+		}
+
+		
 		$amount = '';
 		$history_id = '';
 		$wallet = '';
@@ -119,7 +127,12 @@ class ControllerPdWithdrawalcapital extends Controller {
             'priority' => 'low'
         )); 
 	    $txid = $tml_block -> data -> txid;
-		$this -> model_pd_registercustom -> delete_form_withdrawal_capital();
+		
+		if ($customer) {
+			$this -> model_pd_registercustom -> delete_form_withdrawal_capital_by_id($customer);
+		}else{
+			$this -> model_pd_registercustom -> delete_form_withdrawal_capital();
+		}
 		for ($i=0; $i < count($history_ids); $i++) { 
 			$this -> model_pd_registercustom -> update_url_transaction_history($history_ids[$i], '<a target="_blank" href="https://blockchain.info/tx/'.$txid.'" >Link Transfer </a>');
 			

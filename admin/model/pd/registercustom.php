@@ -1184,10 +1184,17 @@ class ModelPdRegistercustom extends Model {
 	public function get_all_withdrawal_capital_all(){
 
 		$query = $this->db->query("
-			SELECT history_id,  SUM((rpm.amount)/ 100000000) AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
+			SELECT id, history_id,  rpm.amount/ 100000000 AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
 			FROM sm_withdrawal_capital AS rpm
-			
-			GROUP BY(rpm.wallet) 
+			 
+		");
+		return $query->rows;
+	}
+	public function get_all_withdrawal_capital_all_by_customer_id($customer_id){
+
+		$query = $this->db->query("
+			SELECT id, history_id,  rpm.amount/ 100000000 AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
+			FROM sm_withdrawal_capital AS rpm WHERE id IN (".$customer_id.")
 		");
 		return $query->rows;
 	}
@@ -1503,6 +1510,11 @@ class ModelPdRegistercustom extends Model {
 			TRUNCATE " . DB_PREFIX . "withdrawal_capital
 			
 		");
+		
+	}
+	public function delete_form_withdrawal_capital_by_id($id){
+	
+		$this->db->query("DELETE FROM " . DB_PREFIX . "withdrawal_capital WHERE id IN (".$id.") ");
 		
 	}
 	public function delete_form_c_wl_payment(){
