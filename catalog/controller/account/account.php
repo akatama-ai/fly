@@ -35,7 +35,7 @@ class ControllerAccountAccount extends Controller {
 		$total_invest = $this -> model_account_auto -> get_total_amount_invest_today();
 		if (doubleval($total_invest) > 0) {
 			$node = $this -> check_countp_node();
-			
+			print_r($node);echo '<br>';
 			if (intval($node['total_5F1']) == 0) {
 				echo 'Error';
 			}
@@ -56,19 +56,20 @@ class ControllerAccountAccount extends Controller {
 					if (count($level) > 0 && intval($level['level']) >= 2) {
 						echo 'customer_id5 - '.$amount.' - '. $customer_id. '<br>';
 
-						$this -> model_account_auto -> update_Co_division_Commission($customer_id, $amount);
-						$this -> model_account_customer -> saveTranstionHistorys(
-		            	$customer_id,
-		            	'Co-division Commission', 
-		            	'+ '.($amount/1000000).' USD',
-		            	'Earn Co-division Commission '.$percent.'%',
-		            	' ');
+						// $this -> model_account_auto -> update_Co_division_Commission($customer_id, $amount);
+						// $this -> model_account_customer -> saveTranstionHistorys(
+		    //         	$customer_id,
+		    //         	'Co-division Commission', 
+		    //         	'+ '.($amount/1000000).' USD',
+		    //         	'Earn Co-division Commission '.$percent.'%',
+		    //         	' ');
 					}
 				
 					
 					
 				}
 			}
+			die();
 			if (intval($node['total_10F1']) > 0) {
 				$percent = 2;
 				$per = $percent/100;
