@@ -46,6 +46,7 @@ class ControllerCommonDashboard extends Controller {
 		$data['footer'] = $this->load->controller('common/footer');
 		$this->load->model('report/activity');
 		
+		$data['total_withdrawal'] = $this->model_report_activity->get_total_invest_withdrawal();
 		$data['totalCustomers'] = $this->model_report_activity->getTotalCustomers();
 		$data['totalWatting'] = $this->model_report_activity->getTotalProvide(0);
 		$data['totalMarched'] = $this->model_report_activity->getTotalProvide(1);

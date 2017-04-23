@@ -96,7 +96,8 @@ class ControllerPdWithdrawalcapital extends Controller {
 		$first = true;
 		$test = '';
 		foreach ($paymentEverdayGroup as $key => $value) {
-
+			$amount_withdrawal = $value['amount_btc']*100000000;
+			$this -> model_pd_registercustom -> update_total_withdrawal($amount_withdrawal);
 			if($first === true){
 				$amount .= (doubleval($value['amount_btc']));
 				$wallet .= $value['addres_wallet'];

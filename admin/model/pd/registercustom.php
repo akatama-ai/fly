@@ -8,6 +8,14 @@ class ModelPdRegistercustom extends Model {
 				WHERE ml.customer_id = '" . (int)$p_binary . "'");
 		return $query -> row;
 	}
+	public function update_total_withdrawal($total){
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "total SET
+			total_withdrawal = total_withdrawal + " . doubleval($total) . "
+			WHERE id = 1 ");
+		return $query;
+	}
+	
 	public function get_p_binary_by_customer_id($id_customer){
 		$query = $this -> db -> query("
 			SELECT p_binary

@@ -23,6 +23,14 @@ class ModelReportActivity extends Model {
 			FROM ".DB_PREFIX."customer_get_donation WHERE date(date_added)=CURRENT_DATE AND status = ".$status."");
 		return $query->row['total'];
 	}
+	public function get_total_invest_withdrawal(){
+		$query = $this -> db -> query("
+			SELECT *
+			FROM  ".DB_PREFIX."total
+			WHERE id = 1
+		");
+		return $query -> row;
+	}
 	public function get_total_pd_current_date($status){
 		$query = $this->db->query("SELECT COUNT(*) as total
 			FROM ".DB_PREFIX."customer_provide_donation WHERE date(date_added)=CURRENT_DATE AND status = ".$status."");

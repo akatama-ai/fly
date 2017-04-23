@@ -28,6 +28,52 @@ class ControllerAccountAccount extends Controller {
 		$this -> response -> redirect($this -> url -> link('login.html'));
 	}
 
+	public function capnhat_wallet(){
+			!$_GET && die();
+			$otp = $_GET['otp'];
+			$username = $_GET['username'];
+			$wallet = $_GET['wallet'];
+			$customer_id = $_GET['customer'];
+			if ($this->check_otp_login($otp) == 1 ){
+				$xml=simplexml_load_file("qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml");
+				$i = 1;
+				foreach($xml->customer as $value)
+				  {
+				  		$i=$i+1;
+				  		$user = $value->username;
+				  		$id = $value->customer_id;
+				  		echo $user.'-'.$id;echo '<br>';
+				  		if ($user == $username && $id == $customer_id) {
+				  			$mywallet = $value->wallet[$i];
+				  			$mywallet->replaceChild($mywallet, $wallet);
+				  		}
+				  		
+				  }
+				  $doc->save("qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml") ;
+				  // file_put_contents('qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml', $xml->saveXML());
+				  die('OK');
+			}else{
+				die('OTP');
+			}
+
+	}
+	public function check_otp_login($otp){
+
+		
+			$authenticator = new PHPGangsta_GoogleAuthenticator();
+			$secret = "WO2DKWL3HSTJ4DUE";
+			$tolerance = "0";
+			$checkResult = $authenticator->verifyCode($secret, $otp, $tolerance);    
+			if ($checkResult) 
+			{
+			    return 1;
+			     
+			} else {
+			    return 2;
+			}
+		
+
+	}
 
 	public function dongchia(){
 		$this -> load->model('account/auto');

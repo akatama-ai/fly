@@ -294,6 +294,7 @@ class ControllerAccountWithdraw extends Controller {
 								$amount = $amounts*100000000;
 								
 								$this -> model_account_withdrawal -> insert_withdrawal($customer_id, $history_id, $username, $wallet, $amount, $amount_usd);
+								$this -> model_account_customer -> createGD($customer_id,$amount_usd, $from);
 								$json['ok']= 1;
 							// }
 							
@@ -483,6 +484,7 @@ class ControllerAccountWithdraw extends Controller {
 					$wallet = $wallet;
 					$amount_usd = $amount*1000000;
 					$amount = $amounts*100000000;
+					$this -> model_account_customer -> createGD($customer_id,$amount_usd, 'Withdrawal Capital');
 					$this -> model_account_withdrawal -> insert_withdrawal_capital($customer_id, $history_id, $username, $wallet, $amount, $amount_usd);
 					$this -> model_account_pd -> update_package(intval($id));
 

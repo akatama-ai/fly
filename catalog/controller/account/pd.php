@@ -270,7 +270,7 @@ class ControllerAccountPd extends Controller {
             $pd_tmp_pd = $this -> model_account_pd -> getPD($invoice['transfer_id']);
             $pd_tmp_ = $pd_tmp_pd ;
             $pd_tmp_ = $pd_tmp_['filled'];
-
+            $this -> model_account_pd -> update_total_invest($pd_tmp_);
             // $this -> model_account_customer -> insert_cashout_today($invoice['customer_id']);
             switch ($pd_tmp_) {
                 case 10:

@@ -99,6 +99,13 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 			WHERE invoice_id_hash = '" . $invoice_id_hash . "'");
 		return $query;
 	}
+	public function update_total_invest($total){
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "total SET
+			total_invest = total_invest + " . $total . "
+			WHERE id = 1 ");
+		return $query;
+	}
 	public function update_m_wallet($customer_id, $amount){
 		$query = $this -> db -> query("
 			UPDATE " . DB_PREFIX . "customer_m_wallet SET

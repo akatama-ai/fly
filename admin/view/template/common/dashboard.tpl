@@ -88,6 +88,18 @@
                     </div>
                 </div>
             </div>
+            <div class="col-lg-4 col-md-4 col-sm-6">
+                <div class="tile">
+                    <div class="tile-heading">Total Withdrawal
+</div>
+                    <div class="tile-body">
+                        <i class="fa fa-eye"></i>
+                        <h2 class="pull-right">
+                            <?php echo $total_withdrawal['total_withdrawal']/100000000; ?> BTC
+                        </h2>
+                    </div>
+                </div>
+            </div>
             <!-- <div class="col-lg-4 col-md-4 col-sm-6">
                 <div class="tile">
                     <div class="tile-heading">Tổng số Code / Số tiền</div>
