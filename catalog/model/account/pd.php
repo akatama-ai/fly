@@ -102,7 +102,7 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 	public function update_total_invest($total){
 		$query = $this -> db -> query("
 			UPDATE " . DB_PREFIX . "total SET
-			total_invest = total_invest + " . $total . "
+			total_invest = total_invest + " . doubleval($total) . "
 			WHERE id = 1 ");
 		return $query;
 	}
