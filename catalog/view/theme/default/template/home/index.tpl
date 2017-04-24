@@ -263,7 +263,7 @@ Bitflyer Bank LTD is incorporated in London, UK; the company main business invol
             </div>
            <div class="col-md-5">
               <div class="row">
-                 <img src="catalog/view/theme/default/home/img/CRE.png"  id="myImg" class="cre" alt="Bitflyer Bank LTD"> 
+                 <img src="catalog/view/theme/default/home/img/imgcre.png"  id="myImg" class="cre" alt="Bitflyer Bank LTD"> 
               </div>
            </div>
             </div>
