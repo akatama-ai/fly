@@ -243,21 +243,30 @@ Bitflyer Bank LTD is incorporated in London, UK; the company main business invol
                </div>
             </div>
          <div class="row page-content">
-<div class=" col-xs-12">
-<h1>Our Company</h1>
-<p>Bitflyer Bank LTD is an international entity that is primarily focused on investment and advisory services in real estate. Most of its actions take place in Central and Eastern Europe. Our key objective is to constantly increase the mutual return on investment through Bitflyer Bank LTD platform.</p>
-</div>
-<div class=" col-xs-12">
-<h1>What we do?</h1>
-<p>The company has been dealing with purchase of real estate by auction, subsequent reconstruction and sale of the property since 2012.<br>
-During that time, the property market has moved forward and is currently at the peak of the last 10 years. At this time, the company is developing and taking further steps in the US in Florida where it focuses on renting apartments and villas in resorts. It is planning to expand further in the world in the foreseeable future.</p>
-</div>
-<div class=" col-xs-12">
-<h1>Who we are?</h1>
-<p>The company is compromised of experienced professionals who perfectly understand the real estate segment.
-The company takes pride in assurance of quality and content living.</p>
-</div>
-</div>
+            <div class="col-md-7">
+               <div class="row">
+                      <div class="col-xs-12">
+                        <h1>Our Company</h1>
+                        <p>Bitflyer Bank LTD is an international entity that is primarily focused on investment and advisory services in real estate. Most of its actions take place in Central and Eastern Europe. Our key objective is to constantly increase the mutual return on investment through Bitflyer Bank LTD platform.</p>
+                        </div>
+                        <div class=" col-xs-12">
+                        <h1>What we do?</h1>
+                        <p>The company has been dealing with purchase of real estate by auction, subsequent reconstruction and sale of the property since 2012.<br>
+                        During that time, the property market has moved forward and is currently at the peak of the last 10 years. At this time, the company is developing and taking further steps in the US in Florida where it focuses on renting apartments and villas in resorts. It is planning to expand further in the world in the foreseeable future.</p>
+                        </div>
+                        <div class=" col-xs-12">
+                        <h1>Who we are?</h1>
+                        <p>The company is compromised of experienced professionals who perfectly understand the real estate segment.
+                        The company takes pride in assurance of quality and content living.</p>
+                        </div>
+               </div>
+            </div>
+           <div class="col-md-5">
+              <div class="row">
+                 <img src="catalog/view/theme/default/home/img/CRE.png"  id="myImg" class="cre" alt="Bitflyer Bank LTD"> 
+              </div>
+           </div>
+            </div>
            
          </div>
       </div>
@@ -759,6 +768,43 @@ window.onload = function() {
     window.myLine = new Chart(ctx, config);
 };
 </script>
+<!-- The Modal -->
+<div id="myModal" class="modal" >
 
+  <!-- The Close Button -->
+  
+
+  <!-- Modal Content (The Image) -->
+  <div class="posre">
+  <span class="close" onclick="document.getElementById('myModal').style.display='none'">&times;</span>
+     <img class="modal-contents" id="img01">
+  </div>
+  
+
+  <!-- Modal Caption (Image Text) -->
+  <div id="caption"></div>
+</div>
+<script type="text/javascript">
+   // Get the modal
+var modal = document.getElementById('myModal');
+
+// Get the image and insert it inside the modal - use its "alt" text as a caption
+var img = document.getElementById('myImg');
+var modalImg = document.getElementById("img01");
+var captionText = document.getElementById("caption");
+img.onclick = function(){
+    modal.style.display = "block";
+    modalImg.src = this.src;
+    captionText.innerHTML = this.alt;
+}
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() { 
+  modal.style.display = "none";
+}
+</script>
    </body>
 </html>
