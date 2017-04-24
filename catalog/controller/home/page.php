@@ -15,6 +15,9 @@ class ControllerHomePage extends Controller {
 		
 		$data['base'] = HTTPS_SERVER;
 		$data['self'] = $this;
+		$this -> load->model('account/customer');
+		$data['limit1'] = $this -> model_account_customer -> get_rate_limit();
+		$data['chart'] = $this -> model_account_customer -> get_rate_chart();
 		$this -> response -> setOutput($this -> load -> view('default/template/home/representatives.tpl', $data));
 	}
 	public function policy() {

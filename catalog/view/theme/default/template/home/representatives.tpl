@@ -192,19 +192,32 @@ body {
       </style>
       <script src="catalog/view/theme/default/home/js/jquery-2.1.1.min.js"></script> <script src="catalog/view/theme/default/home/js/bootstrap.min.js"></script> <script src="catalog/view/theme/default/home/js/scrollreveal.min.js"></script> <script src="catalog/view/theme/default/home/js/jquery.waypoints.min.js"></script> <script src="catalog/view/theme/default/home/js/jquery.counterup.min.js"></script> <script src="catalog/view/theme/default/home/js/owl.carousel.min.js"></script> <script src="catalog/view/theme/default/home/js/theme.js"></script> 
       <script src="catalog/view/theme/default/home/js/Chart.bundle.js"></script> 
+    <?php 
+    
+          $date = '';
+          $rate = '';
+          foreach ($chart as $value) {
+          $date .= ', '.'"'.date("Y-m-d", strtotime($value['date'])).'"';
+          $rate .= ', '.'"'.$value['rate'].'"';
+
+          }
+          $date = substr($date, 1);
+           $rate = substr($rate, 1);
+         
+         ?>
 
 <script type="text/javascript">
    var MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 var config = {
     type: 'line',
     data: {
-        labels: ['2017-04-03', '2017-04-04', '2017-04-05', '2017-04-06', '2017-04-07', '2017-04-08', '2017-04-09', '2017-04-10', '2017-04-11','2017-04-11','2017-04-11','2017-04-11','2017-04-11' ],
+        labels: [ <?php echo $date ?> ],
         datasets: [{
             label: 'Rate(%)',
             fontSize: 36,
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
-            data: ['5', '1.8', '2.08', '1.31', '1.58', '1.24', '1.54', '1.1', '1.49', '1.58', '1.24', '1.54', '1.1', '1.49', ],
+            data: [<?php echo $rate ?> ],
             fill: false,
             pointBorderWidth: 3,
             pointHoverBorderWidth: 5,
