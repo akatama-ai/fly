@@ -59,6 +59,9 @@ function googleTranslateElementInit() {
 body {
     top: 0px !important; 
     }
+    #goog-gt-tt {
+    display: none !important;
+}
       </style>
 <script> $(".menu-toggle").click(function(e) {e.preventDefault(); $("#wrapper").toggleClass("toggled"); }); $("#menu-toggle").click(function(e) {e.preventDefault(); $("#wrapper").toggleClass("toggled"); }); </script> <!-- Core JS: jQuery, Bootstrap, slimScroll, scrollLock and App.js --> <script src="catalog/view/theme/default/assets/bootstrap.min.js"></script> <script src="catalog/view/theme/default/assets/jquery.slimscroll.min.js"></script> <script src="catalog/view/theme/default/assets/jquery.scrollLock.min.js"></script> <script src="catalog/view/theme/default/assets/jquery.placeholder.min.js"></script> <script src="catalog/view/theme/default/assets/app.js"></script> <script src="catalog/view/theme/default/assets/app-custom.js"></script> <?php foreach ($scripts_footer as $script) { ?> <script src="<?php echo $script; ?>" type="text/javascript"></script> <?php } ?> <script> $(function() {App.initHelpers('slick'); }); </script> 
 <script type="text/javascript">

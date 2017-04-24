@@ -1735,7 +1735,9 @@
     padding: 10px 0;
     height: 150px;
 }
-
+    #goog-gt-tt {
+    display: none !important;
+}
 /* Add Animation - Zoom in the Modal */
 .modal-contents, #caption { 
     -webkit-animation-name: zoom;

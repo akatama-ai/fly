@@ -26,7 +26,9 @@ function googleTranslateElementInit() {
     } 
 body {
     top: 0px !important; 
-    }
+    }    #goog-gt-tt {
+    display: none !important;
+}
       </style>
 
  </body> </html>
