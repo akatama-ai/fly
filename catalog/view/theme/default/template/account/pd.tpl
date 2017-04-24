@@ -100,9 +100,9 @@
                </div>
                <div class="card-block card-block-mini card-block-full bg-gray-lighter-o">
                   <?php if (count($packet) === 0) {?> 
-                  <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="0"> <button class="btn btn-info">Upgrade Now</button> </form>
+                  <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="0"> <button class="btn btn-info notranslate">Upgrade Now</button> </form>
                   <?php } else {?> 
-                  <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-info"><i class="fa fa-spinner fa-spin"></i> Reviews</button> </form>
+                  <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-info notranslate"><i class="fa fa-spinner fa-spin"></i> Reviews</button> </form>
                   <?php } ?> 
                </div>
             </div>
@@ -149,9 +149,9 @@
                </div>
                <div class="card-block card-block-mini card-block-full bg-gray-lighter-o">
                   <?php if (count($packet) === 0) {?> 
-                  <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="1"> <button class="btn btn-app-blue">Upgrade Now</button> </form>
+                  <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="1"> <button class="btn btn-app-blue notranslate">Upgrade Now</button> </form>
                   <?php } else {?> 
-                  <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-app-blue"><i class="fa fa-spinner fa-spin"></i> Reviews</button> </form>
+                  <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-app-blue notranslate"><i class="fa fa-spinner fa-spin"></i> Reviews</button> </form>
                   <?php } ?> 
                </div>
             </div>
@@ -199,9 +199,9 @@
                </div>
                <div class="card-block card-block-mini card-block-full bg-gray-lighter-o">
                   <?php if (count($packet) === 0) {?> 
-                  <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="2"> <button class="btn btn-app-purple">Upgrade Now</button> </form>
+                  <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="2"> <button class="btn btn-app-purple notranslate">Upgrade Now</button> </form>
                   <?php } else {?> 
-                  <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-app-purple"><i class="fa fa-spinner fa-spin"></i> Reviews</button> </form>
+                  <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-app-purple notranslate"><i class="fa fa-spinner fa-spin"></i> Reviews</button> </form>
                   <?php } ?> 
                </div>
             </div>

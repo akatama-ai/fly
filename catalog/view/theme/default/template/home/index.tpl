@@ -38,8 +38,8 @@ _atrk_opts = { atrk_acct:"WG7Zo1IWx810Io", domain:"bitflyerb.com",dynamic: true}
                      <li><a href="policy.html">Policy</a></li>
                      <li><a href="representatives.html">Pepresentatives</a></li>
                      <li><a href="" class="smoothscroll">Contact</a></li>
-                     <li><a href="register?ref=234614641">Sign up</a></li>
-                     <li><a href="login.html" class="menu-btn">Login</a></li>
+                     <li><a href="register?ref=234614641" class="notranslate">Sign up</a></li>
+                     <li><a href="login.html" class="menu-btn notranslate">Login</a></li>
 
                   </ul>
                </div>
