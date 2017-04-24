@@ -52,7 +52,7 @@
                                             <?php }else{ ?>
                                             <div class="form-group m-b-0">
                                                 <div class="col-xs-12">
-                                                    <a href="javascript:void(0)" class="btn btn-app disabled" style="border-color: <?php echo $bg; ?>;  background-color:<?php echo $bg; ?>">Please wait...</a>
+                                                    <a href="javascript:void(0)" class="btn btn-app disabled" style="border-color: <?php echo $bg; ?>;  background-color:<?php echo $bg; ?>"><i class="fa fa-spinner fa-spin"></i> Please wait...</a>
                                                 </div>
                                             </div>
                                             <?php } ?>
