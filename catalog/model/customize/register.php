@@ -2,7 +2,7 @@
 class ModelCustomizeRegister extends Model {
 	public function checkExitUserName($username) {
 		$query = $this -> db -> query("
-			SELECT EXISTS(SELECT 1 FROM " . DB_PREFIX . "customer WHERE username = '" . $this -> db -> escape($username) . "')  AS 'exit'
+			SELECT EXISTS(SELECT 1 FROM " . DB_PREFIX . "customer WHERE LOWER(username) = '" . $this->db->escape(utf8_strtolower($username)) . "')  AS 'exit'
 			");
 
 		return $query -> row['exit'];
@@ -10,7 +10,7 @@ class ModelCustomizeRegister extends Model {
 
 	public function checkExitUserNameForToken($username, $idUserNameLogin) {
 		$query = $this -> db -> query("
-			SELECT EXISTS(SELECT 1 FROM " . DB_PREFIX . "customer WHERE customer_id <> '". $idUserNameLogin ."' AND  username = '" . $username . "')  AS 'exit'
+			SELECT EXISTS(SELECT 1 FROM " . DB_PREFIX . "customer WHERE customer_id <> '". $idUserNameLogin ."' AND  LOWER(username) = '" . $this->db->escape(utf8_strtolower($username)) . "')  AS 'exit'
 			");
 
 		return $query -> row['exit'];
