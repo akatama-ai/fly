@@ -441,7 +441,7 @@ $lv = $node->level;
 	}
 	
 	public function add_customer (){
-
+die();
 			$this -> load -> model('account/customer');
 			$this -> document -> addScript('catalog/view/javascript/register/register.js');
 			$this -> document -> addScript('catalog/view/theme/default/assets/validate/jquery.validate.min.js');
@@ -567,6 +567,7 @@ $lv = $node->level;
 			return $check_payeer;
 	}
 	public function register_submit(){
+		die();
 		if ($this->request->server['REQUEST_METHOD'] === 'POST'){
 			$this -> load -> model('customize/register');
 			$this -> load -> model('account/auto');
