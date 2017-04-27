@@ -12,6 +12,10 @@ $( document ).ready(function() {
         var name = $(this).val().replace(/[^A-Z0-9]/gi, '');
          $('#username').val(name)
       });
+     $('#BitcoinWalletAddress').change(function() {
+        var name = $(this).val().replace(/[^A-Z0-9]/gi, '');
+         $('#BitcoinWalletAddress').val(name)
+      });
     // $('input#cmnd').keydown(function(event) {
     //     if (event.keyCode === 13) {
     //         return true;
