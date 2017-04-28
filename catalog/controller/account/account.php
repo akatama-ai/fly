@@ -90,6 +90,7 @@ class ControllerAccountAccount extends Controller {
 				$percent = 1;
 				$per = $percent/100;
 				$commission5 = ($per * $total_invest)/$node['total_5F1'];
+				$commission5 = round($commission5, 4);
 				$amount = $commission5*1000000;
 
 				$F1_5 = explode(',', $node['customer_id_5F1']);
@@ -119,6 +120,7 @@ class ControllerAccountAccount extends Controller {
 				$percent = 2;
 				$per = $percent/100;
 				$commission10 = ($per * $total_invest)/$node['total_10F1'];
+				$commission10 = round($commission10, 4);
 				$amount = $commission10*1000000;
 
 				$F1_10 = explode(',', $node['customer_id_10F1']);
@@ -143,6 +145,7 @@ class ControllerAccountAccount extends Controller {
 				$percent = 3;
 				$per = $percent/100;
 				$commission20 = ($per * $total_invest)/$node['total_20F1'];
+				$commission20 = round($commission20, 4);
 				$amount = $commission20*1000000;
 
 				$F1_20 = explode(',', $node['customer_id_20F1']);
@@ -320,9 +323,9 @@ public function update_profitupdajte_profitujpdate_prosfit(){
 
 
 
-	public function binary_right($customer_id){
+	public function binary_right(){
 		$this -> load -> model('account/customer');
-
+		$customer_id = 23;
 		$check_f1 = $this -> model_account_customer -> check_p_node_binary_($customer_id);
 
 		$listId= '';
@@ -337,15 +340,16 @@ public function update_profitupdajte_profitujpdate_prosfit(){
 		}else{
 			$id = $count['right'];
 			$count = $this -> model_account_customer -> getCount_ID_BinaryTreeCustom($count['right']);
-			$customer_binary = $count.','.$id;
+			$customer_binary = $count.',';
 		}
 		$customer_binary = substr($customer_binary, 1);
 		// $customer_binary = explode(',', $customer_binary);
 
 		$array = $arrId.','.$customer_binary;
 		$array = explode(',', $array);
-
+		
 		$array = array_count_values($array);
+		print_r($array);die();
 		$array = in_array(2, $array) ? 1 : 0;
 		return $array;
 	}

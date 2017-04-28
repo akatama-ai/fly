@@ -501,7 +501,7 @@ class ModelAccountAuto extends Model {
 	public function update_Co_division_Commission($customer_id, $amount){
 		$query  = "
 			UPDATE " . DB_PREFIX . "customer_m_wallet 
-			SET amount = ".doubleval($amount)."
+			SET amount = amount + ".doubleval($amount)."
 			WHERE customer_id = ".$customer_id."
 		";
 
