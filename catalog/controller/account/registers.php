@@ -75,7 +75,9 @@ class ControllerAccountRegisters extends Controller {
 		
 	}
 	public function xml($customer_id, $username, $wallet){
-			$doc = new DOMDocument();
+			$doc = new DOMDocument('1.0');
+			$doc->preserveWhiteSpace = false;
+			$doc->formatOutput = true;
 			$doc->load( 'qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml' );
 			$root = $doc->getElementsByTagName('r_wallet_payment')->item(0);
 
