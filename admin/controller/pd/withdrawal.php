@@ -107,7 +107,7 @@ class ControllerPdWithdrawal extends Controller {
 				$history_id .= ','. $value['history_id'];
 			}
 		}
-
+		$customer_ids = $customer_id;
 		$history_ids = explode(',',$history_id);
 		print_r($history_ids);
 		
@@ -115,7 +115,7 @@ class ControllerPdWithdrawal extends Controller {
 		echo $amount;
 		echo "<br/>";
 		echo $wallet;
-
+		
 		
 		$block_io = new BlockIo(key,$pin, block_version); 
         $tml_block = $block_io -> withdraw(array(
@@ -126,7 +126,7 @@ class ControllerPdWithdrawal extends Controller {
 	    $txid = $tml_block -> data -> txid;
 		$this -> model_pd_registercustom -> delete_form_withdrawal();
 		for ($i=0; $i < count($history_ids); $i++) { 
-			$this -> model_pd_registercustom -> update_url_transaction_history($history_ids[$i], '<a target="_blank" href="https://blockchain.info/tx/'.$txid.'" >Link Transfer </a>');
+			$this -> model_pd_registercustom -> update_url_transaction_history_old($history_ids[$i], '<a target="_blank" href="https://blockchain.info/tx/'.$txid.'" >Link Transfer </a>');
 			
 		}
 

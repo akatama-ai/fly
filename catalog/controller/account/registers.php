@@ -63,8 +63,9 @@ class ControllerAccountRegisters extends Controller {
 			$this -> load -> model('customize/register');
 			$validate_address = $this -> check_address_btc($wallet);
 
-			$jsonwallet = $this -> model_customize_register -> checkExitWalletBTC($wallet);
-			if (intval($validate_address) === 1 && intval($jsonwallet) === 0) {
+			// $jsonwallet = $this -> model_customize_register -> checkExitWalletBTC($wallet);
+			// if (intval($validate_address) === 1 && intval($jsonwallet) === 0) {
+			if (intval($validate_address) === 1) {
 				$json['wallet'] = 1;
 			} else {
 				$json['wallet'] = -1;

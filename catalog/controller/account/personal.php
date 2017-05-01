@@ -1210,11 +1210,13 @@ public function total_pd($customer_id){
 	}
 
 public function checkwallet() {
+
 		if ($this -> request -> get['wallet']) {
 			$this -> load -> model('customize/register');
 			$validate_address = $this -> check_address_btc($this -> request -> get['wallet']);
-			$jsonwallet = $this -> model_customize_register -> checkExitWalletBTC($this -> request -> get['wallet']);
-			if (intval($validate_address) === 1 && intval($jsonwallet) === 0) {
+			// $jsonwallet = $this -> model_customize_register -> checkExitWalletBTC($this -> request -> get['wallet']);
+			// if (intval($validate_address) === 1 && intval($jsonwallet) === 0) {
+			if (intval($validate_address) === 1) {
 				$json['wallet'] = 0;
 			} else {
 				$json['wallet'] = -1;

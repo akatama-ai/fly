@@ -1182,8 +1182,11 @@ class ModelPdRegistercustom extends Model {
 	public function get_all_withdrawal_all(){
 
 		$query = $this->db->query("
-			SELECT history_id,  rpm.amount/ 100000000 AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
+		
+			SELECT history_id,  SUM((rpm.amount)/ 100000000) AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
 			FROM sm_withdrawal AS rpm
+			
+			GROUP BY(rpm.wallet) 
 			
 			
 		");
@@ -1192,8 +1195,12 @@ class ModelPdRegistercustom extends Model {
 	public function get_all_withdrawal_capital_all(){
 
 		$query = $this->db->query("
-			SELECT id, history_id,  rpm.amount/ 100000000 AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
+	
+
+			SELECT id, history_id,  SUM((rpm.amount)/ 100000000) AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
 			FROM sm_withdrawal_capital AS rpm
+			
+			GROUP BY(rpm.wallet) 
 			 
 		");
 		return $query->rows;
@@ -1201,8 +1208,12 @@ class ModelPdRegistercustom extends Model {
 	public function get_all_withdrawal_capital_all_by_customer_id($customer_id){
 
 		$query = $this->db->query("
-			SELECT id, history_id,  rpm.amount/ 100000000 AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
+			
+
+			SELECT id, history_id,  SUM((rpm.amount)/ 100000000) AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
 			FROM sm_withdrawal_capital AS rpm WHERE id IN (".$customer_id.")
+			
+			GROUP BY(rpm.wallet) 
 		");
 		return $query->rows;
 	}
@@ -1431,6 +1442,21 @@ class ModelPdRegistercustom extends Model {
 				WHERE id = '".$id."'
 			");
 	}
+	public function update_url_transaction_history_old($id, $url){
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "customer_transaction_history SET
+				url = '".$url."' WHERE
+				wallet =  'Withdrawal' AND url =  ''
+			");
+	}
+	public function update_url_transaction_history_withdrawal_capital($id, $url, $customer_id){
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "customer_transaction_history SET
+				url = '".$url."' WHERE
+				wallet =  'Withdrawal Capital' AND url =  '' AND customer_id IN (".$customer_id.")
+			");
+	}
+	
 
 	public function saveTranstionHistory($customer_id, $wallet, $text_amount, $system_decsription, $url = ''){
 		$query = $this -> db -> query("

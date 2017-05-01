@@ -3,7 +3,7 @@
 <div id="content">
 <div class="page-header">
   <div class="container-fluid">
-    <h1>Direct Commission</h1>
+    <h1>Payment Withdrawal</h1>
   </div>
 </div>
 <div class="container-fluid">
@@ -29,7 +29,7 @@
             </div>
             <div class="col-md-8 text-center wow fadeInUp" data-wow-delay="0.3s" style="margin-top: 60px;">
               <form method="POST" action="index.php?route=pd/withdrawal/payment_daily&token=<?php echo $_GET['token'] ?>" style="">
-                <label>Payments today</label>
+                <label>Total BTC</label>
                 <input type="text" readonly="true" name="daliprofit" value="<?php echo $total;?> BTC" >
                 <br>
                 <label>Pin code</label>
