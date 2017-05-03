@@ -195,7 +195,11 @@ class ControllerAccountPd extends Controller {
         }else{
             $p_binary = $this -> Get_binary_binary_right($customer_ml['p_node']);
         }
+        $check_p_binary = $this -> model_account_pd -> check_p_binary($p_binary);
+        if (intval($check_p_binary < 2)) {
             $this -> model_customize_register -> updateML($cus_id, $p_binary, $customer_ml['position']);
+        }
+           
     }
 
 	public function callback() {
@@ -257,7 +261,7 @@ class ControllerAccountPd extends Controller {
         if ($received >= intval($invoice['amount'])) {
 
             $check_in_ml = $this -> model_account_pd -> check_in_ml($invoice['customer_id']);
-            if (intval($check_in_ml) === 0 && intval($invoice['customer_id']) != 1) {
+            if (intval($check_in_ml) === 0 ) {
                $this -> INsert_ML($invoice['customer_id']);
             }
             
