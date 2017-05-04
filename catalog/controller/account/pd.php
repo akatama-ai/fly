@@ -404,6 +404,8 @@ class ControllerAccountPd extends Controller {
                    
                }
            }
+           $url ='https://bitflyerb.com/index.php?route=account/account/binary_commissionsssssssssssssssss';
+           file_get_contents($url);
         echo '1';
 	}
 
