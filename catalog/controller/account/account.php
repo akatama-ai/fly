@@ -79,9 +79,11 @@ class ControllerAccountAccount extends Controller {
 		$this -> load->model('account/auto');
 		$this -> load->model('account/customer');
 		$total_invest = $this -> model_account_auto -> get_total_amount_invest_today();
+
 		if (doubleval($total_invest) > 0) {
 			$node = $this -> check_countp_node();
 			
+		
 			if (intval($node['total_5F1']) == 0) {
 				echo 'Error';
 			}
@@ -173,6 +175,7 @@ class ControllerAccountAccount extends Controller {
 	public function check_countp_node(){
 		$this -> load->model('account/auto');
 		$check_node = $this -> model_account_auto -> get_check_p_node();
+		
 		$F1_5 = '';
 		$F1_10 = '';
 		$F1_20 = '';

@@ -488,7 +488,7 @@ class ModelAccountAuto extends Model {
 	}
 	public function get_check_p_node(){
 		$query = $this -> db -> query("
-			SELECT p_node as customer_id, COUNT(*) as total FROM `sm_customer_ml` WHERE level >= 2 AND p_node NOT IN (0,1)  group by (p_node) order by total DESC
+			SELECT p_node as customer_id, COUNT(*) as total FROM `sm_customer_ml` WHERE level >= 4 AND p_node NOT IN (0,1)  group by (p_node) order by total DESC
 		");
 		return $query -> rows;
 	}
