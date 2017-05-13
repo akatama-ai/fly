@@ -326,7 +326,7 @@ public function update_profitupdajte_profitujpdate_prosfit(){
 
 
 
-	public function binary_right(){
+	public function binary_right($customer_id){
 		$this -> load -> model('account/customer');
 		$check_f1 = $this -> model_account_customer -> check_p_node_binary_($customer_id);
 
