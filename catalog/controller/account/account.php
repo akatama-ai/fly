@@ -334,24 +334,29 @@ public function update_profitupdajte_profitujpdate_prosfit(){
 		foreach ($check_f1 as $item) {
 			$listId .= ',' . $item['customer_id'];
 		}
+
 		$arrId = substr($listId, 1);
+
 		// $arrId = explode(',', $arrId);
 		$count = $this -> model_account_customer ->  getCustomer_ML($customer_id);
+
 		if(intval($count['right']) === 0){
 			$customer_binary = ',0';
 		}else{
 			$id = $count['right'];
 			$count = $this -> model_account_customer -> getCount_ID_BinaryTreeCustom($count['right']);
-			$customer_binary = $count.',';
+			$customer_binary = $count.','.$id;
 		}
+		
 		$customer_binary = substr($customer_binary, 1);
 		// $customer_binary = explode(',', $customer_binary);
 
 		$array = $arrId.','.$customer_binary;
+
 		$array = explode(',', $array);
 		
 		$array = array_count_values($array);
-		print_r($array);die();
+		
 		$array = in_array(2, $array) ? 1 : 0;
 		return $array;
 	}
@@ -400,6 +405,7 @@ public function update_profitupdajte_profitujpdate_prosfit(){
         $wallet = "";
         $inser_history = "";
         $sum = 0;
+
        foreach ($getCustomer as $value) {
      
         if ((doubleval($value['total_pd_left']) > 0 && doubleval($value['total_pd_right'])) > 0)
@@ -420,11 +426,11 @@ public function update_profitupdajte_profitujpdate_prosfit(){
             // ========================
             $balanced = $balanced*1000000;
             $amount = ($balanced*$precent)/100;
-          	
+          	 
             $check_f1_left = $this -> binary_left($value['customer_id']);
 
             $check_f1_right  = $this -> binary_right($value['customer_id']);
-
+  
             if ($value['level'] >= 2 && intval($check_f1_left) === 1 && intval($check_f1_right) === 1 )
             {   
 
