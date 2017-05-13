@@ -347,7 +347,7 @@ public function update_profitupdajte_profitujpdate_prosfit(){
 			$count = $this -> model_account_customer -> getCount_ID_BinaryTreeCustom($count['right']);
 			$customer_binary = $count.','.$id;
 		}
-		
+
 		$customer_binary = substr($customer_binary, 1);
 		// $customer_binary = explode(',', $customer_binary);
 
@@ -372,7 +372,6 @@ public function update_profitupdajte_profitujpdate_prosfit(){
 		}
 		$arrId = substr($listId, 1);
 		// $arrId = explode(',', $arrId);
-
 
 		$count = $this -> model_account_customer ->  getCustomer_ML($customer_id);
 		if(intval($count['left']) === 0){
