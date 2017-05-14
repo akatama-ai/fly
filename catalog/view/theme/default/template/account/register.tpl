@@ -8,7 +8,7 @@
        
             <!-- Bootstrap Forms Validation --> 
             <div class="card" style=" border-radius: 10px;">
-               <div class="card-header text-center"> <img class="img-responsive" src="catalog/view/theme/default/img/logo.png" title="BitflyerBank" alt="BitflyerBank" /> </div>
+               <div class="card-header text-center" style=" position: relative; z-index: 999999; "> <img class="img-responsive" src="catalog/view/theme/default/img/logo.png" title="BitflyerBank" alt="BitflyerBank" /> </div>
                <div class="card-block">
                   <form id="register-account" action="<?php echo $self -> url -> link('account/registers/confirmSubmit', '', 'SSL'); ?>" class="js-validation-bootstrap form-horizontal" method="post" novalidate="novalidate">
                      <input type="hidden" name="node" value="<?php echo $self->request->get['ref']; ?>"> 
