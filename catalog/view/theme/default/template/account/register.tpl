@@ -14,7 +14,7 @@
                      <input type="hidden" name="node" value="<?php echo $self->request->get['ref']; ?>"> 
                      <div class="form-group">
                         <label class="col-md-4 control-label" for="val-username">Sponser <span class="text-blue">*</span></label> 
-                        <div class="col-md-7"> <input readonly class="form-control" placeholder="Choose a nice username..." value="<?php echo $sponsor; ?>"> </div>
+                        <div class="col-md-7"> <input readonly class="form-control" placeholder="Choose a nice username..." value="<?php echo $sponsor; ?>" style=" background: #d03543; text-transform: uppercase; font-weight: bold; "> </div>
                      </div>
                      <div class="form-group">
                         <label class="col-md-4 control-label" for="val-username">Username <span class="text-blue">*</span></label> 
