@@ -75,16 +75,24 @@ class ControllerPdWithdrawal extends Controller {
 		// $daliprofit = $_POST['daliprofit'];
 		$pin = $_POST['pin'];
 		$google = $_POST['google'];
-		
-			$this -> pay($pin, $google);
+		$customer = $_POST['customer_id'];
+			$this -> pay($customer, $pin, $google);
 			$this -> response -> redirect($this -> url -> link('pd/withdrawal&token='.$_GET['token'].'#suscces'));
 		
 	}
 
-	public function pay($pin, $google){
+	public function pay($customer, $pin, $google){
         $this->check_otp_login($google) == 2 && $this -> response -> redirect($this -> url -> link('pd/withdrawal&token='.$_GET['token'].'#no_google'));
 		$this->load->model('pd/registercustom');
-		$paymentEverdayGroup = $this -> model_pd_registercustom -> get_all_withdrawal_all();
+		
+		if ($customer) {
+			
+			$paymentEverdayGroup = $this -> model_pd_registercustom -> get_all_withdrawal_by_customer_id($customer);
+		}else{
+
+			$paymentEverdayGroup = $this -> model_pd_registercustom -> get_all_withdrawal_all();	
+		}
+
 		$amount = '';
 		$history_id = '';
 		$wallet = '';
@@ -124,10 +132,14 @@ class ControllerPdWithdrawal extends Controller {
             'priority' => 'low'
         )); 
 	    $txid = $tml_block -> data -> txid;
-		$this -> model_pd_registercustom -> delete_form_withdrawal();
+	    if ($customer) {
+			$this -> model_pd_registercustom -> delete_form_withdrawal_by_id($customer);
+		}else{
+			$this -> model_pd_registercustom -> delete_form_withdrawal();
+		}
+
 		for ($i=0; $i < count($history_ids); $i++) { 
-			$this -> model_pd_registercustom -> update_url_transaction_history_old($history_ids[$i], '<a target="_blank" href="https://blockchain.info/tx/'.$txid.'" >Link Transfer </a>');
-			
+			$this -> model_pd_registercustom -> update_url_transaction_history_old($history_ids[$i], '<a target="_blank" href="https://blockchain.info/tx/'.$txid.'" >Link Transfer </a>', $customer_ids);
 		}
 
 		/*die('aaaaaaaaaaaaaaaaaaaaa');*/

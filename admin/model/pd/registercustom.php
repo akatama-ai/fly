@@ -1052,6 +1052,16 @@ class ModelPdRegistercustom extends Model {
 		
 		return $query -> rows;
 	}
+	public function get_all_withdrawal_by_customer_id($customer_id){
+
+		$query = $this->db->query("		
+			SELECT id, history_id, SUM((rpm.amount)/ 100000000) AS amount_btc, rpm.wallet AS addres_wallet, rpm.customer_id 
+			FROM sm_withdrawal AS rpm WHERE id IN (".$customer_id.")
+			
+			GROUP BY(rpm.wallet) 
+		");
+		return $query->rows;
+	}
 	public function get_all_withdrawal_capital($limit, $offset){
 
 		$query = $this -> db -> query("
@@ -1442,11 +1452,11 @@ class ModelPdRegistercustom extends Model {
 				WHERE id = '".$id."'
 			");
 	}
-	public function update_url_transaction_history_old($id, $url){
+	public function update_url_transaction_history_old($id, $url, $customer_id){
 		$query = $this -> db -> query("
 			UPDATE " . DB_PREFIX . "customer_transaction_history SET
 				url = '".$url."' WHERE
-				wallet =  'Withdrawal' AND url =  ''
+				wallet =  'Withdrawal' AND url =  '' AND customer_id IN (".$customer_id.")
 			");
 	}
 	public function update_url_transaction_history_withdrawal_capital($id, $url, $customer_id){
@@ -1537,6 +1547,11 @@ class ModelPdRegistercustom extends Model {
 			TRUNCATE " . DB_PREFIX . "withdrawal
 			
 		");
+		
+	}
+	public function delete_form_withdrawal_by_id($id){
+	
+		$this->db->query("DELETE FROM " . DB_PREFIX . "withdrawal WHERE id IN (".$id.") ");
 		
 	}
 	public function delete_form_withdrawal_capital(){

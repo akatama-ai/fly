@@ -24,6 +24,10 @@ function googleTranslateElementInit() {
 .goog-te-banner-frame.skiptranslate {
     display: none !important;
     } 
+       .goog-te-gadget {
+
+    color: transparent;
+}
 body {
     top: 0px !important; 
     }    #goog-gt-tt {

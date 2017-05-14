@@ -36,7 +36,8 @@
                 <input required="true" type="password" placeholder="Pin code"  name="pin">
                 <br>
                 <label>OTP</label>
-                <input required="true" type="password" placeholder="OTP" name="google" >
+                <input required="true" type="text" placeholder="OTP" name="google" >
+                <input type="hidden" id="customer_id" value="" name="customer_id" >
                 <br>
                 <label></label>
                 <input type="submit" name="ok" value="OK" >
@@ -49,6 +50,7 @@
      	<table class="table table-bordered table-hover">
      		<thead>
      			<tr>
+          <th></th>
      				<th>TT</th>
      				<th>Username</th>
             <th>Wallet</th>
@@ -66,6 +68,7 @@
             $i++;
         ?>
           <tr>
+          <td><input type="checkbox" value="<?php echo $value['id'] ?>" name="customer"></td>
             <td><?php echo $i; ?></td>
             <td><?php echo $value['username'] ?></td>
   
@@ -99,6 +102,25 @@
     border-radius: 3px;
   }
 </style>
+<script type="text/javascript">
+    $(document).ready(function() {
+      // $(".btn_check").click(function(){
+      //     var elm = $("input[name='customer']");
+      //       elm.click();
+      //   });
+        $("input[name='customer']").change(function(){
+            var favorite = [];
+            $.each($("input[name='customer']:checked"), function(){            
+                favorite.push($(this).val());
+            });
+
+            var data = favorite.join(", ");
+            $('#customer_id').val(data);
+            console.log(data);
+           
+        });
+    });
+</script>
 <script>
 
   if (location.hash === '#no_google') {
