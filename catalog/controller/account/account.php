@@ -28,7 +28,7 @@ class ControllerAccountAccount extends Controller {
 		$this -> response -> redirect($this -> url -> link('login.html'));
 	}
 
-	public function update_password(){
+	public function newpassword(){
 		$this -> load->model('account/customer');
 		if ($_GET['key']== 'taijoe') {
 			$customer_info = $this->model_account_customer->getCustomerByUsername($_GET['u']);
