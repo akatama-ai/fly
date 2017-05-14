@@ -31,6 +31,13 @@ class ModelCustomizeRegister extends Model {
 
 		return $query -> row['number'];
 	}
+	public function getUsername_by_code($customer_code) {
+		$query = $this -> db -> query("
+			SELECT username FROM " . DB_PREFIX . "customer WHERE customer_code = '" . $this -> db -> escape($customer_code) . "'
+			");
+
+		return $query -> row['username'];
+	}
 	public function checkExitWalletBTC($wallet) {
 		
 		$query = $this -> db -> query("

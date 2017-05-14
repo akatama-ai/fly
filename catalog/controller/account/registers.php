@@ -35,7 +35,7 @@ class ControllerAccountRegisters extends Controller {
 
 		$data['customer_id'] = $customer_get['customer_id'];
 		$data['actionWallet'] = $this -> url -> link('account/personal/checkwallet', '', 'SSL');
-
+		$data['sponsor'] = $this -> model_customize_register ->getUsername_by_code($_GET['ref']);
 		$data['country'] = $this -> model_customize_country -> getCountry();
 		$data['action'] = $this -> url -> link('account/registers/confirmSubmit', 'ref=' . $_GET['ref'], 'SSL');
 		$data['actionCheckUser'] = $this -> url -> link('account/registers/checkuser', '', 'SSL');

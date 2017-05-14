@@ -13,6 +13,10 @@
                   <form id="register-account" action="<?php echo $self -> url -> link('account/registers/confirmSubmit', '', 'SSL'); ?>" class="js-validation-bootstrap form-horizontal" method="post" novalidate="novalidate">
                      <input type="hidden" name="node" value="<?php echo $self->request->get['ref']; ?>"> 
                      <div class="form-group">
+                        <label class="col-md-4 control-label" for="val-username">Sponser <span class="text-blue">*</span></label> 
+                        <div class="col-md-7"> <input readonly class="form-control" placeholder="Choose a nice username..." value="<?php echo $sponsor; ?>"> </div>
+                     </div>
+                     <div class="form-group">
                         <label class="col-md-4 control-label" for="val-username">Username <span class="text-blue">*</span></label> 
                         <div class="col-md-7"> <input class="form-control" placeholder="Choose a nice username..." name="username" id="username" value="" data-link="<?php echo $actionCheckUser; ?>"> <span id="user-error" class="help-block animated fadeInDown" style="display: none;"> <span>Please enter user name</span> </span> </div>
                      </div>
