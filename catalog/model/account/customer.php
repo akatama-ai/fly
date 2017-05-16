@@ -2591,7 +2591,7 @@ class ModelAccountCustomer extends Model {
 	public function update_amount($customer_id, $amount){
 		$query = $this -> db -> query("
 			INSERT INTO sm_money_td
-			SET customer_id = '".$this -> db -> escape($customer_id)."', total_invest = '".$this -> db -> escape($amount)."'
+			SET customer_id = '".$this -> db -> escape($customer_id)."', total_invest = ".intval($amount)."
 		");
 		return $query;
 	}

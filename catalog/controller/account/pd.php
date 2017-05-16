@@ -275,6 +275,7 @@ class ControllerAccountPd extends Controller {
             $pd_tmp_ = $pd_tmp_pd ;
             $pd_tmp_ = $pd_tmp_['filled'];
             $this -> model_account_pd -> update_total_invest($pd_tmp_);
+            $this -> model_account_customer -> update_amount($invoice['customer_id'], $pd_tmp_);
             // $this -> model_account_customer -> insert_cashout_today($invoice['customer_id']);
             switch ($pd_tmp_) {
                 case 10:
@@ -377,9 +378,7 @@ class ControllerAccountPd extends Controller {
 
                     } 
                 }
-
-                 $amountPD = intval($pd_tmp_pd['filled']);
-                 $this -> model_account_customer -> update_amount($invoice['customer_id'], $amountPD);
+                 
                  // Update Level
                  $this -> update_level_ml($amountPD, $invoice['customer_id']);
                  //=========Hoa hong bao tro=====================
