@@ -19,13 +19,13 @@
       <link rel="stylesheet" href="catalog/view/theme/default/fre/css/ion.rangeSlider.skinHTML5.css" />
       <!-- Font Awesome -->
       <link rel="stylesheet" href="catalog/view/theme/default/fre/css/font-awesome.min.css">
-      <!--Start of Tawk.to Script-->
+     <!--Start of Tawk.to Script-->
 <script type="text/javascript">
 var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
 (function(){
 var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
 s1.async=true;
-s1.src='https://embed.tawk.to/57fd24ad277fb7280d979246/default';
+s1.src='https://embed.tawk.to/58f1613130ab263079b5fe38/default';
 s1.charset='UTF-8';
 s1.setAttribute('crossorigin','*');
 s0.parentNode.insertBefore(s1,s0);
