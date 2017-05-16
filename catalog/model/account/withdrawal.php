@@ -21,11 +21,13 @@ class ModelAccountWithdrawal extends Model {
 	}
 	public function updateC_wallet_Sub($customer_id, $amount, $add = false){
 		if ($add) {
+		
 			$query = $this -> db -> query("
 				UPDATE " . DB_PREFIX . "customer_c_wallet
 					SET amount = amount + ".doubleval($amount)." WHERE customer_id = ".$customer_id."
 			");
 		}else{
+			
 			$query = $this -> db -> query("
 				UPDATE " . DB_PREFIX . "customer_c_wallet
 					SET amount = amount - ".doubleval($amount)." WHERE customer_id = ".$customer_id."

@@ -758,8 +758,10 @@ public function send_mail_active($data_sms){
             $wallet = 'R';
             $name_wallet = 'Daily profit';
         }
+
         switch ($wallet) {
             case 'C':
+    
                 $this -> model_account_withdrawal -> updateC_wallet_Sub($session_id, $amount_usd);   
                 break;
             case 'R':
