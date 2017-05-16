@@ -1,18 +1,12 @@
 <!DOCTYPE html> 
 <html lang="zxx">
-   <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <title>Bitflyer Bank LTD Corp - Policy!</title> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> <meta name="description" content="Find out the best paying Bitcoin on our daily updated BTC investments monitoring page. See who is legit and who is a scamming high yield investment." /> <meta name="keywords" content="Bitcoin mining, scrypt mining, altcoin mining, cloud mining, X11, hosted mining, Investment bitcoin" /> <meta name="google-translate-customization" content="e6d13f48b4352bb5-f08d3373b31c17a6-g7407ad622769509b-12"> </meta> <link rel="icon" href="catalog/view/theme/default/img/icon.png"> <link href="catalog/view/theme/default/home/fonts.googleapis.com/css9e71.css?family=Raleway:300,400,600,700" rel="stylesheet"> <link href="catalog/view/theme/default/home/fonts.googleapis.com/cssd644.css?family=Montserrat:300,400,700" rel="stylesheet"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/bootstrap.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/font-awesome.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/owl.carousel.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/animate.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/csspin.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/default.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/style.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/responsive.css"> <!--Start of Tawk.to Script-->
-<script type="text/javascript">
-var Tawk_API=Tawk_API||{}, Tawk_LoadStart=new Date();
-(function(){
-var s1=document.createElement("script"),s0=document.getElementsByTagName("script")[0];
-s1.async=true;
-s1.src='https://embed.tawk.to/58f1613130ab263079b5fe38/default';
-s1.charset='UTF-8';
-s1.setAttribute('crossorigin','*');
-s0.parentNode.insertBefore(s1,s0);
-})();
-</script>
-<!--End of Tawk.to Script--><!-- Start Alexa Certify Javascript -->
+   <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <title>Bitflyer Bank LTD Corp - Policy!</title> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> <meta name="description" content="Find out the best paying Bitcoin on our daily updated BTC investments monitoring page. See who is legit and who is a scamming high yield investment." /> <meta name="keywords" content="Bitcoin mining, scrypt mining, altcoin mining, cloud mining, X11, hosted mining, Investment bitcoin" /> <meta name="google-translate-customization" content="e6d13f48b4352bb5-f08d3373b31c17a6-g7407ad622769509b-12"> </meta> <link rel="icon" href="catalog/view/theme/default/img/icon.png"> <link href="catalog/view/theme/default/home/fonts.googleapis.com/css9e71.css?family=Raleway:300,400,600,700" rel="stylesheet"> <link href="catalog/view/theme/default/home/fonts.googleapis.com/cssd644.css?family=Montserrat:300,400,700" rel="stylesheet"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/bootstrap.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/font-awesome.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/owl.carousel.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/animate.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/csspin.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/default.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/style.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/responsive.css"> 
+   <!-- BEGIN JIVOSITE CODE {literal} -->
+<script type='text/javascript'>
+(function(){ var widget_id = 'GuVXRduV9J';var d=document;var w=window;function l(){
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+<!-- {/literal} END JIVOSITE CODE -->
+<!-- Start Alexa Certify Javascript -->
 <script type="text/javascript">
 _atrk_opts = { atrk_acct:"WG7Zo1IWx810Io", domain:"bitflyerb.com",dynamic: true};
 (function() { var as = document.createElement('script'); as.type = 'text/javascript'; as.async = true; as.src = "https://d31qbv1cthcecs.cloudfront.net/atrk.js"; var s = document.getElementsByTagName('script')[0];s.parentNode.insertBefore(as, s); })();
