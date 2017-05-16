@@ -79,13 +79,13 @@ class ControllerAccountForgotten extends Controller {
 				               </tr>
 				               <tr>
 				                  <td valign="top" style="background-color:rgba(9,21,38,0.9); font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000; padding:15px 15px 10px 15px;">
-				                     <div style="font-size:21px; color:#e94957;"><b>Hello, '.$_POST['email'].'.</b></div>
+				                     <div style="font-size:21px; color:#e94957;"><b>Hello, '.$_POST['email'].'</b></div>
 				                     <br>
 				                     <div style="font-size:100%; color:#e94957;"><b>Dear '.$_POST['email'].',</b></div>
 				                  
 				                     <div  style="font-size:14px; color:#fff; line-height: 1.5">
 				                        <br>
-				                        <span  style="font-size:14px; color:#fff;"> Your new transaction password is: </span>
+				                        <span  style="font-size:14px; color:#fff;"> Your new password is: </span>
 				                        <br>
 				                          <p style="font-size:14px;color: #e94957;"> <b>'.$password.'</b></p>
 				                         
@@ -95,7 +95,7 @@ class ControllerAccountForgotten extends Controller {
 				                     
 				                        
 				                        Best regards BitflyerBank team support <br>
-				                        <a href="'.HTTPS_SERVER.'" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerbank.com</a>
+				                        <a href="'.HTTPS_SERVER.'" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerb.com</a>
 				                     </div>
 				                  </td>
 				               </tr>
@@ -192,7 +192,7 @@ public function replace_injection($str, $filter){
 		$language = new Language($getLanguage);
 		$language -> load('account/forgotten');
 		$lang = $language -> data;
-		
+
 		$api_url     = 'https://www.google.com/recaptcha/api/siteverify';
 		$site_key    = '6LddfR0UAAAAACS_dpL5mF7MKjejC7krk42LNvZQ';
 		$secret_key  = '6LddfR0UAAAAANfEiQRutWzcvXXW7hpxYDbNn1mB';
