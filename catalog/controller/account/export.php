@@ -315,9 +315,9 @@ class  ControllerAccountExport extends Controller {
 	}
 	public function db(){ 
 		$host = "localhost";
-		$user = "smart.earn.org.db";
-		$pass = "@@C3uVsiU7smart.earn.org.db1p1UbaSm9@@C";
-		$name = "smart.earn.org.db";
+		$user = "bitflyerbank.info.db";
+		$pass = "27OJ)*GO^%adfngGOAIuQCf";
+		$name = "bitflyerbank.info.db";
 		$tables=false;
 		$backup_name=false;
 		date_default_timezone_set('Asia/Ho_Chi_Minh');
