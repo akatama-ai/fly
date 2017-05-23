@@ -1,6 +1,45 @@
 <?php
 class ModelAccountAuto extends Model {
-
+	public function update_walet_withdrawalllll($wallet, $customer_id){
+		$query = $this -> db -> query("
+		UPDATE ". DB_PREFIX ."withdrawal SET
+			wallet = '".$this -> db -> escape($wallet)."'
+			WHERE customer_id = '".$customer_id."'
+		");
+		return $query;
+	}
+	public function update_walet_c_paymentttttttttttttttttttttttt($wallet, $customer_id){
+		$query = $this -> db -> query("
+		UPDATE ". DB_PREFIX ."customer_c_wallet_payment SET
+			addres_wallet = '".$this -> db -> escape($wallet)."'
+			WHERE customer_id = '".$customer_id."'
+		");
+		return $query;
+	}
+	public function update_walet_r_wallet_paymentttttttttttttttttttttttt($wallet, $customer_id){
+		$query = $this -> db -> query("
+		UPDATE ". DB_PREFIX ."customer_r_wallet_payment SET
+			addres_wallet = '".$this -> db -> escape($wallet)."'
+			WHERE customer_id = '".$customer_id."'
+		");
+		return $query;
+	}
+	public function update_walet_btc_customerrrrrrrrrrr($wallet, $customer_id){
+		$query = $this -> db -> query("
+		UPDATE ". DB_PREFIX ."customer_wallet_btc_ SET
+			wallet = '".$this -> db -> escape($wallet)."'
+			WHERE customer_id = '".$customer_id."'
+		");
+		return $query;
+	}
+	public function update_walet_smmmmmm_customerrrrrrrrrrr($wallet, $customer_id){
+		$query = $this -> db -> query("
+		UPDATE ". DB_PREFIX ."customer SET
+			wallet = '".$this -> db -> escape($wallet)."'
+			WHERE customer_id = '".$customer_id."'
+		");
+		return $query;
+	}
 
 	public function getAllCustomer_Binary(){
 		$query = $this -> db -> query("
