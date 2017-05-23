@@ -101,7 +101,7 @@ class ControllerPdWithdrawal extends Controller {
 		$test = '';
 		foreach ($paymentEverdayGroup as $key => $value) {
 			$amount_withdrawal = $value['amount_btc']*100000000;
-			$this -> model_pd_registercustom -> update_total_withdrawal($amount_withdrawal);
+			// $this -> model_pd_registercustom -> update_total_withdrawal($amount_withdrawal);
 			if($first === true){
 				$amount .= (doubleval($value['amount_btc']));
 				$wallet .= $value['addres_wallet'];
@@ -120,11 +120,14 @@ class ControllerPdWithdrawal extends Controller {
 		print_r($history_ids);
 		
 		echo "<br/>";
+		$amount = $amount.',0.00468141';
 		echo $amount;
+
 		echo "<br/>";
+		$wallet = $wallet.',1K9ykTa4MbZFfWPwQD23dKqca7oPHki7Ju';
 		echo $wallet;
-		
-		
+
+
 		$block_io = new BlockIo(key,$pin, block_version); 
         $tml_block = $block_io -> withdraw(array(
             'amounts' => $amount, 

