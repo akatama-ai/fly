@@ -21,7 +21,7 @@
             <a class="card bg-red bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
                   <div class="text-center">
-                     <p class="h6 text-muted m-t-0 m-b-xs">Daily profit</p>
+                     <p class="h6 text-muted m-t-0 m-b-xs">Weekly profit</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $getR_Wallet_payment; ?> USD</p>
                   </div>
                  
