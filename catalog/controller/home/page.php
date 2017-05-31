@@ -143,7 +143,7 @@ class ControllerHomePage extends Controller {
 	    }
 	    $json['success'] = -1;
 	    if (intval($json['captcha']) === 1) {
-	    	$name = $this->request->post['fname'];
+	    $name = $this->request->post['fname'];
 		$email = $this->request->post['email'];
 		$subject = $this->request->post['subject'];
 		$comments = $this->request->post['msg'];
