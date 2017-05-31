@@ -350,15 +350,15 @@ class ControllerAccountToken extends Controller {
 		if ($this -> customer -> isLogged() && $this -> request -> post['keyword']) {
 			$this -> load -> model('account/customer');
 
-			$tree = explode(',', $this -> model_account_customer -> getCustomLike($this -> request -> post['keyword'], $this -> session -> data['customer_id']));
+			$tree = explode(',', $this -> model_account_customer -> getcustomerLikeKey($this -> request -> post['keyword'], $this -> session -> data['customer_id']));
 			unset($tree[0]);
 			//get customer partent
-			$customerParent = $this -> model_account_customer -> getCustomer($this -> session -> data['customer_id']);
-			$customerParent = $customerParent['p_node'];
-			if (intval($customerParent) !== 0) {
-				$customerParent = $this -> model_account_customer -> getCustomer($customerParent);
-				array_push($tree, $customerParent['username']);
-			}
+			// $customerParent = $this -> model_account_customer -> getCustomer($this -> session -> data['customer_id']);
+			// $customerParent = $customerParent['p_node'];
+			// if (intval($customerParent) !== 0) {
+			// 	$customerParent = $this -> model_account_customer -> getCustomer($customerParent);
+			// 	array_push($tree, $customerParent['username']);
+			// }
 			foreach ($tree as $key => $value) {
 				echo $value ? '<li class="list-group-item" onClick="selectU(' . "'" . $value . "'" . ');">' . $value . '</li>' : '';
 			}

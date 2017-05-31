@@ -874,6 +874,16 @@ class ModelAccountCustomer extends Model {
 		}
 		return $listId;
 	}
+	public function getcustomerLikeKey($name){
+		$listId = '';
+		$query = $this -> db -> query("
+			SELECT c.username AS name, c.customer_id AS code FROM ". DB_PREFIX ."customer c WHERE c.username Like '%".$this->db->escape($name)."%'");
+		$array_id = $query -> rows;
+		foreach ($array_id as $item) {
+			$listId .= ',' . $item['name'];
+		}
+		return $listId;
+	}
 	public function checkUserName($id_user) {
 		$listId = '';
 		$query = $this -> db -> query("
