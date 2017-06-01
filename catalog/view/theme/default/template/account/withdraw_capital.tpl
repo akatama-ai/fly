@@ -34,7 +34,11 @@
                                     </div>
                                     <div class="card-block">
                                         <form class="form-horizontal frm_capital" action="confirm-sm-withdrawl-capital" method="post" onsubmit="return false;">
-                                           
+                                            <div class="form-group">
+                                              <div class="col-xs-12">
+                                                <code>Receipt No: #<?php echo $value['pd_number']; ?></code>
+                                              </div>
+                                            </div>
                                             <div class="form-group">
                                                 <label class="col-xs-12" for="register1-password">Transaction Password</label>
                                                 <div class="col-xs-12">
