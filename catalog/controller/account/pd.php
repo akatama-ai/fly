@@ -431,7 +431,7 @@ class ControllerAccountPd extends Controller {
         $this->load->model('account/auto');
         $customer = $this -> model_account_customer ->getCustomer($customer_id);
         $data_sms = 'FlyER - '.$customer['username'].' - '.$amountPD;
-        $this -> send_sms($data_sms);
+        // $this -> send_sms($data_sms);
         $this -> send_mail_active($data_sms);
 
         $partent = $this -> model_account_customer ->getCustomer($customer['p_node']);
