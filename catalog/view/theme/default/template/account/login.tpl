@@ -32,7 +32,7 @@
                         <div class="form-group">
                            <div class="g-recaptcha" data-sitekey="6LddfR0UAAAAACS_dpL5mF7MKjejC7krk42LNvZQ"></div>
                         </div>
-                        <button type="submit" class="btn btn-app btn-block">Login</button> 
+                        <button type="submit" class="btn btn-app notranslate btn-block">Login</button> 
                      </form>
                      <div class="text-center text-forgot"><a href="forgot.html">Forgot Password?</a></div>
                   </div>
