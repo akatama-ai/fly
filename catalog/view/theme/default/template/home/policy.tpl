@@ -22,7 +22,7 @@ _atrk_opts = { atrk_acct:"WG7Zo1IWx810Io", domain:"bitflyerb.com",dynamic: true}
       <header>
          <nav class="navbar navbar-default navbar-fixed-top nav-area nav-area-3" id="scroll-menu">
             <div class="container">
-               <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed menu-btn-lg" onclick="location.href='login.html';" > Login </button> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html"><img src="catalog/view/theme/default/img/logo.png" alt="responsive img" style="width: 160px;"></a> </div>
+               <div class="navbar-header"> <button type="button" class="navbar-toggle collapsed menu-btn-lg notranslate" onclick="location.href='login.html';" > Login </button> <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button> <a class="navbar-brand" href="index.html"><img src="catalog/view/theme/default/img/logo.png" alt="responsive img" style="width: 160px;"></a> </div>
                <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
                      <li class="active"><a href="index.html" >Home</a></li>
@@ -33,7 +33,7 @@ _atrk_opts = { atrk_acct:"WG7Zo1IWx810Io", domain:"bitflyerb.com",dynamic: true}
                      <li><a href="representatives.html">Pepresentatives</a></li>
                      <li><a href="index.html" >Contact</a></li>
                      <li><a href="register?ref=234614641">Sign up</a></li>
-                     <li><a href="login.html" class="menu-btn">Login</a></li>
+                     <li><a href="login.html" class="menu-btn notranslate">Login</a></li>
                   </ul>
                </div>
             </div>
