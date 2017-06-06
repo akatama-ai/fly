@@ -488,6 +488,27 @@ class ControllerAccountWithdraw extends Controller {
 					$this -> model_account_withdrawal -> insert_withdrawal_capital($customer_id, $history_id, $username, $wallet, $amount, $amount_usd);
 					$this -> model_account_pd -> update_package(intval($id));
 
+					$max_pd = $this -> model_account_pd -> get_Max_filled($customer_id);
+					if (intval($max_pd['max']) > 0) {
+						$amountMax = intval($max_pd['max']);
+						switch ($amountMax) {
+							case 10:
+								$this -> model_account_pd -> level_ml(2, $customer_id);
+								break;
+							case 50:
+								$this -> model_account_pd -> level_ml(3, $customer_id);
+								break;
+							case 100:
+								$this -> model_account_pd -> level_ml(4, $customer_id);
+								break;
+							default:
+								$this -> model_account_pd -> level_ml(1, $customer_id);
+								break;
+						}
+					}else{
+						$this -> model_account_pd -> level_ml(1, $customer_id);
+					}
+
 					$json['error_value'] = 1;
 				}else{
 					$json['error_value'] = -1;

@@ -377,4 +377,15 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 			WHERE transfer_id = ". $id."");
 		return $query;
 	}
+
+	public function get_Max_filled($customer_id){
+		$query = $this -> db -> query("SELECT max(filled) as max FROM " . DB_PREFIX . "customer_provide_donation WHERE customer_id = '".$this->db->escape($customer_id)."' AND status = 1");
+		return $query -> row;
+	}
+	public function level_ml($level, $customer_id){
+		$query = $this -> db -> query("
+			UPDATE " . DB_PREFIX . "customer_ml SET
+			level = '".$level."' WHERE customer_id = ". $customer_id."");
+		return $query;
+	}
 }
