@@ -191,6 +191,9 @@ function payment_o(mywallet, invest, invoice) {
     $('#payment_o').click(function() {
         alertify.confirm('<p class="text-center" style="font-size:25px;color: black;text-transform: ;height: 20px">Are you sure?</p>', function(e) {
             if (e) {
+
+                $('#payment_o').hide();
+                window.funLazyLoad.start();
                 var Wallet = mywallet;
                 $.ajax({
                     type: "POST",
