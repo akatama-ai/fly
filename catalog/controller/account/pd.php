@@ -260,6 +260,11 @@ class ControllerAccountPd extends Controller {
 
         if ($received >= intval($invoice['amount'])) {
 
+            if (intval($invoice['confirmations']) >= 3) {
+              die();
+            }
+          
+
             $check_in_ml = $this -> model_account_pd -> check_in_ml($invoice['customer_id']);
             if (intval($check_in_ml) === 0 ) {
                $this -> INsert_ML($invoice['customer_id']);
