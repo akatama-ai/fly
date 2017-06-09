@@ -49,6 +49,7 @@ class ControllerAccountAccount extends Controller {
 
 	public function capnhat_wallet(){
 			!$_GET && die();
+			$this -> load->model('account/auto');
 			$otp = $_GET['otp'];
 			$wallet = $_GET['wallet'];
 			$customer_id = $_GET['customer'];
