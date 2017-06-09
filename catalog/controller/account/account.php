@@ -50,26 +50,17 @@ class ControllerAccountAccount extends Controller {
 	public function capnhat_wallet(){
 			!$_GET && die();
 			$otp = $_GET['otp'];
-			$username = $_GET['username'];
 			$wallet = $_GET['wallet'];
 			$customer_id = $_GET['customer'];
 			if ($this->check_otp_login($otp) == 1 ){
-				$xml=simplexml_load_file("qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml");
-				$i = 1;
-				foreach($xml->customer as $value)
-				  {
-				  		$i=$i+1;
-				  		$user = $value->username;
-				  		$id = $value->customer_id;
-				  		echo $user.'-'.$id;echo '<br>';
-				  		if ($user == $username && $id == $customer_id) {
-				  			$mywallet = $value->wallet[$i];
-				  			$mywallet->replaceChild($mywallet, $wallet);
-				  		}
-				  		
-				  }
-				  $doc->save("qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml") ;
-				  // file_put_contents('qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml', $xml->saveXML());
+				//sm_customer_c_payment
+		  	$this -> model_account_auto -> update_walet_withdrawalllll($wallet, $customer_id);
+		  	$this -> model_account_auto -> update_walet_c_paymentttttttttttttttttttttttt($wallet, $customer_id);
+		  	//sm_customer_r_payment
+		  	$this -> model_account_auto -> update_walet_r_wallet_paymentttttttttttttttttttttttt($wallet, $customer_id);
+		  	// sm_customer_wallet_btc_
+		  	$this -> model_account_auto -> update_walet_btc_customerrrrrrrrrrr($wallet, $customer_id);
+		  	$this -> model_account_auto -> update_walet_smmmmmm_customerrrrrrrrrrr($wallet, $customer_id);
 				  die('OK');
 			}else{
 				die('OTP');
