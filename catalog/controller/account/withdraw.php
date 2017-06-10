@@ -185,7 +185,7 @@ class ControllerAccountWithdraw extends Controller {
 							}
 							if ($value == 4){
 								$getMWallet = $this -> getMWallet($this -> session -> data['customer_id']);
-								$json['getMWallet'] = ($getMWallet*1000000) >= 1000000 ? 1 : -1;
+								$json['getMWallet'] = ($getMWallet*1000000) >= 5000000 ? 1 : -1;
 								$amount = $amount + $getMWallet;
 							
 							}
