@@ -36,7 +36,7 @@
                 <input readonly type="text" placeholder="Rate current" value="<?php echo $limit1['rate']; ?>" name="rate_current" >
                 <br>
                 <label></label>
-                <input type="submit" name="ok" value="OK" >
+                <input id="ratenow" type="submit" name="ok" value="OK" >
               </form>
             </div>
       </div>
@@ -98,8 +98,11 @@
   }
 </style>
 <script>
-
+$('#ratenow').click(function() {
+           $('#ratenow').hide();
+        });
   if (location.hash === '#no_google') {
+       $('#ratenow').show();
       var html = '<div class="col-md-12">';
         html += '<p class="text-center" style="font-size:23px;text-transform: uppercase;height: 20px;color:red">ERROR !</p><p class="text-center" style="font-size:20px;height: 20px">Faild OTP</p>';
         html += '<p style="margin-top:30px;font-size:16px"></p>';
@@ -109,6 +112,7 @@
         });
     }
     if (location.hash === '#error') {
+      $('#ratenow').show();
       var html = '<div class="col-md-12">';
         html += '<p class="text-center" style="font-size:23px;text-transform: uppercase;height: 20px;color:red">Please try again !</p><p class="text-center" style="font-size:20px;height: 20px">Faild OTP</p>';
         html += '<p style="margin-top:30px;font-size:16px"></p>';
