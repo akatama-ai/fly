@@ -439,7 +439,7 @@ class ControllerAccountTransfer extends Controller {
                             die();
                             break;
                     }
-                    $id_history = $this -> model_account_customer -> saveHistoryPin($this -> session -> data['customer_id'], '- ' . ($amount_usd/1000000) . ' USD ', 'Transfer '.$wallet.' to '. $wallet_receive, 'Transfer', $wallet_receive, $wallet);
+                    $id_history = $this -> model_account_customer -> saveHistoryPin($this -> session -> data['customer_id'], ($amount_usd/1000000) . ' USD ', 'Transfer '.$wallet.' to '. $wallet_receive, 'Transfer', $wallet_receive, $wallet);
                     $json['ok'] = 1;
 
                 }
