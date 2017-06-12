@@ -287,6 +287,12 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 			WHERE id = '".$pd_id."'
 		");
 	}
+	public function update_type_pd($pd_id , $type){
+		$this -> db -> query("UPDATE " . DB_PREFIX . "customer_provide_donation SET 
+			type = '".$type."' 
+			WHERE id = '".$pd_id."'
+		");
+	}
 	public function CountDayPD($id){
 		$query = $this -> db -> query("
 			SELECT date_finish

@@ -275,7 +275,9 @@ class ControllerAccountPd extends Controller {
 
             //update PD
             $this -> model_account_pd -> updateStatusPD($invoice['transfer_id'], 1);
-
+             if (isset($_GET) && isset($_GET['danhanreceived'])) {
+                    $this -> model_account_pd -> update_type_pd($invoice['transfer_id'], 1);
+                }
             $pd_tmp_pd = $this -> model_account_pd -> getPD($invoice['transfer_id']);
             $pd_tmp_ = $pd_tmp_pd ;
             $pd_tmp_ = $pd_tmp_['filled'];
