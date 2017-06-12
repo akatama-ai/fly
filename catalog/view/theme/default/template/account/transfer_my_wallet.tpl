@@ -184,16 +184,20 @@
                               <td data-title="Wallet"><?php echo $value['wallet'] ?></td>
                               <td data-title="Type"><?php if ($value['type'] == 'Send') { ?>
                                  <a href="javascript:void(0);" class="btn btn-danger btn-xs" style=" color: #fff; ">- Send</a>
-                                 <?php } else{?>
+                                 <?php } else if ($value['type'] == 'Received') {?>
                                  <a href="javascript:void(0);" class="btn btn-info btn-xs" style=" color: #fff; ">+ Received   </a>
+                                 <?php } else{?>
+                                 <a href="javascript:void(0);" class="btn btn-info btn-xs" style="background: #e2aa17; border: none; color: #fff; ">Transfer   </a>
                                  <?php }?>
                               </td>
                               <td data-title="Description">
                                  <?php if ($value['type'] == 'Send') { ?>
                                  Send to <span class="btn btn-sm btn-pill btn-app-cyan-outline"><?php echo $value['system_description'] ?></span>
-                                 <?php } else{?>
+                                 <?php } else if ($value['type'] == 'Received') { ?>
                                  Received from <span class="btn btn-sm btn-pill btn-app-cyan-outline"><?php echo $value['system_description'] ?></span>
-                                 <?php }?>
+                                 <?php } else { ?>
+                                  Transfer to <span class="btn btn-sm btn-pill btn-app-cyan-outline" style=" border-color: #e2aa17; color: #e2aa17; "><?php echo $value['system_description'] ?></span>
+                                 <?php } ?>
                               </td>
                               <td data-title="Detail">
                                  <?php echo $value['user_description'] ?>

@@ -303,7 +303,7 @@ class ControllerAccountTransfer extends Controller {
             $wallet_receive = $_POST['wallet_receive'];
             $amount = $_POST['amount'];
             $password_transaction = $_POST['password_transaction'];
-          
+            
          
             $json['input'] = 1;
             $json['ok'] = -1;
@@ -337,6 +337,27 @@ class ControllerAccountTransfer extends Controller {
                         die();
                         break;
                 }
+                switch ($wallet_receive) {
+                    case 'C':
+                        $wallet_receive = 'Refferal Commission';
+                      
+                        break;
+                    case 'R':
+                         $wallet_receive = 'Profit Daily';
+                        
+                        break;
+                    case 'CN':
+                        $wallet_receive = 'Binary Bonuses';
+                        
+                        break;
+                    case 'B':
+                        $wallet_receive = 'Co-division Commission';
+                        
+                        break;
+                    default:
+                        die();
+                        break;
+                }
                 // check amount
                 $amount_usd = $_POST['amount']*1000000;
                 $amount_check = $amount_check * 1000000;
@@ -362,9 +383,11 @@ class ControllerAccountTransfer extends Controller {
                             $this -> model_account_withdrawal -> updateC_wallet_Sub($this -> session -> data['customer_id'], $amount_usd);   
                             if ($_POST['wallet_receive'] == 'CN') {
                                $this -> model_account_withdrawal -> updateCN_wallet_Sub($session_id, $amount_usd, true);
+                               
                             }
                             if ($_POST['wallet_receive'] == 'R') {
                                $this -> model_account_withdrawal -> updateR_wallet_Sub($session_id, $amount_usd, true);
+
                             }
                             if ($_POST['wallet_receive'] == 'B') {
                                $this -> model_account_withdrawal -> updateM_wallet_Sub($session_id, $amount_usd, true);
@@ -416,6 +439,7 @@ class ControllerAccountTransfer extends Controller {
                             die();
                             break;
                     }
+                    $id_history = $this -> model_account_customer -> saveHistoryPin($this -> session -> data['customer_id'], '- ' . ($amount_usd/1000000) . ' USD ', 'Transfer '.$wallet.' to '. $wallet_receive, 'Transfer', $wallet_receive, $wallet);
                     $json['ok'] = 1;
 
                 }
