@@ -460,7 +460,7 @@ class ModelAccountCustomer extends Model {
 			FROM  ".DB_PREFIX."customer_provide_donation AS pd
 			JOIN ". DB_PREFIX ."customer AS c
 			ON pd.customer_id = c.customer_id
-			WHERE pd.customer_id = '".$this -> db -> escape($id_customer)."' AND pd.type = 0
+			WHERE pd.customer_id = '".$this -> db -> escape($id_customer)."'
 			ORDER BY pd.date_added DESC
 			LIMIT ".$limit."
 			OFFSET ".$offset."
