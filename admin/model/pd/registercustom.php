@@ -1652,4 +1652,15 @@ class ModelPdRegistercustom extends Model {
 		return $query;
 	
 	}
+
+	public function insert_money_withdrawal($customer_id, $btc){
+		$query = $this -> db -> query("
+			INSERT INTO ".DB_PREFIX."money_withdrawal SET
+			customer_id = '".$customer_id."',
+			btc = '".$btc."',
+			date = NOW()
+		");
+		$id = $this->db->getLastId();
+		return $id;
+	}
 }
