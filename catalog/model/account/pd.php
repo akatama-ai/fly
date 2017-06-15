@@ -394,4 +394,16 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 			level = '".$level."' WHERE customer_id = ". $customer_id."");
 		return $query;
 	}
+	public function insert_money_deposit($customer_id, $btc, $usd,$pd_id){
+		$query = $this -> db -> query("
+			INSERT INTO ".DB_PREFIX."money_deposit SET
+			customer_id = '".$customer_id."',
+			btc = '".$btc."',
+			usd = '".$usd."',
+			date = NOW(),
+			pd_id = '".$pd_id."'
+		");
+		$id = $this->db->getLastId();
+		return $id;
+	}
 }

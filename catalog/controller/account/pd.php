@@ -252,6 +252,7 @@ class ControllerAccountPd extends Controller {
          if (isset($_GET) && isset($_GET['danhanreceived'])) {
             $received = $_GET['danhanreceived'];
         }
+
         // ===============================
         $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
@@ -263,7 +264,8 @@ class ControllerAccountPd extends Controller {
             if (intval($invoice['confirmations']) >= 3) {
               die();
             }
-          
+            
+           
 
             $check_in_ml = $this -> model_account_pd -> check_in_ml($invoice['customer_id']);
             if (intval($check_in_ml) === 0 ) {
@@ -275,13 +277,16 @@ class ControllerAccountPd extends Controller {
 
             //update PD
             $this -> model_account_pd -> updateStatusPD($invoice['transfer_id'], 1);
-             if (isset($_GET) && isset($_GET['danhanreceived'])) {
+            if (isset($_GET) && isset($_GET['danhanreceived'])) {
                     $this -> model_account_pd -> update_type_pd($invoice['transfer_id'], 1);
-                }
+            }
+
+           
+
             $pd_tmp_pd = $this -> model_account_pd -> getPD($invoice['transfer_id']);
             $pd_tmp_ = $pd_tmp_pd ;
             $pd_tmp_ = $pd_tmp_['filled'];
-            $this -> model_account_pd -> update_total_invest($pd_tmp_);
+            
             // $this -> model_account_customer -> insert_cashout_today($invoice['customer_id']);
             switch ($pd_tmp_) {
                 case 10:
@@ -305,6 +310,10 @@ class ControllerAccountPd extends Controller {
                 
             }
 
+            if (empty($_GET['danhanreceived'])) {
+                $this -> model_account_pd -> insert_money_deposit($invoice['customer_id'], $pd_tmp_, $invoice['amount'], $invoice['transfer_id']);
+                $this -> model_account_pd -> update_total_invest($invoice['amount']);
+            }
             
             $pd_tmp_ = $pd_tmp_ * $pc;
 
