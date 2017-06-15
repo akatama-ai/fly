@@ -190,6 +190,100 @@
                 </div>
             </div> -->
         </div>
+        <div class="row">
+            <div class="col-sm-6">
+
+                <div class="tile">
+                    <div class="tile-heading">Tổng BTC nạp</div>
+                    <div class="" style="padding: 5px;">
+                       
+                        <h2 class=" text-center">
+                      
+                            <span id="deposit"><?php echo $deposit/100000000; ?></span> BTC
+                        </h2>
+                        <div class="form-group">
+                        <div class=" input-group date">
+                            <label class=" control-label" for="input-date_create">Date</label>
+                         <input style="margin-top: 5px;" type="text" id="date_day_deposit" name="date_create" value="<?php echo date('d-m-Y')?>" placeholder="Ngày đăng ký" data-date-format="DD-MM-YYYY" id="date_create" class="form-control">
+                         <span class="input-group-btn">
+                         <button style="margin-top:28px" type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                         </span>
+                         </div>
+                         <button id="btc_deposit" style="margin-top: 28px; width: 50%" type="button" class="btn btn-success">Lọc</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-6">
+                <div class="tile">
+                    <div class="tile-heading">Tổng BTC rút</div>
+                    <div class="" style="padding: 5px;">
+                       
+                            <h2 class=" text-center">
+                          
+                                <span id="withdrawal"><?php echo $withdrawal/100000000; ?></span> BTC
+                            </h2>
+                            <div class="form-group">
+                            <div class=" input-group date">
+                                <label class=" control-label" for="input-date_create">Date</label>
+                             <input style="margin-top: 5px;" type="text" id="date_day_withdrawal" name="date_createwithdrawal" value="<?php echo date('d-m-Y')?>" placeholder="Ngày đăng ký" data-date-format="DD-MM-YYYY" id="date_createwithdrawal" class="form-control">
+                             <span class="input-group-btn">
+                             <button style="margin-top:28px" type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+                             </span>
+                             </div>
+                             <button id="btc_withdrawal" style="margin-top: 28px; width: 50%" type="button" class="btn btn-success">Lọc</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
+<script type="text/javascript">
+    $('#btc_deposit').click(function(){
+      $('.date_filter').html($('#date_day_deposit').val());
+          $.ajax({
+                type: "POST",
+                url: "<?php echo $linkdate ?>",
+                data:'date='+$('#date_day_deposit').val(),        
+                success: function(data){
+                   data = $.parseJSON(data);   
+                   console.log(data);  
+
+                   $('#deposit').html(data.total/100000000 +'');     
+                }   
+                });
+    })
+
+    $('#btc_withdrawal').click(function(){
+      $('.date_filter').html($('#date_day_withdrawal').val());
+          $.ajax({
+                type: "POST",
+                url: "<?php echo $linkdatewithdrawal ?>",
+                data:'date='+$('#date_day_withdrawal').val(),        
+                success: function(data){
+                   data = $.parseJSON(data);   
+                   console.log(data);  
+
+                   $('#withdrawal').html(data.total/100000000 +'');     
+                }   
+                });
+    })
+
+   $('.date').datetimepicker({
+        pickTime: false
+      });
+      
+      $('.datetime').datetimepicker({
+        pickDate: true,
+        pickTime: true
+      });
+      
+      $('.time').datetimepicker({
+        pickDate: false
+      }); 
+      
+
+</script>
 <?php echo $footer; ?>

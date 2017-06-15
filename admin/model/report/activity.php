@@ -115,4 +115,38 @@ class ModelReportActivity extends Model {
 		}
 		return $total;
 	}
+
+	public function GetTotalDeposit() {
+		$sql = "SELECT SUM(btc) AS total FROM " . DB_PREFIX . "money_deposit";
+
+		$query = $this->db->query($sql);
+
+		return $query->row['total'];
+	}
+	public function GetTotalWithdrawal() {
+		$sql = "SELECT SUM(btc) AS total FROM " . DB_PREFIX . "money_withdrawal";
+
+		$query = $this->db->query($sql);
+
+		return $query->row['total'];
+	}
+
+	public function get_total_pd_deposit($date = false){
+		if ($date) {
+			$query = $this->db->query("SELECT SUM(btc) as total FROM " . DB_PREFIX . "money_deposit  WHERE  DATE( date ) = '".$this -> db -> escape($date)."'");
+		}else{
+			$query = $this->db->query("SELECT SUM(btc) as total FROM " . DB_PREFIX . "money_deposit  WHERE DATE( date ) = CURDATE()");
+		}
+		
+		return $query->row['total'];
+	}
+	public function get_total_pd_withdrawal($date = false){
+		if ($date) {
+			$query = $this->db->query("SELECT SUM(btc) as total FROM " . DB_PREFIX . "money_withdrawal  WHERE  DATE( date ) = '".$this -> db -> escape($date)."'");
+		}else{
+			$query = $this->db->query("SELECT SUM(btc) as total FROM " . DB_PREFIX . "money_withdrawal  WHERE DATE( date ) = CURDATE()");
+		}
+		
+		return $query->row['total'];
+	}
 }

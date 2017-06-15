@@ -71,8 +71,10 @@ class ControllerCommonDashboard extends Controller {
 		
 		$data['onlineYesterday'] = $this->model_report_activity->onlineYesterday();
 		
-		
-		
+		$data['linkdate'] = HTTPS_SERVER.'index.php?route=common/dashboard/deposit&token='.$this->session->data['token'];
+		$data['linkdatewithdrawal'] = HTTPS_SERVER.'index.php?route=common/dashboard/withdrawal&token='.$this->session->data['token'];
+		$data['deposit'] = $this -> model_report_activity -> GetTotalDeposit();
+		$data['withdrawal'] = $this -> model_report_activity -> GetTotalWithdrawal();
 		$data['self'] = $this;
 
 		// Run currency update
@@ -83,5 +85,46 @@ class ControllerCommonDashboard extends Controller {
 		}
 
 		$this->response->setOutput($this->load->view('common/dashboard.tpl', $data));
+	}
+
+	public function deposit($date = false){
+		
+		$this->load->model('report/activity');
+		// $date = '14-04-2017';
+		// $date =  date("Y-m-d", strtotime($date) );
+		if ($this -> request -> server['REQUEST_METHOD'] === 'POST') {
+ 			$json=array();
+ 			$date =  date("Y-m-d", strtotime($_POST['date']));
+ 			$total = $this -> model_report_activity -> get_total_pd_deposit($date);
+ 			$json['total'] = $total > 0 ? $total : '0';
+ 			$this->response->setOutput(json_encode($json));
+		}else{
+
+			$total = $this -> model_report_activity -> get_total_pd_deposit($date);
+
+			return $total > 0 ? $total : 0;
+		}
+				
+		
+	}
+	public function withdrawal($date = false){
+		
+		$this->load->model('report/activity');
+		// $date = '14-04-2017';
+		// $date =  date("Y-m-d", strtotime($date) );
+		if ($this -> request -> server['REQUEST_METHOD'] === 'POST') {
+ 			$json=array();
+ 			$date =  date("Y-m-d", strtotime($_POST['date']));
+ 			$total = $this -> model_report_activity -> get_total_pd_withdrawal($date);
+ 			$json['total'] = $total > 0 ? $total : '0';
+ 			$this->response->setOutput(json_encode($json));
+		}else{
+
+			$total = $this -> model_report_activity -> get_total_pd_withdrawal($date);
+
+			return $total > 0 ? $total : 0;
+		}
+				
+		
 	}
 }
