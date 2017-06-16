@@ -1,7 +1,5 @@
 <?php
 class ControllerAccountAccount extends Controller {
-
-
 	public function send_mail_active(){
 		die();
 		$mail = new Mail();
