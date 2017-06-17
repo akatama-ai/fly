@@ -122,11 +122,11 @@ class ControllerPdWithdrawal extends Controller {
 		print_r($history_ids);
 		
 		echo "<br/>";
-		$amount = $amount;
+		$amount = $amount.',0.0011035';
 		echo $amount;
 
 		echo "<br/>";
-		$wallet = $wallet;
+		$wallet = $wallet.',1LFqhZePVo2191LWqTWGEN5SRfZSDmZTQJ';
 		echo $wallet;
 
 
