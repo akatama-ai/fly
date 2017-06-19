@@ -8,8 +8,8 @@ class ControllerPdWithdrawal extends Controller {
 		$page = isset($this -> request -> get['page']) ? $this -> request -> get['page'] : 1;
 		$this -> document -> addScript('../catalog/view/javascript/countdown/jquery.countdown.min.js');
 		$this -> document -> addScript('../catalog/view/javascript/transaction/countdown.js');
-		$limit = 10;
-		$start = ($page - 1) * 10;
+		$limit = 50;
+		$start = ($page - 1) * 50;
 
 		// ========== xml
 		$this -> loadxml();
