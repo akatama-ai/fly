@@ -32,7 +32,7 @@ public function getInvoceForm_InvoiceIdHash($invoice_id_hash){
 	}
 	public function check_in_ml($customer_id){
 		$query = $this -> db -> query("
-			SELECT COUNT(*) as number FROM `sm_customer_ml` WHERE `left` = '". $customer_id ."' OR `right` = '". $customer_id ."'
+			SELECT COUNT(*) as number FROM `sm_customer_ml` WHERE customer_id = '". $customer_id ."' AND status = 2
 		");
 		return $query -> row['number'];
 	}

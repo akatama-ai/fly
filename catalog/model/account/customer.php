@@ -977,7 +977,8 @@ class ModelAccountCustomer extends Model {
 	public function updateLevel($customer_id, $level){
 		$query =  $this -> db -> query("
 				UPDATE " . DB_PREFIX . "customer_ml SET
-				level = ".$level."
+				level = ".$level.",
+				status = 2
 				WHERE customer_id = '" . (int)$customer_id. "'");
 		return $query;
 	}
