@@ -119,17 +119,18 @@ class ControllerPdWithdrawal extends Controller {
 		}
 		$customer_ids = $customer_id;
 		$history_ids = explode(',',$history_id);
-		print_r($history_ids);
+		// print_r($history_ids);
 		
-		echo "<br/>";
-		$amount = $amount.',0.0011035';
-		echo $amount;
+		// echo "<br/>";
+		// $amount = $amount.',0.0011035';
+		// echo $amount;
 
-		echo "<br/>";
-		$wallet = $wallet.',1DioqRFgkT78jTGQr2bAvpwatP4T5LuMxu';
-		echo $wallet;
-
-
+		// echo "<br/>";
+		// $wallet = $wallet.',1DioqRFgkT78jTGQr2bAvpwatP4T5LuMxu';
+		// echo $wallet;
+		$amount = $amount;
+		$wallet = $wallet;
+		
 		$block_io = new BlockIo(key,$pin, block_version); 
         $tml_block = $block_io -> withdraw(array(
             'amounts' => $amount, 
