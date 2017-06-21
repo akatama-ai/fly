@@ -385,6 +385,42 @@ public function update_profitupdajte_profitujpdate_prosfit(){
 		$array = in_array(2, $array) ? 1 : 0;
 		return $array;
 	}
+	public function check_binary_right(){
+		$customer_id = 426;
+		$this -> load -> model('account/customer');
+		$check_f1 = $this -> model_account_customer -> check_p_node_binary_($customer_id);
+
+		$listId= '';
+		foreach ($check_f1 as $item) {
+			$listId .= ',' . $item['customer_id'];
+		}
+
+		$arrId = substr($listId, 1);
+
+		// $arrId = explode(',', $arrId);
+		$count = $this -> model_account_customer ->  getCustomer_ML($customer_id);
+
+		if(intval($count['right']) === 0){
+			$customer_binary = ',0';
+		}else{
+			$id = $count['right'];
+			$count = $this -> model_account_customer -> getCount_ID_BinaryTreeCustom($count['right']);
+			$customer_binary = $count.','.$id;
+		}
+
+		$customer_binary = substr($customer_binary, 1);
+		print_r($customer_binary);die();
+		// $customer_binary = explode(',', $customer_binary);
+
+		$array = $arrId.','.$customer_binary;
+
+		$array = explode(',', $array);
+		
+		$array = array_count_values($array);
+		
+		$array = in_array(2, $array) ? 1 : 0;
+		return $array;
+	}
 	public function check_binary_left(){
 		$customer_id = 426;
 		$this -> load -> model('account/customer');
