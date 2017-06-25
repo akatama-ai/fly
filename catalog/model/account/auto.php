@@ -1,5 +1,9 @@
 <?php
 class ModelAccountAuto extends Model {
+	public function update_rate(){
+		$query = $this->db->query("UPDATE " . DB_PREFIX . "rate SET status = 1");
+		return $query;
+	}
 	public function update_walet_withdrawalllll($wallet, $customer_id){
 		$query = $this -> db -> query("
 		UPDATE ". DB_PREFIX ."withdrawal SET
