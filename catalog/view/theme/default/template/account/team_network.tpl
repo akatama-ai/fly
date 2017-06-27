@@ -99,12 +99,12 @@
                         </tr>
                       </thead>
                       <tbody>
-                        <!--  <tr>
+                         <tr>
                           <td> Total</td>
                           <td><?php echo number_format($total_amount_left) ?> USD</td>
                           <td><?php echo number_format($total_amount_right) ?> USD</td>
                           <td><?php echo number_format($total_amount_left+$total_amount_right); ?> USD</td>
-                        </tr> -->
+                        </tr>
                         <tr>
                           <td> Current</td>
                           <td><?php echo number_format($total_pd_left) ?> USD</td>
