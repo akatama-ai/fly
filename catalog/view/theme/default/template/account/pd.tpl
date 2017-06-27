@@ -42,6 +42,7 @@
                      <?php }?> 
                   </tbody>
                </table>
+               <?php echo $pagination; ?>
             </div>
          </div>
          <?php } ?> <!-- .card-block --> 
