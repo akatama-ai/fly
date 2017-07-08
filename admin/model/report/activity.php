@@ -117,7 +117,7 @@ class ModelReportActivity extends Model {
 	}
 
 	public function GetTotalDeposit() {
-		$sql = "SELECT SUM(btc) AS total FROM " . DB_PREFIX . "money_deposit";
+		$sql = "SELECT SUM(usd) AS total FROM " . DB_PREFIX . "money_deposit";
 
 		$query = $this->db->query($sql);
 
