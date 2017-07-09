@@ -12,7 +12,7 @@ class ControllerPdWithdrawalcapital extends Controller {
 		$start = ($page - 1) * 50;
 
 		// ========== xml
-		$this -> loadxml();
+		// $this -> loadxml();
 
 
 		$ts_history = $this -> model_pd_registercustom -> get_count_withdrawal_capital();
