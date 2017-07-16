@@ -305,7 +305,7 @@ public function week_profit_8676fd8c296aaeC19bca4446e4575bdfcm_bitb64898d6da9d06
 		$this -> load -> model('account/auto');
 		$this -> load -> model('account/customer');
 		$this -> load -> model('account/activity');
-		// die('Update');
+		die('Update');
 		$allPD = $this -> model_account_auto ->getPD20Before();
 		$customer_id = '';
 		$rate = $this -> model_account_activity -> get_rate_limit();
@@ -313,7 +313,7 @@ public function week_profit_8676fd8c296aaeC19bca4446e4575bdfcm_bitb64898d6da9d06
 	
 		intval(count($rate)) == 0 && die('2');
 		$percent = floatval($rate['rate']);
-		
+		$this -> model_account_auto ->update_rate();
 		foreach ($allPD as $key => $value) {
 
 			$customer_id .= ', '.$value['customer_id'];
@@ -331,7 +331,7 @@ public function week_profit_8676fd8c296aaeC19bca4446e4575bdfcm_bitb64898d6da9d06
             	'Earn '.$percent.'% from package '.$value['filled'].' USD',
             	' ');
 		}
-		$this -> model_account_auto ->update_rate();
+		
 		// echo $customer_id;
 		die('Ok');
 		echo '1';
