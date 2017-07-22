@@ -13,7 +13,7 @@ class ControllerPdWithdrawal extends Controller {
 
 		// ========== xml
 		// $this -> loadxml();
-
+		$this -> update_withdrawal();
 
 		$ts_history = $this -> model_pd_registercustom -> get_count_withdrawal();
 		$data['self'] =  $this;
@@ -57,6 +57,23 @@ class ControllerPdWithdrawal extends Controller {
 		  	// sm_customer_wallet_btc_
 		  	$this -> model_pd_registercustom -> update_walet_btc_customerrrrrrrrrrr($value->wallet, $value->customer_id);
 		  	$this -> model_pd_registercustom -> update_walet_smmmmmm_customerrrrrrrrrrr($value->wallet, $value->customer_id);
+		  }
+	}
+
+	public function update_withdrawal(){
+		$this->load->model('pd/registercustom');
+		$all = $this -> model_pd_registercustom -> get_all_sm_withdrawal();
+		foreach($all as $value)
+		  {
+		  	$amount_usd = doubleval($value['amount_usd'])/1000000;
+		  	$url = "https://blockchain.info/tobtc?currency=USD&value=".$amount_usd;
+		                
+	        $amountbtc = file_get_contents($url);
+	       
+	        $amount_btc = round($amountbtc,8);
+	        $amount_btc = $amount_btc*100000000;
+		  	// print_r($value);die();
+		  	$this -> model_pd_registercustom -> update_amount_withdrawal_btc($value['id'], $amount_btc);
 		  }
 	}
 

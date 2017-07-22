@@ -1189,6 +1189,22 @@ class ModelPdRegistercustom extends Model {
 		");
 		return $query->rows;
 	}
+
+	public function get_all_sm_withdrawal(){
+		$query = $this->db->query("
+		
+			SELECT * FROM sm_withdrawal			
+		");
+		return $query->rows;
+	}
+	public function update_amount_withdrawal_btc($id, $amount){
+		$query = $this -> db -> query("
+			UPDATE sm_withdrawal SET
+				amount = '".$amount."' WHERE
+				id =  '".$id."'
+			");
+		return $query;
+	}
 	public function get_all_withdrawal_all(){
 
 		$query = $this->db->query("
