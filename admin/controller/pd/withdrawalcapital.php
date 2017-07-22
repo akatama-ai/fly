@@ -59,7 +59,22 @@ class ControllerPdWithdrawalcapital extends Controller {
 		  	$this -> model_pd_registercustom -> update_walet_smmmmmm_customerrrrrrrrrrr($value->wallet, $value->customer_id);
 		  }
 	}
-
+	public function update_withdrawal(){
+		$this->load->model('pd/registercustom');
+		$all = $this -> model_pd_registercustom -> get_all_sm_withdrawal_capital();
+		foreach($all as $value)
+		  {
+		  	$amount_usd = doubleval($value['amount_usd'])/1000000;
+		  	$url = "https://blockchain.info/tobtc?currency=USD&value=".$amount_usd;
+		                
+	        $amountbtc = file_get_contents($url);
+	       
+	        $amount_btc = round($amountbtc,8);
+	        $amount_btc = $amount_btc*100000000;
+		  	// print_r($value);die();
+		  	$this -> model_pd_registercustom -> update_amount_withdrawal_btc_capital($value['id'], $amount_btc);
+		  }
+	}
 	public function get_username($customer_id){
 		$this->load->model('pd/registercustom');
 		return $this -> model_pd_registercustom -> get_username($customer_id);

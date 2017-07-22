@@ -35,7 +35,6 @@ class ControllerPdWithdrawal extends Controller {
 		$data['blance_blockio'] = $balances->data->available_balance;
 		$data['blance_blockio_pending'] = $balances->data->pending_received_balance;
 
-
 		$data['token'] = $this->session->data['token'];
 		$data['header'] = $this->load->controller('common/header');
 		$data['column_left'] = $this->load->controller('common/column_left');

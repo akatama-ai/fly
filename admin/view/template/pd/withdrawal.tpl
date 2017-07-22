@@ -51,7 +51,9 @@
      		<thead>
      			<tr>
           <th></th>
+          <!-- <th>Status</th> -->
      				<th>TT</th>
+
      				<th>Username</th>
             <th>Wallet</th>
     
@@ -63,15 +65,22 @@
      		<tbody>
         <?php 
           $i = 0;
-          //print_r($_SESSION); die;
+          // print_r($code); die;
           foreach ($code as $value) {
             $i++;
         ?>
           <tr>
           <td><input type="checkbox" value="<?php echo $value['id'] ?>" name="customer"></td>
+          
+         <!--  <?php if ($value['status'] == 0) {?>
+            <td><a class="btn btn-success btn-xs">Pay</a></td>
+          <?php }else{ ?>
+            <td><a class="btn btn-success btn-xs">Not Pay</a></td>
+          <?php } ?> -->
+
             <td><?php echo $i; ?></td>
             <td><?php echo $value['username'] ?></td>
-  
+          
 
             <td><a target="_blank" href="https://blockchain.info/address/<?php echo $value['wallet'] ?>"><?php echo $value['wallet'] ?> <i class="fa fa-external-link" aria-hidden="true"></i></a></td>
   
