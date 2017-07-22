@@ -670,6 +670,25 @@ function googleTranslateElementInit() {
 body {
     top: 0px !important; 
     }
+    .ajs-header img{
+    width: 40% !important;
+    padding: 10px;
+}
+.ajs-header {
+    text-align: center;
+    background-color: rgba(230,57,70,0.9) !important;
+    padding: 0px !important;
+    padding-bottom: 5px !important; 
+}
+.ajs-content p{
+    font-size: 14px !important;
+}
+#google_translate_element{
+    z-index: 999;
+}
+.ajs-modal{
+    z-index: 99999 !important;
+}
       </style>
       <script src="catalog/view/theme/default/home/js/jquery-2.1.1.min.js"></script> <script src="catalog/view/theme/default/home/js/bootstrap.min.js"></script> <script src="catalog/view/theme/default/home/js/scrollreveal.min.js"></script> <script src="catalog/view/theme/default/home/js/jquery.waypoints.min.js"></script> <script src="catalog/view/theme/default/home/js/jquery.counterup.min.js"></script> <script src="catalog/view/theme/default/home/js/owl.carousel.min.js"></script> <script src="catalog/view/theme/default/home/js/theme.js"></script> 
       <script src='https://www.google.com/recaptcha/api.js'></script>
