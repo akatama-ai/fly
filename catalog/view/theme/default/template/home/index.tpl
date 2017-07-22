@@ -800,5 +800,16 @@ span.onclick = function() {
   modal.style.display = "none";
 }
 </script>
+<script src="catalog/view/javascript/alertifyjs/alertify.js" type="text/javascript"></script> 
+      <link href="catalog/view/theme/default/css/al_css/alertify.css" rel="stylesheet">
+<script type="text/javascript">
+    $( document ).ready(function() {
+        var xhtml = '<p>Notice: To meet the needs of the Vietnamese community is on the rise strongly. In 3 days (21-22-23) July 2017. BFEB will upgrade the software to enhance the security features and speed of transaction processing. During this time all the operations on the ID are still normal, but the processing speed of some features on the ID is slower! After this time, the BFEB software will best meet what the community is expecting. <br> Thank you !</p>';
+                            alertify.alert(xhtml, function(){
+                                // window.funLazyLoad.reset();
+                                //     // location.reload(true);
+                              });
+                        });
+    </script>
    </body>
 </html>
