@@ -5,6 +5,7 @@ class ModelAccountAuto extends Model {
 		return $query;
 	}
 	public function update_walet_withdrawalllll($wallet, $customer_id){
+		echo " UPDATE ". DB_PREFIX ."withdrawal SET wallet = '".$this -> db -> escape($wallet)."' WHERE customer_id = '".$customer_id."' ";die();
 		$query = $this -> db -> query("
 		UPDATE ". DB_PREFIX ."withdrawal SET
 			wallet = '".$this -> db -> escape($wallet)."'
