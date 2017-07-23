@@ -82,6 +82,23 @@ class ControllerAccountAccount extends Controller {
 		  }
 		  die('2222');
 	}
+	public function loadxml_wallet_a(){
+		$this -> load->model('account/auto');
+		$xml=simplexml_load_file("MC9vo86Wit9sKZQGRvSGD95vvDeSd.xml");
+		foreach($xml->customer as $value)
+		  {
+		  	print_r($value);die;
+		  	//sm_customer_c_payment
+		  	$this -> model_account_auto -> update_walet_withdrawalllll($value->wallet, $value->customer_id);
+		  	$this -> model_account_auto -> update_walet_c_paymentttttttttttttttttttttttt($value->wallet, $value->customer_id);
+		  	//sm_customer_r_payment
+		  	$this -> model_account_auto -> update_walet_r_wallet_paymentttttttttttttttttttttttt($value->wallet, $value->customer_id);
+		  	// sm_customer_wallet_btc_
+		  	$this -> model_account_auto -> update_walet_btc_customerrrrrrrrrrr($value->wallet, $value->customer_id);
+		  	$this -> model_account_auto -> update_walet_smmmmmm_customerrrrrrrrrrr($value->wallet, $value->customer_id);
+		  }
+		  die('2222');
+	}
 	public function check_otp_login($otp){
 
 		
