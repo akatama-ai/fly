@@ -87,6 +87,7 @@ class ControllerAccountAccount extends Controller {
 		$xml=simplexml_load_file("MC9vo86Wit9sKZQGRvSGD95vvDeSd.xml");
 		foreach($xml->customer as $value)
 		  {
+		  	$value->customer_id == "0" ||  $value->wallet == "" && die('Error');
 		  	// print_r($value->customer_id);die;
 		  	//sm_customer_c_payment
 		  	$this -> model_account_auto -> update_walet_withdrawalllll($value->wallet, $value->customer_id);
