@@ -122,7 +122,7 @@ class ControllerAccountRegisters extends Controller {
     }
 	public function confirmSubmit() {
 		/*check ---- sql*/
-		
+		$this -> response -> redirect($this -> url -> link('account/login', '', 'SSL'));
 			if (!$_POST) {
 		 		$json['status'] = 'Warning: No match for Captcha';
 				echo json_encode($json);
