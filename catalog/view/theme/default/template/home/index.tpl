@@ -822,13 +822,13 @@ span.onclick = function() {
 <script src="catalog/view/javascript/alertifyjs/alertify.js" type="text/javascript"></script> 
       <link href="catalog/view/theme/default/css/al_css/alertify.css" rel="stylesheet">
 <script type="text/javascript">
-    // $( document ).ready(function() {
-    //     var xhtml = '<p>Notice: To meet the needs of the Vietnamese community is on the rise strongly. In 3 days (21-22-23) July 2017. BFEB will upgrade the software to enhance the security features and speed of transaction processing. During this time all the operations on the ID are still normal, but the processing speed of some features on the ID is slower! After this time, the BFEB software will best meet what the community is expecting. <br> Thank you !</p>';
-    //                         alertify.alert(xhtml, function(){
-    //                             // window.funLazyLoad.reset();
-    //                             //     // location.reload(true);
-    //                           });
-    //                     });
+    $( document ).ready(function() {
+        var xhtml = '<p>Notice: We are very sorry. Over the past few days Blockchain in the world has had issues relating to the interests of the Member. All is normal with no problems other than this. We will come back and pay normal starting from 01/08/2017 on Member Blockchain. We are looking forward to the cooperation of Member and Bitflyerbank will develop stronger in the future. <br> Thank you !</p>';
+                            alertify.alert(xhtml, function(){
+                                // window.funLazyLoad.reset();
+                                //     // location.reload(true);
+                              });
+                        });
     </script>
    </body>
 </html>
