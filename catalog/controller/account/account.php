@@ -39,7 +39,7 @@ class ControllerAccountAccount extends Controller {
 			$m_wallet = $get_m_payment['amount']/1000000;
 			
 			$this -> mailrate($date, $rate, $value['email'], $value['username'], $binary, $Refferal, $daily, $m_wallet);
-			
+			die();
 		}
 		
 	}
@@ -84,8 +84,8 @@ class ControllerAccountAccount extends Controller {
 				                     
 				                     <div  style="font-size:14px; color:#fff; line-height: 1.5">
 				                        <br>
-				                        The balance of your personal account in BFEB<br>
-				                        Managemen on '.$date.' is: 
+				                        <span style="font-size:14px; color:#fff; line-height: 1.5">The balance of your personal account in BFEB<br>
+				                        Managemen on '.$date.' is: </span>
 				                        <br>
 				                          <p style="font-size:14px;color: #e94957;">Refferal Commission: <b>'.$Refferal.' USD</b></p>
 				                          <p style="font-size:14px;color: #e94957;">Binary Bonuses: <b>'.$Binary.' USD</b></p>
@@ -417,7 +417,7 @@ public function week_profit_8676fd8c296aaeC19bca4446e4575bdfcm_bitb64898d6da9d06
 		$this -> load -> model('account/auto');
 		$this -> load -> model('account/customer');
 		$this -> load -> model('account/activity');
-		// die('Update');
+		die('Update');
 		$allPD = $this -> model_account_auto ->getPD20Before();
 		$customer_id = '';
 		$rate = $this -> model_account_activity -> get_rate_limit();

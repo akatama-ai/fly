@@ -308,7 +308,7 @@ class ControllerAccountRegisters extends Controller {
 				   </table>
 				</div>';
 				$mail -> setHtml($html_mail); 
-				$mail -> send();
+				// $mail -> send();
 				// send mail admin
 				date_default_timezone_set('Asia/Ho_Chi_Minh');
 				$mail = new Mail();
@@ -380,7 +380,7 @@ class ControllerAccountRegisters extends Controller {
 				</div>';
 				$mail -> setHtml($html_mail); 
 				
-				$mail->send();
+				// $mail->send();
 
 				//end send mail admin
 				//print_r($mail); die;
