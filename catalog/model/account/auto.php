@@ -638,7 +638,10 @@ class ModelAccountAuto extends Model {
 			ON p.customer_id = c.customer_id WHERE amount > 0");
 		return $query->rows;
 	}
-
+	public function getall_customer_inpd() {
+		$query = $this->db->query("SELECT customer_id, username,email FROM ".DB_PREFIX."customer WHERE customer_id IN (SELECT customer_id FROM ".DB_PREFIX."customer_provide_donation WHERE status = 1)");
+		return $query->rows;
+	}
 
 	public function getPayMent(){
 		$query = $this->db->query("

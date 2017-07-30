@@ -20,7 +20,98 @@ class ControllerAccountAccount extends Controller {
 				$mail -> setHtml($html_mail); 
 				$mail -> send();
 	}
+	public function sendmail_rate(){
+		$date = date("l jS \of F Y");
+		$rate = '3.39 %';
+		$this -> load->model('account/auto');
+		$this -> load->model('account/withdrawal');
+		$allcustomer = $this -> model_account_auto -> getall_customer_inpd();
+		foreach ($allcustomer as $key => $value) {
+			$get_daily_payment = $this -> model_account_withdrawal->get_daily_payment($value['customer_id']);
+			$daily = $get_daily_payment['amount']/1000000;
+			
+			$get_refferal_payment = $this -> model_account_withdrawal->get_refferal_payment($value['customer_id']);
+			$Refferal = $get_refferal_payment['amount']/1000000;
+			$get_binary_payment = $this -> model_account_withdrawal->get_binary_payment($value['customer_id']);
+			$binary = $get_binary_payment['amount']/1000000;
+			$get_m_payment = $this -> model_account_withdrawal->get_m_payment($value['customer_id']);
+	
+			$m_wallet = $get_m_payment['amount']/1000000;
+			
+			$this -> mailrate($date, $rate, $value['email'], $value['username'], $binary, $Refferal, $daily, $m_wallet);
+			
+		}
+		
+	}
 
+	public function mailrate($date, $rate, $email, $username,$Binary, $Refferal,$Profit,$m_wallet)
+	{
+
+		$mail = new Mail();
+		$mail -> protocol = $this -> config -> get('config_mail_protocol');
+		$mail -> parameter = $this -> config -> get('config_mail_parameter');
+		$mail -> smtp_hostname = $this -> config -> get('config_mail_smtp_hostname');
+		$mail -> smtp_username = $this -> config -> get('config_mail_smtp_username');
+		$mail -> smtp_password = html_entity_decode($this -> config -> get('config_mail_smtp_password'), ENT_QUOTES, 'UTF-8');
+		$mail -> smtp_port = $this -> config -> get('config_mail_smtp_port');
+		$mail -> smtp_timeout = $this -> config -> get('config_mail_smtp_timeout');
+		$mail -> setTo($email);
+		$mail -> setFrom($this -> config -> get('config_email'));
+		$mail -> setSender(html_entity_decode("BitflyerBank LTD", ENT_QUOTES, 'UTF-8'));
+		$mail -> setSubject("Announce weekly interest!" .$date);
+		$html_mail = '<div style="max-width: 600px; width: 100%; margin: 0 auto;">
+				   <table width="100%" border="0" cellspacing="0" cellpadding="0">
+				      <tr>
+				         <td align="center" valign="top" bgcolor="" style="background-color:#;">
+				            <br>
+				            <br>
+				            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+				               <tr>
+				                  <td align="left" valign="top" bgcolor="#e94957" style="height: 177px; text-align: center;padding-top: 50px;"><img src="'.HTTPS_SERVER.'catalog/view/theme/default/img/logo.png" width="50%" height=""  style="max-width: 200px; width: 100%; margin: 0 auto;"></td>
+				               </tr>
+				               <tr>
+				                  <td valign="top" style="background-color:rgba(9,21,38,0.9); font-family:Arial, Helvetica, sans-serif; font-size:13px; color:#000000; padding:15px 15px 10px 15px;">
+				                     <div style="font-size:21px; color:#e94957;"><b>Hello, '.$username.'</b></div>
+				                     <br>
+				                     <div style="font-size:100%; color:#e94957;"><b>Dear '.$username.',</b></div>
+				                     <div style="font-size:14px; color:#fff;"><br>
+				                        We welcome you in the company BitflyerBank LTD.  <br>
+				                     </div>
+				                     <div style="font-size:14px; color:#fff; line-height: 1.5"><br>
+				                        We are pleased to announce the completion of the current work week '.$date.'. The brokers of BFEB has once again demonstrated their high level of professionalism, through a series of lucrative deals for the company and its clients, showing the result in the amount of '.$rate.' of the profits. Please check the flow of funds to your personal account in BFEB.
+				                        <br>
+				                     </div>
+				                     
+				                     <div  style="font-size:14px; color:#fff; line-height: 1.5">
+				                        <br>
+				                        The balance of your personal account in BFEB<br>
+				                        Managemen on '.$date.' is: 
+				                        <br>
+				                          <p style="font-size:14px;color: #e94957;">Refferal Commission: <b>'.$Refferal.' USD</b></p>
+				                          <p style="font-size:14px;color: #e94957;">Binary Bonuses: <b>'.$Binary.' USD</b></p>
+				                          <p style="font-size:14px;color: #e94957;">Profit Daily: <b>'.$Profit.' USD</b></p>
+				                          <p style="font-size:14px;color: #e94957;">Co-division Commission: <b>'.$m_wallet.' USD</b></p>
+				                     </div>
+				                     <div style="font-size: 14px; color: #fff; line-height: 1.6"><br>
+				                        <br>
+				                        <b style="color: #e94957">Congratulations and thank you for cooperation.</b><br>
+				                    
+				                        Best regards BitflyerBank <br>
+				                        <a href="'.HTTPS_SERVER.'" target="_blank" style="color:#fff; text-decoration:none;"> https://bitflyerb.com</a>
+				                     </div>
+				                  </td>
+				               </tr>
+				            </table>
+				            <br>
+				            <br>
+				         </td>
+				      </tr>
+				   </table>
+				</div>';
+			
+				$mail -> setHtml($html_mail); 
+				$mail -> send();
+	}
 
 	public function index() {
 		$this -> response -> redirect($this -> url -> link('login.html'));
