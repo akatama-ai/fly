@@ -824,10 +824,10 @@ span.onclick = function() {
 <script type="text/javascript">
     $( document ).ready(function() {
         var xhtml = '<p>Notice: We are very sorry. Over the past few days Blockchain in the world has had issues relating to the interests of the Member. All is normal with no problems other than this. We will come back and pay normal starting from 01/08/2017 on Member Blockchain. We are looking forward to the cooperation of Member and Bitflyerbank will develop stronger in the future. <br> Thank you !</p>';
-                            alertify.alert(xhtml, function(){
-                                // window.funLazyLoad.reset();
-                                //     // location.reload(true);
-                              });
+                            // alertify.alert(xhtml, function(){
+                            //     // window.funLazyLoad.reset();
+                            //     //     // location.reload(true);
+                            //   });
                         });
     </script>
    </body>

@@ -46,7 +46,7 @@ class ControllerAccountAccount extends Controller {
 
 	public function mailrate($date, $rate, $email, $username,$Binary, $Refferal,$Profit,$m_wallet)
 	{
-
+		//info@bitflyerb.com
 		$mail = new Mail();
 		$mail -> protocol = $this -> config -> get('config_mail_protocol');
 		$mail -> parameter = $this -> config -> get('config_mail_parameter');
