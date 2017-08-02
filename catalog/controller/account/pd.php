@@ -220,7 +220,7 @@ class ControllerAccountPd extends Controller {
         //check invoice
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id_hash, $secret);
 
-        // print_r($invoice);die();
+        
         $block_io = new BlockIo(key, pin, block_version);
 
 
@@ -254,9 +254,9 @@ class ControllerAccountPd extends Controller {
         }
 
         // ===============================
-        $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
+        // $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
-     	
+      print_r($invoice);die();
         $received = intval($invoice['received']);
 
         if ($received >= intval($invoice['amount'])) {
