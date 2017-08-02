@@ -283,7 +283,7 @@ function payment_o(mywallet, invest, invoice) {
 
 </script> 
 <script type="text/javascript">
-    $( document ).ready(function() {
+    // $( document ).ready(function() {
         // var xhtml = '<p>Notice: Due to the strong slurry of Bitflyerb should admin need to install some features for the page. We would like to temporarily suspend all visits to the site for approximately 30 hours to complete the upgrade and will reopen it on June 12, 2017. <br>Sincerely, and apologize for disturbing you!</p>';
         //                     alertify.alert(xhtml, function(){
         //                         // window.funLazyLoad.reset();
