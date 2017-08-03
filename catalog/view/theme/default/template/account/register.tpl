@@ -5,7 +5,6 @@
       <button class="btn btn-pill btn-success" type="button" onclick="location.href='home.html';" style="padding: 5px 30px;position: absolute;left: 10px;top: 10px;"><i class="ion-arrow-left-a"></i></button><!-- Forms Row --> 
       <div class="row">
          <div class="col-sm-6 col-sm-offset-3">
-       
             <!-- Bootstrap Forms Validation --> 
             <div class="card" style=" border-radius: 10px;">
                <div class="card-header text-center" style=" position: relative; z-index: 999999; "> <img class="img-responsive" src="catalog/view/theme/default/img/logo.png" title="BitflyerBank" alt="BitflyerBank" /> </div>
