@@ -1,10 +1,17 @@
 <!DOCTYPE html> 
 <html lang="zxx">
    <head> <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> <title>Bitflyer Bank LTD Corp - Fund Bitcoin Here And Making Profits Easily!</title> <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" /> <meta name="description" content="Find out the best paying Bitcoin on our daily updated BTC investments monitoring page. See who is legit and who is a scamming high yield investment." /> <meta name="keywords" content="Bitcoin mining, scrypt mining, altcoin mining, cloud mining, X11, hosted mining, Investment bitcoin" /> <meta name="google-translate-customization" content="e6d13f48b4352bb5-f08d3373b31c17a6-g7407ad622769509b-12"> </meta> <link rel="icon" href="catalog/view/theme/default/img/icon.png"> <link href="catalog/view/theme/default/home/fonts.googleapis.com/css9e71.css?family=Raleway:300,400,600,700" rel="stylesheet"> <link href="catalog/view/theme/default/home/fonts.googleapis.com/cssd644.css?family=Montserrat:300,400,700" rel="stylesheet"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/bootstrap.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/font-awesome.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/owl.carousel.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/animate.min.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/csspin.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/default.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/style.css"> <link rel="stylesheet" href="catalog/view/theme/default/home/css/responsive.css">
+
+   <script>
+  window.intercomSettings = {
+    app_id: "v1xisld6"
+  };
+</script>
+<script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/v1xisld6';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
 <!-- BEGIN JIVOSITE CODE {literal} -->
-<script type='text/javascript'>
+<!-- <script type='text/javascript'>
 (function(){ var widget_id = 'GuVXRduV9J';var d=document;var w=window;function l(){
-var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script>
+var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.jivosite.com/script/widget/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);}if(d.readyState=='complete'){l();}else{if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})();</script> -->
 <!-- {/literal} END JIVOSITE CODE -->
    <!-- Start Alexa Certify Javascript -->
 <script type="text/javascript">

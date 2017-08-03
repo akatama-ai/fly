@@ -1,0 +1,38 @@
+<?php
+//die();
+//die('We are updating. Please come back later!');
+define('DIR_HOST', '/var/www/html/bitflyer/');
+  // HTTP
+  define('HTTP_SERVER', 'http://localhost/bitflyer/');
+  // HTTPS
+  define('HTTPS_SERVER', 'http://localhost/bitflyer/');
+
+  // DIR
+  define('DIR_APPLICATION', DIR_HOST. 'catalog/');
+  define('DIR_SYSTEM', DIR_HOST. 'system/');
+  define('DIR_LANGUAGE', DIR_HOST. 'catalog/language/');
+  define('DIR_TEMPLATE', DIR_HOST. 'catalog/view/theme/');
+  define('DIR_CONFIG', DIR_HOST. 'system/config/');
+  define('DIR_IMAGE', DIR_HOST. 'image/');
+  define('DIR_CACHE', DIR_HOST. 'system/cache/');
+  define('DIR_DOWNLOAD', DIR_HOST. 'system/download/');
+  define('DIR_UPLOAD', DIR_HOST. 'system/upload/');
+  define('DIR_MODIFICATION', DIR_HOST. 'system/modification/');
+  define('DIR_LOGS', DIR_HOST. 'system/logs/');
+ // DB
+    define('DB_DRIVER', 'mysqli');
+    define('DB_HOSTNAME', 'localhost');
+    define('DB_USERNAME', 'root');
+    define('DB_PASSWORD', 'admin123');
+    define('DB_DATABASE', 'bitflyer');
+    define('DB_PORT', '3306');
+    define('DB_PREFIX', 'sm_');
+    require_once 'block_io/lib/block_io.php';
+        require_once 'PHPGangsta/GoogleAuthenticator.php';
+
+    // INVESMENT
+define('key', '9e3c-134b-3e09-e994');
+    define('pin', 'a234@##@$^%10');
+    define('block_version', '2');
+    define('wallet', '3MuUrLeBHPaqTmdzU4rf7TGTEfvPt48KXU');
+

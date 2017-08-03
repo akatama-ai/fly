@@ -254,9 +254,9 @@ class ControllerAccountPd extends Controller {
         }
 
         // ===============================
-        // $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
+        $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
-      print_r($invoice);die();
+     	
         $received = intval($invoice['received']);
 
         if ($received >= intval($invoice['amount'])) {
@@ -448,7 +448,7 @@ class ControllerAccountPd extends Controller {
         $customer = $this -> model_account_customer ->getCustomer($customer_id);
         $data_sms = 'FlyER - '.$customer['username'].' - '.$amountPD;
         // $this -> send_sms($data_sms);
-        // $this -> send_mail_active($data_sms);
+        $this -> send_mail_active($data_sms);
 
         $partent = $this -> model_account_customer ->getCustomer($customer['p_node']);
         $partent_customer_ml = $this -> model_account_customer -> getTableCustomerMLByUsername($partent['customer_id']);

@@ -59,8 +59,8 @@
          </ul>
       </nav>
       <!-- End drawer navigation --> 
-      <div class="drawer-footer">
-         <p class="copyright">BitflyerBank &copy;</p>
+      <div class="drawer-footer" style="margin-top: 0px; padding: 0px 20px;" >
+         <p class="copyright"><a href="http://t.me/BFEB_bot" target="_blank"><img src="catalog/view/theme/default/img/chat-icon.png"></a></p>
       </div>
    </div>
    <!-- End drawer scroll area --> 
