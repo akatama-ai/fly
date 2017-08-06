@@ -57,7 +57,7 @@
                </div>
          <div class="card-block">
          <!-- Developer Plan --> 
-         <div class="col-sm-6 col-lg-4">
+         <div class="col-sm-6 col-lg-3">
             <?php $packet = $self -> check_packet_pd (10) ;?>
             <?php $count_package = $self -> count_check_packet_pd(10);?>
              <?php if(count($packet) > 0) { ?> 
@@ -109,7 +109,7 @@
             </div>
          </div>
          <!-- .col-sm-6 --> <!-- End Developer Plan --> <!-- Startup Plan --> 
-         <div class="col-sm-6 col-lg-4">
+         <div class="col-sm-6 col-lg-3">
            <?php $packet = $self -> check_packet_pd (50) ;?>
             <?php $count_package = $self -> count_check_packet_pd(50);?>
              <?php if(count($packet) > 0) { ?> 
@@ -158,7 +158,7 @@
             </div>
          </div>
          <!-- .col-sm-6 --> <!-- End Startup Plan --> <!-- Business Plan --> 
-         <div class="col-sm-6 col-lg-4">
+         <div class="col-sm-6 col-lg-3">
             <?php $packet = $self -> check_packet_pd (100) ;?>
             <?php $count_package = $self -> count_check_packet_pd(100);?>
              <?php if(count($packet) > 0) { ?> 
@@ -207,6 +207,57 @@
                </div>
             </div>
          </div>
+         
+         <div class="col-sm-6 col-lg-3">
+            <?php $packet = $self -> check_packet_pd (1000) ;?>
+            <?php $count_package = $self -> count_check_packet_pd(1000);?>
+             <?php if(count($packet) > 0) { ?> 
+            <div class="ribbon-wrapper" style="left: 16px;">
+               <?php if (intval($packet['status']) === 0) {?> 
+               <div class="ribbon-design red" style="transform: rotate(310deg);left: -32px;background-color:#202a3a">Watting</div>
+               <?php } ?>
+             </div>  
+            <?php }?>    
+   
+               <?php if (intval($count_package['number']) > 0) { ?>
+               <div class="ribbon-wrapper">
+                <div class="ribbon-design red" style="background-color:#e74b57">Actived <span style=" border: 1px solid #f00; padding: 4px 7px; border-radius: 13px; background: #202a3a; "><?php echo $count_package['number']; ?></span></div>
+               </div>
+                <?php }?> 
+            <div class="card hover-shadow-3 text-center" href="javascript:void(0)">
+               <div class="card-header pricing">
+                  <h4 class="h3">Plan 04</h4>
+               </div>
+               <div class="card-block card-block-full bg-red bg-inverse">
+                  <div class="h1 m-y-sm">1000 USD</div>
+                  <div class="h5 font-300 text-muted m-t-0">Earn 1.5% - 5% weekly</div>
+               </div>
+               <div class="card-block">
+                  <table class="table table-borderless table-condensed">
+                     <tbody>
+                        <tr>
+                           <td>Direct commissions : 15%</td>
+                        </tr>
+                        <tr>
+                           <td>Duration: 300 days</td>
+                        </tr>
+                        <tr>
+                           <td>Accept: Bitcoin</td>
+                        </tr>
+                       
+                     </tbody>
+                  </table>
+               </div>
+               <div class="card-block card-block-mini card-block-full bg-gray-lighter-o">
+                  <?php if (count($packet) === 0) {?> 
+                  <form method="GET" class="packet-invest" action="<?php echo $self->url->link('account/pd/pd_investment', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="3"> <button class="btn btn-app-purple notranslate">Upgrade Now</button> </form>
+                  <?php } else {?> 
+                  <form method="GET" class="packet-invoide" action="<?php echo $self->url->link('account/pd/packet_invoide', '', 'SSL'); ?>"> <input type="hidden" name="invest" value="<?php echo $packet['pd_number'] ?>"> <button class="btn btn-app-purple notranslate"><i class="fa fa-spinner fa-spin"></i> Reviews</button> </form>
+                  <?php } ?> 
+               </div>
+            </div>
+         </div>
+
          <div class="clearfix"></div>
          </div>
       </div>

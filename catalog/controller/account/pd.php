@@ -34,8 +34,8 @@ class ControllerAccountPd extends Controller {
 
 		$limit = 10;
 		$start = ($page - 1) * 10;
-		$pd_total = $this -> model_account_customer -> getTotalPD($this -> session -> data['customer_id']);
-
+		$pd_total = $this -> model_account_customer -> getcountPD($this -> session -> data['customer_id']);
+        
 		$pd_total = $pd_total['number'];
 
 		$pagination = new Pagination();
@@ -307,6 +307,12 @@ class ControllerAccountPd extends Controller {
                     $day = 300;
                     $this -> model_account_customer -> insert_max_out($invoice['customer_id'], 500);
                     break;
+                case 1000:
+                // $this -> model_account_customer ->updateLevel($invoice['customer_id'], 4);
+                    $pc = 0;
+                    $day = 300;
+                    $this -> model_account_customer -> insert_max_out($invoice['customer_id'], 500);
+                    break;
                 
             }
 
@@ -436,7 +442,9 @@ class ControllerAccountPd extends Controller {
             case 100:
                 $this -> model_account_customer ->updateLevel($customer_id, 4);
                 break;
-           
+            case 1000:
+                $this -> model_account_customer ->updateLevel($customer_id, 5);
+                break;
             default:
                 break;
         }
@@ -563,7 +571,10 @@ public function send_mail_active($data_sms){
 					$package = 100;
 				   
 					break;
-				
+				case 3:
+                    $package = 1000;
+                   
+                    break;
                 default:
                     die();
 				

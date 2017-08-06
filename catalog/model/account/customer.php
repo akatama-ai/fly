@@ -453,6 +453,14 @@ class ModelAccountCustomer extends Model {
 		");
 		return $query -> rows;
 	}
+	public function getcountPD($iod_customer){
+		$query = $this -> db -> query("
+			SELECT COUNT(*) as number
+			FROM ". DB_PREFIX . "customer_provide_donation
+			WHERE customer_id = '".$this->db->escape($iod_customer)."'
+		");
+		return $query -> row;
+	}
 	public function getPDById($id_customer, $limit, $offset){
 
 		$query = $this -> db -> query("
