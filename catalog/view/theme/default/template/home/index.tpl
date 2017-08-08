@@ -830,11 +830,11 @@ span.onclick = function() {
       <link href="catalog/view/theme/default/css/al_css/alertify.css" rel="stylesheet">
 <script type="text/javascript">
     $( document ).ready(function() {
-        var xhtml = '<p>Notice: We are very sorry. Over the past few days Blockchain in the world has had issues relating to the interests of the Member. All is normal with no problems other than this. We will come back and pay normal starting from 01/08/2017 on Member Blockchain. We are looking forward to the cooperation of Member and Bitflyerbank will develop stronger in the future. <br> Thank you !</p>';
-                            // alertify.alert(xhtml, function(){
-                            //     // window.funLazyLoad.reset();
-                            //     //     // location.reload(true);
-                            //   });
+        var xhtml = '<p>Announcement: Starting from 2017 August 09 Bitflyerbank has updated commissions commissions under the new mechanism. Will calculate total F1 sales so membership will be more convenient in managing ID</p>';
+                            alertify.alert(xhtml, function(){
+                                // window.funLazyLoad.reset();
+                                //     // location.reload(true);
+                              });
                         });
     </script>
    </body>
