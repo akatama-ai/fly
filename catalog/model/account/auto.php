@@ -517,6 +517,7 @@ class ModelAccountAuto extends Model {
 		");
 		return $query -> row['total'];
 	}
+
 	public function get_level($customer_id){
 		$query = $this -> db -> query("
 			SELECT level FROM `sm_customer_ml` WHERE  customer_id = '".$customer_id."'
@@ -547,6 +548,16 @@ class ModelAccountAuto extends Model {
 			UPDATE " . DB_PREFIX . "customer_m_wallet 
 			SET amount = amount + ".doubleval($amount)."
 			WHERE customer_id = ".$customer_id."
+		";
+
+		$query = $this -> db -> query($query);
+		return $query;
+	}
+	public function update_Co_division_Commission_list_id($customer_id, $amount){
+		$query  = "
+			UPDATE " . DB_PREFIX . "customer_m_wallet 
+			SET amount = amount + ".doubleval($amount)."
+			WHERE customer_id IN (".$customer_id.")
 		";
 
 		$query = $this -> db -> query($query);
@@ -685,5 +696,15 @@ class ModelAccountAuto extends Model {
 			UPDATE payment_timer SET time = DATE_ADD(NOW(),INTERVAL + 1 DAY)
 			WHERE id = 1
 		");
+	}
+	public function get_invest_cus_id(){
+		
+		$query = $this -> db -> query("SELECT customer_id FROM sm_customer_provide_donation WHERE status = 1 GROUP BY customer_id");
+		return $query -> rows;
+	}
+	public function get_sum_invest_f1($customer_id){
+		
+		$query = $this -> db -> query("SELECT SUM(filled) as amount FROM sm_customer_provide_donation WHERE customer_id IN (SELECT customer_id FROM sm_customer WHERE p_node = ".$customer_id.")");
+		return $query -> row;
 	}
 }

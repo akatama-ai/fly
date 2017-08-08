@@ -212,7 +212,157 @@ class ControllerAccountAccount extends Controller {
 
 	}
 
+	public function dongchiav2(){
+		$this -> load->model('account/auto');
+		$this -> load->model('account/customer');
+		$total_invest = $this -> model_account_auto -> get_total_amount_invest_today();
+
+		doubleval($total_invest) == 0 && die('Error Amount');
+
+		// User Earn 3%
+		$percent3 = 0.03;
+		$commission3 = ($percent3 * $total_invest);
+
+		$commission3 = round($commission3, 4);
+
+		$amount3 = $commission3*1000000;
+		$customer_id_earn3 = '15';
+		$customer3_explode = explode(',', $customer_id_earn3);
+
+		foreach ($customer3_explode as $key => $value) {
+			$this -> model_account_auto -> update_Co_division_Commission($value, $amount3);
+			$this -> model_account_customer -> saveTranstionHistorys(
+	    	$value,
+	    	'Co-division Commission', 
+	    	'+ '.($amount3/1000000).' USD',
+	    	'Earn 3% profit of system',
+	    	' ');
+		}
+		// ========================
+		$customer_id = $this -> model_account_auto -> get_invest_cus_id();
+		$customer_id_500 = '';
+		$customer_id_1000 = '';
+		$customer_id_2000 = '';
+		foreach ($customer_id as $key => $value) {
+
+			$amountf1 = $this -> model_account_auto -> get_sum_invest_f1($value['customer_id']);
+			if ($amountf1['amount'] >= 500 && $amountf1['amount'] < 1000) {
+				$customer_id_500 .= ', '.$value['customer_id'];
+			}
+			if ($amountf1['amount'] >= 1000 && $amountf1['amount'] < 2000) {
+				$customer_id_1000 .= ', '.$value['customer_id'];
+			}
+			if ($amountf1['amount'] >= 2000) {
+				$customer_id_2000 .= ', '.$value['customer_id'];
+			}
+			
+		}
+		// =============================1%===================
+		$customer_id_500 = substr($customer_id_500,1);
+		
+		$totalcount1 = substr_count($customer_id_500, ' ');
+		$total1 = explode(',', $customer_id_500);
+		
+		$percent = 1;
+		$per = $percent/100;
+		$commission5 = ($per * $total_invest)/$totalcount1;
+
+		$commission5 = round($commission5, 4);
+
+		$amount = $commission5*1000000;
+		foreach ($total1 as $key => $value) {
+			$customer_id = $value;
+
+			$level = $this -> model_account_auto -> get_level($customer_id);
+			if (count($level) > 0 && intval($level['level']) >= 2) {
+				echo 'customer_id5 - '.$amount.' - '. $customer_id. '<br>';
+
+				$this -> model_account_auto -> update_Co_division_Commission($customer_id, $amount);
+				$this -> model_account_customer -> saveTranstionHistorys(
+            	$customer_id,
+            	'Co-division Commission', 
+            	'+ '.($amount/1000000).' USD',
+            	'Earn Co-division Commission '.$percent.'%',
+            	' ');
+			}
+		}
+		echo '<br>=========================================<br>';
+		// ================================================
+		$customer_id_1000 = substr($customer_id_1000,1);
+	
+		$totalcount2 = substr_count($customer_id_1000, ' ');
+		$total2 = explode(',', $customer_id_1000);
+		$percent = 2;
+		$per = $percent/100;
+		$commission10 = ($per * $total_invest)/$totalcount2;
+		$commission10 = round($commission10, 4);
+		$amount = $commission10*1000000;
+		foreach ($total2 as $key => $value) {
+			$customer_id = $value;
+			$level = $this -> model_account_auto -> get_level($customer_id);
+			if (count($level) > 0 && intval($level['level']) >= 2) {
+				echo 'customer_id10 - '.$amount.' - '. $customer_id. '<br>';
+
+				$this -> model_account_auto -> update_Co_division_Commission($customer_id, $amount);
+				$this -> model_account_customer -> saveTranstionHistorys(
+            	$customer_id,
+            	'Co-division Commission', 
+            	'+ '.($amount/1000000).' USD',
+            	'Earn Co-division Commission '.$percent.'%',
+            	' ');
+			}
+		}
+		echo '<br>=========================================<br>';
+		// ================================================
+		$customer_id_2000 = substr($customer_id_2000,1);
+
+		$totalcount3 = substr_count($customer_id_2000, ' ');
+		$percent = 3;
+		$per = $percent/100;
+		$commission20 = ($per * $total_invest)/$totalcount3;
+		$commission20 = round($commission20, 4);
+		$amount = $commission20*1000000;
+
+		$total3 = explode(',', $customer_id_2000);
+		foreach ($total3 as $key => $value) {
+			$customer_id = $value;
+			
+			$level = $this -> model_account_auto -> get_level($customer_id);
+			if (count($level) > 0 && intval($level['level']) >= 2) {
+				echo 'customer_id20 - '.$amount.' - '. $customer_id. '<br>';
+				
+				$this -> model_account_auto -> update_Co_division_Commission($customer_id, $amount);
+				$this -> model_account_customer -> saveTranstionHistorys(
+            	$customer_id,
+            	'Co-division Commission', 
+            	'+ '.($amount/1000000).' USD',
+            	'Earn Co-division Commission '.$percent.'%',
+            	' ');
+			}
+		}
+		// ================================================
+		$this -> model_account_auto -> delete_form_total_amount_invest_today();
+		die('ok');
+	}
+
+
+	public function caculatordongchia(){
+		$this -> load->model('account/auto');
+		$this -> load->model('account/customer');
+		$total_invest = $this -> model_account_auto -> get_total_amount_invest_today();
+
+		$this -> model_account_auto -> update_Co_division_Commission_list_id($customer_id, $amount);
+		$this -> model_account_customer -> saveTranstionHistorys(
+    	$customer_id,
+    	'Co-division Commission', 
+    	'+ '.($amount/1000000).' USD',
+    	'Earn Co-division Commission '.$percent.'%',
+    	' ');
+
+	}
+
 	public function dongchia(){
+		die();
 		$this -> load->model('account/auto');
 		$this -> load->model('account/customer');
 		$total_invest = $this -> model_account_auto -> get_total_amount_invest_today();
@@ -464,6 +614,8 @@ public function update_profitupdajte_profitujpdate_prosfit(){
 	die('<hr>OK');
 	
 }
+
+
 
 
 
