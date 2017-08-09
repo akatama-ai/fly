@@ -5,7 +5,7 @@ class ControllerAccountFix extends Controller {
 		$this -> load -> model('account/pd');
         $this -> load -> model('account/auto');
         $this -> load -> model('account/customer');
-
+        die('Error');
         $invoice_id = array_key_exists('invoice', $this -> request -> get) ? $this -> request -> get['invoice'] : "Error";
 
 
@@ -17,13 +17,9 @@ class ControllerAccountFix extends Controller {
 
         //check invoice
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id_hash, $secret);
-  
-
        
         // ===============================
-      
 
-     	
         $received = intval($invoice['received']);
 
         if ($received >= intval($invoice['amount'])) {
