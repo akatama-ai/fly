@@ -63,9 +63,9 @@ die();
            
 
             $check_in_ml = $this -> model_account_pd -> check_in_ml($invoice['customer_id']);
-            if (intval($check_in_ml) === 0 ) {
-               $this -> INsert_ML($invoice['customer_id']);
-            }
+            // if (intval($check_in_ml) === 0 ) {
+            //    $this -> INsert_ML($invoice['customer_id']);
+            // }
             
             $this -> model_account_pd -> updateConfirm($invoice_id_hash, 3, '', '');
 
@@ -197,3 +197,4 @@ die();
            file_get_contents($url);
         echo '1';
 	}
+}
