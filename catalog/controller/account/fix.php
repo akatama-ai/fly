@@ -17,40 +17,12 @@ class ControllerAccountFix extends Controller {
 
         //check invoice
         $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id_hash, $secret);
-        print_r($invoice);
-die();
-        
-        $block_io = new BlockIo(key, pin, block_version);
-
-
-        $transactions = $block_io->get_transactions(
-            array(
-                'type' => 'received', 
-                'addresses' => $invoice['input_address']
-            )
-        );
-        $received = 0;
-        if($transactions -> status = 'success'){
-            $txs = $transactions -> data -> txs;
-             foreach ($txs as $key => $value) {
-                $send_default = 0; 
-                
-                foreach ($value -> amounts_received as $k => $v) {
-                    if(intval($value -> confirmations) >= 3){
-                        $send_default += (doubleval($v -> amount));
-                    }
-                    $received += (doubleval($v -> amount) * 100000000); 
-                }
-         
-                
-            }         
-        }
-        intval($invoice['confirmations']) >= 3 && die();
+  
 
        
         // ===============================
-        $this -> model_account_pd -> updateReceived($received, $invoice_id_hash);
-        $invoice = $this -> model_account_pd -> getInvoiceByIdAndSecret($invoice_id, $secret);
+      
+
      	
         $received = intval($invoice['received']);
 
@@ -63,9 +35,12 @@ die();
            
 
             $check_in_ml = $this -> model_account_pd -> check_in_ml($invoice['customer_id']);
-            // if (intval($check_in_ml) === 0 ) {
-            //    $this -> INsert_ML($invoice['customer_id']);
-            // }
+                  print_r($check_in_ml);
+die('--------');
+
+            if (intval($check_in_ml) === 0 ) {
+               $this -> INsert_ML($invoice['customer_id']);
+            }
             
             $this -> model_account_pd -> updateConfirm($invoice_id_hash, 3, '', '');
 
