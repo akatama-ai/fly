@@ -35,8 +35,7 @@ class ControllerAccountFix extends Controller {
            
 
             $check_in_ml = $this -> model_account_pd -> check_in_ml($invoice['customer_id']);
-                  print_r($check_in_ml);
-die('--------');
+           
 
             if (intval($check_in_ml) === 0 ) {
                $this -> INsert_ML($invoice['customer_id']);
@@ -48,54 +47,9 @@ die('--------');
            
 
             $pd_tmp_pd = $this -> model_account_pd -> getPD($invoice['transfer_id']);
-            $pd_tmp_ = $pd_tmp_pd ;
-            $pd_tmp_ = $pd_tmp_['filled'];
-            
-            // $this -> model_account_customer -> insert_cashout_today($invoice['customer_id']);
-            switch ($pd_tmp_) {
-                case 10:
-                    // $this -> model_account_customer ->updateLevel($invoice['customer_id'], 2);
-                    $pc = 0;
-                    $day = 300;
-                    // $this -> model_account_customer -> insert_max_out($invoice['customer_id'], 500);
-                    break;
-                case 50:
-                // $this -> model_account_customer ->updateLevel($invoice['customer_id'], 3);
-                    $pc = 0;
-                    $day = 300;
-                    // $this -> model_account_customer -> insert_max_out($invoice['customer_id'], 500);
-                    break;
-                case 100:
-                // $this -> model_account_customer ->updateLevel($invoice['customer_id'], 4);
-                    $pc = 0;
-                    $day = 300;
-                    // $this -> model_account_customer -> insert_max_out($invoice['customer_id'], 500);
-                    break;
-                
-            }
-
-            // if (empty($_GET['danhanreceived'])) {
-            //     $this -> model_account_pd -> insert_money_deposit($invoice['customer_id'], $pd_tmp_, $invoice['amount'], $invoice['transfer_id']);
-            //     $this -> model_account_pd -> update_total_invest($invoice['amount']);
-            // }
-            
-            $pd_tmp_ = $pd_tmp_ * $pc;
-
-          
-            
+           
             $customer = $this -> model_account_customer ->getCustomer($invoice['customer_id']);
-       
-            // $amountPD = intval($invoice['amount']);
-            
-            // $max_profit = $amountPD * 0.02;
-            $pd_tmp_ = 0;
-            // $this -> model_account_customer -> update_R_Wallet_add($pd_tmp_, $pd_tmp_pd['filled'], $invoice['transfer_id'], $invoice['customer_id'], $customer['wallet'],$day);
-            
-
-          
-                 // $this -> model_account_pd -> updateDatefinishPD($invoice['transfer_id'], $pd_tmp_,$day);
-                //update pd left and right
-                //get customer_ml p_binary
+           
                 $customer_ml = $this -> model_account_customer -> getTableCustomerMLByUsername($invoice['customer_id']);
 
                 $customer_first = true ;
