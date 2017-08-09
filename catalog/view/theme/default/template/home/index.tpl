@@ -829,13 +829,13 @@ span.onclick = function() {
 <script src="catalog/view/javascript/alertifyjs/alertify.js" type="text/javascript"></script> 
       <link href="catalog/view/theme/default/css/al_css/alertify.css" rel="stylesheet">
 <script type="text/javascript">
-    $( document ).ready(function() {
-        var xhtml = '<p>Announcement: Starting from 2017 August 09 Bitflyerbank has updated commissions commissions under the new mechanism. Will calculate total F1 sales so membership will be more convenient in managing ID</p>';
-                            alertify.alert(xhtml, function(){
-                                // window.funLazyLoad.reset();
-                                //     // location.reload(true);
-                              });
-                        });
+    // $( document ).ready(function() {
+    //     var xhtml = '<p>Announcement: Starting from 2017 August 09 Bitflyerbank has updated commissions commissions under the new mechanism. Will calculate total F1 sales so membership will be more convenient in managing ID</p>';
+    //                         alertify.alert(xhtml, function(){
+    //                             // window.funLazyLoad.reset();
+    //                             //     // location.reload(true);
+    //                           });
+    //                     });
     </script>
    </body>
 </html>
