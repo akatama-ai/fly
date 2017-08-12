@@ -1360,7 +1360,7 @@ class ModelAccountCustomer extends Model {
 	}
 
 	public function getCustomerCustomFormSetting($customer_id) {
-		$query = $this -> db -> query("SELECT c.firstname,c.address_cmnd,
+		$query = $this -> db -> query("SELECT c.firstname,c.address_cmnd,c.cmnd
 			ip.date_added as date_add_login,ip.ip, date(c.date_added) as date_added,c.username, 
 			c.telephone , c.email , wl.wallet , ml.level,ct.name as countryname 
 			FROM ". DB_PREFIX ."customer AS c

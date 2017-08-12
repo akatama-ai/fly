@@ -67,6 +67,7 @@
                            <div class="form-group row">
                               <div class="col-xs-12"> <label for="exampleInputPhone1">Email</label> <input class="form-control" data-link="<?php echo $self -> url -> link('account/register/checkemail', '', 'SSL'); ?>" id="Email" name="email" readonly='true' type="text" value="" /> </div>
                               <div class="col-xs-12"> <label for="exampleInputPhone2">Phone number</label> <input class="form-control" data-link="<?php echo $self -> url -> link('account/register/checkphone', '', 'SSL'); ?>" class="form-control" id="Phone" readonly='true' name="telephone" type="text" value="" /> </div>
+                              <div class="col-xs-12"> <label for="Citizenship">Citizenship Card/Passport No</label> <input class="form-control" class="form-control" id="Citizenship" readonly='true' name="Citizenship" type="text" value="" /> </div>
                            </div>
                            <div class="form-group row">
                               <div class="col-xs-12"> <label for="exampleInputPassword1">Affiliate Since:</label> <input type="text"  id="Date" readonly='true' value="" placeholder="" spellcheck="false" class="form-control sbg info-city" /> </div>

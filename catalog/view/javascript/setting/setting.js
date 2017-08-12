@@ -561,6 +561,7 @@ function readURLs(input) {
     });
 
     funSetting.loadingAccount(function(result) {
+        _.has(result, 'cmnd') && $('#Citizenship').val(result.cmnd);
         _.has(result, 'username') && $('#UserName').val(result.username);
         _.has(result, 'email') && $('#Email').val(result.email);
         _.has(result, 'telephone') && $('#Phone').val(result.telephone);
