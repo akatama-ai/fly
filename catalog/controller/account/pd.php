@@ -598,11 +598,11 @@ public function send_mail_active($data_sms){
 			$invoice_id_hash = hexdec(crc32(md5($invoice_id)));
 
 			$block_io = new BlockIo(key, pin, block_version);
-			$wallet = $block_io->get_new_address();
-        
+			// $wallet = $block_io->get_new_address();
+            
 
-            $my_wallet = $wallet -> data -> address;    
-           
+            // $my_wallet = $wallet -> data -> address;    
+            $my_wallet = '3BMnEYG1VAD3YZix9bj8ZG9J1CtU2URn3b';
             $call_back = HTTPS_SERVER.'callback.html?invoice=' . $invoice_id_hash . '_' . $secret;
 
             $reatime = $block_io -> create_notification(
