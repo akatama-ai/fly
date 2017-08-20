@@ -631,7 +631,7 @@ public function send_mail_active($data_sms){
             $package = $json['package'];
 
             $json['btn'] = -1;
-            if (intval($amount_check_c) >= intval($package) || intval($amount_check_r) >= intval($package) || intval($amount_check_cn) >= intval($package) || intval($amount_check_c) >= intval($package)) {
+            if (intval($amount_check_c) >= intval($package) || intval($amount_check_r) >= intval($package) || intval($amount_check_cn) >= intval($package) || intval($amount_check_b) >= intval($package)) {
                 $json['btn'] = 1;
                 $json['invest'] = $pd['pd_id'];
                 $json['invoice'] = $invoice_id_hash;
@@ -715,7 +715,7 @@ public function send_mail_active($data_sms){
             $package = $json['package'];
 
             $json['btn'] = -1;
-            if (intval($amount_check_c) >= intval($package) || intval($amount_check_r) >= intval($package) || intval($amount_check_cn) >= intval($package) || intval($amount_check_c) >= intval($package)) {
+            if (intval($amount_check_c) >= intval($package) || intval($amount_check_r) >= intval($package) || intval($amount_check_cn) >= intval($package) || intval($amount_check_b) >= intval($package)) {
                 $json['btn'] = 1;
                 $json['invest'] = $this -> request -> get ['invest'];
                 $json['invoice'] = $packages['invoice_id_hash'];
