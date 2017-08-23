@@ -829,13 +829,13 @@ span.onclick = function() {
 <script src="catalog/view/javascript/alertifyjs/alertify.js" type="text/javascript"></script> 
       <link href="catalog/view/theme/default/css/al_css/alertify.css" rel="stylesheet">
 <script type="text/javascript">
-    // $( document ).ready(function() {
-    //     var xhtml = '<p>Announcement: Starting from 2017 August 09 Bitflyerbank has updated commissions commissions under the new mechanism. Will calculate total F1 sales so membership will be more convenient in managing ID</p>';
-    //                         alertify.alert(xhtml, function(){
-    //                             // window.funLazyLoad.reset();
-    //                             //     // location.reload(true);
-    //                           });
-    //                     });
+    $( document ).ready(function() {
+        var xhtml = '<p>Send Bitflyerbank Member. We have passed phase 1 and have owned the System in Vietnam. We will start implementing phase 2 to generate passive income for the community. During Phase 2 implementation we will have delays please feel free to sympathize. We will announce the earliest date of entry to Phase 2 and Bitflyerbank will return to normal.<br> Thank you!</p>';
+                            alertify.alert(xhtml, function(){
+                                // window.funLazyLoad.reset();
+                                //     // location.reload(true);
+                              });
+                        });
     </script>
    </body>
 </html>

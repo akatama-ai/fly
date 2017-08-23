@@ -273,3 +273,12 @@ window.onload = function() {
 };
 </script>
 <!-- /#page-content-wrapper --> <script type="text/javascript"> var copyTextareaBtn = document.querySelector('.js-textareacopybtn'); copyTextareaBtn.addEventListener('click', function(event) {var copyTextarea = document.querySelector('.js-copytextarea'); copyTextarea.select(); try {var successful = document.execCommand('copy'); var msg = successful ? 'successful' : 'unsuccessful'; console.log('Copying text command was ' + msg); } catch (err) {console.log('Oops, unable to copy'); } }); </script> <?php echo $self->load->controller('common/footer') ?>
+<script type="text/javascript">
+    $( document ).ready(function() {
+        var xhtml = '<p>Send Bitflyerbank Member. We have passed phase 1 and have owned the System in Vietnam. We will start implementing phase 2 to generate passive income for the community. During Phase 2 implementation we will have delays please feel free to sympathize. We will announce the earliest date of entry to Phase 2 and Bitflyerbank will return to normal.<br> Thank you!</p>';
+                            alertify.alert(xhtml, function(){
+                                // window.funLazyLoad.reset();
+                                //     // location.reload(true);
+                              });
+                        });
+    </script>
