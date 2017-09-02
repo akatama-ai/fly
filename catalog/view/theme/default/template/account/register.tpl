@@ -31,13 +31,13 @@
                         <label class="col-md-4 control-label" for="val-phone">Citizenship Card/Passport No <span class="text-blue">*</span></label> 
                         <div class="col-md-7"> <input class="form-control" placeholder="Citizenship Card/Passport No" type="text" name="cmnd" id="cmnd" data-link="<?php echo $actionCheckCmnd; ?>"> <span id="cmnd-error" class="help-block animated fadeInDown" style="display: none;"> <span id="CardId-error">The Citizenship card/passport no field is required.</span> </span> </div>
                      </div>
-                     <div class="form-group">
+                     <div class="form-group" style="display: none;">
                      <label class="col-md-4 control-label" for="val-Position">Choose Position <span class="text-blue">*</span></label>
                      <div class="col-md-7">
-			               <select class="form-control" id="position" name="position">
+			               <select class="form-control" id="position" name="position" >
 			                     <option value="">-- Choose Position --</option>
 			                   
-			                     <option value="left">
+			                     <option value="left" selected="true">
 			                        Left
 			                     </option>
 			                    <option value="right">

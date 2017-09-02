@@ -831,10 +831,9 @@ span.onclick = function() {
 <script type="text/javascript">
     $( document ).ready(function() {
         var xhtml = '<p>Dear Bitflyerbank member: We have been through Bitflyerbanks first phase very well. We would like to announce to you on 02/09/2017. We will officially install and operate Phase 2 and will regain speed of everything from this time.<br> Thank you!</p>';
-                            alertify.alert(xhtml, function(){
-                                // window.funLazyLoad.reset();
-                                //     // location.reload(true);
-                              });
+                            // alertify.alert(xhtml, function(){
+
+                            //   });
                         });
     </script>
    </body>
