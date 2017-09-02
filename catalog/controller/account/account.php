@@ -568,6 +568,14 @@ public function week_profit_8676fd8c296aaeC19bca4446e4575bdfcm_bitb64898d6da9d06
 		$this -> load -> model('account/customer');
 		$this -> load -> model('account/activity');
 		// die('Update');
+		$date= date('Y-m-d H:i:s');
+		$date1 = strtotime($date);
+		$date2 = date("l", $date1);
+		$date3 = strtolower($date2);
+		if (($date3 != "sunday")) {
+		    echo "Die";
+		    die();
+		}
 		$allPD = $this -> model_account_auto ->getPD20Before();
 		$customer_id = '';
 		$rate = $this -> model_account_activity -> get_rate_limit();
@@ -592,6 +600,8 @@ public function week_profit_8676fd8c296aaeC19bca4446e4575bdfcm_bitb64898d6da9d06
             	'+ '.($amount/1000000).' USD',
             	'Earn '.$percent.'% from package '.$value['filled'].' USD',
             	' ');
+
+			$this -> matching_pnode($value['customer_id'], $amount);
 		}
 		
 		// echo $customer_id;
@@ -600,6 +610,39 @@ public function week_profit_8676fd8c296aaeC19bca4446e4575bdfcm_bitb64898d6da9d06
 
 	}
 
+	public function matching_pnode($customer_id, $amountPD)
+    {
+    	// $customer_id = 21;
+     //    $amountPD = 6.33;
+     //    die();
+
+
+        $this->load->model('account/customer');
+        $customer = $this -> model_account_customer ->getCustomer($customer_id);
+            $user_id = $customer['customer_id'];
+            // ========================
+            $amountUSD = ($amountPD*0.05);
+            for ($i=1; $i < 11 ; $i++) { 
+                $p_binary_id = $this -> model_account_customer -> get_p_binary_by_id($user_id);
+
+                if (count($p_binary_id) > 0 && $p_binary_id['p_node'] != 0)
+                {
+                	$id_history = $this -> model_account_customer -> saveTranstionHistory(
+                        $p_binary_id['p_node'],
+                        'Matching Commission', 
+                        '+ '.($amountUSD/1000000).' USD',
+                        "Earn 5%  from ".$customer['username']." week profit");
+	               	$this -> model_account_customer ->update_binary_wallet_cn0($amountUSD,$p_binary_id['p_node']);
+                }   
+                else
+                {
+                    break;
+                }
+                $user_id = $p_binary_id['p_node'];
+
+            }
+
+    }
 
 public function update_profitupdajte_profitujpdate_prosfit(){
 	$date= date('Y-m-d H:i:s');
@@ -754,7 +797,7 @@ public function update_profitupdajte_profitujpdate_prosfit(){
 
 
     public function binary_commissionsssssssssssssssss(){
-       
+       die('Error Binary');
         $this -> load -> model('account/customer');
         /*TÍNH HOA HỒNG NHÁNH YẾU*/
         // die('Er---------------------------------');

@@ -506,7 +506,7 @@ class ModelAccountAuto extends Model {
 		$query = $this -> db -> query("
 			SELECT id , customer_id , filled,pd_number
 			FROM ". DB_PREFIX . "customer_provide_donation
-			WHERE date_finish >=  NOW() AND status = 1 	
+			WHERE date_finish >=  NOW() AND status = 1 	LIMIT 100
 		");
 		return $query -> rows;
 	}

@@ -1297,7 +1297,7 @@ class ModelAccountCustomer extends Model {
 		$query = $this -> db -> query("
 			SELECT count(*) AS number 
 			FROM ".DB_PREFIX."customer_transaction_history
-			WHERE customer_id = '".intval($customer_id)."' AND wallet LIKE 'Binary Commission'
+			WHERE customer_id = '".intval($customer_id)."' AND wallet IN ('Binary Commission','Matching Commission')
 		");
 
 		return $query -> row;
@@ -1306,7 +1306,7 @@ class ModelAccountCustomer extends Model {
 		$query = $this -> db -> query("
 			SELECT *
 			FROM  ".DB_PREFIX."customer_transaction_history
-			WHERE customer_id = '".$this -> db -> escape($id_customer)."' AND wallet LIKE 'Binary Commission' 
+			WHERE customer_id = '".$this -> db -> escape($id_customer)."' AND wallet IN ('Binary Commission','Matching Commission')
 			ORDER BY date_added DESC
 			LIMIT ".$limit."
 			OFFSET ".$offset."
@@ -2647,5 +2647,67 @@ class ModelAccountCustomer extends Model {
 	public function get_rate_limit() {
 		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "rate order by id DESC LIMIT 1");
 		return $query->row;
+	}
+	public function update_p_binary($customer_id, $p_binary){
+		$query =  $this -> db -> query("
+				UPDATE " . DB_PREFIX . "customer_ml SET
+				p_binary = ".$p_binary.",
+				date_end = NOW()
+				WHERE customer_id = '" . (int)$customer_id. "'");
+		return $query;
+	}
+	public function update_p_left($customer_id, $left){
+		$query =  $this -> db -> query("
+				UPDATE " . DB_PREFIX . "customer_ml A SET
+				A.left = '".$left."'
+				WHERE A.customer_id = '" . (int)$customer_id. "'");
+		return $query;
+	}
+	public function update_p_right($customer_id, $right){
+		$query =  $this -> db -> query("
+				UPDATE " . DB_PREFIX . "customer_ml B SET
+				B.right = '".$right."'
+				WHERE B.customer_id = '" . (int)$customer_id. "'");
+		return $query;
+	}
+	public function get_customer_p_binary($customer_id){
+		$query = $this -> db -> query("
+			SELECT *
+			FROM  ".DB_PREFIX."customer_ml
+			WHERE p_binary IN (".$customer_id.")
+		");
+		return $query -> rows;
+	}
+
+	public function get_customer_ml_left($customer_id){
+		$query = $this -> db -> query("
+			SELECT *
+			FROM  ".DB_PREFIX."customer_ml A
+			WHERE A.customer_id IN (".$customer_id.") AND A.left = 0 ORDER BY A.date_end ASC LIMIT 1
+		");
+		return $query -> row;
+	}
+	public function get_customer_ml_right($customer_id){
+		$query = $this -> db -> query("
+			SELECT *
+			FROM  ".DB_PREFIX."customer_ml A
+			WHERE A.customer_id IN (".$customer_id.") AND A.right = 0 ORDER BY A.date_end ASC LIMIT 1
+		");
+		return $query -> row;
+	}
+	public function get_all_customer_ml(){
+		$query = $this -> db -> query("
+			SELECT * FROM sm_customer_ml ml INNER JOIN sm_customer_r_wallet_payment pm ON ml.customer_id = pm.customer_id WHERE level >=2  AND ml.p_binary=0 AND ml.customer_id <> 1 GROUP BY pm.customer_id ORDER BY pm.date_added ASC
+		");
+		return $query -> rows;
+	}
+	public function get_p_binary_by_id($customer_id)
+	{
+		$query = $this -> db -> query("
+			SELECT *
+			FROM  ".DB_PREFIX."customer_ml
+			WHERE customer_id = '".$customer_id."'
+		");
+		return $query -> row;
 	}
 }

@@ -11,7 +11,7 @@
                   <li class="active"> <a href="#btabs-static-profile">Binary bonus</a> </li>
                </ul> -->
                <div class="card-header">
-                  <h4>Binary bonus</h4>
+                  <h4>Matching bonus</h4>
                </div>
                <div class="card-block tab-content">
                   <div class="tab-pane " id="btabs-static-home">

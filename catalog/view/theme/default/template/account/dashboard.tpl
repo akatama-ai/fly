@@ -45,7 +45,7 @@
             <a class="card bg-purple bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
                   <div class="text-center">
-                     <p class="h6 text-muted m-t-0 m-b-xs">Binary bonus</p>
+                     <p class="h6 text-muted m-t-0 m-b-xs">Matching bonus</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $getCNWallet ?> USD</p>
                   </div>
                  
@@ -67,7 +67,7 @@
             <a class="card bg-orange bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
                   <div class="text-center">
-                     <p class="h6 text-muted m-t-0 m-b-xs">Binary - Left</p>
+                     <p class="h6 text-muted m-t-0 m-b-xs">Team - Left</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $total_pd_left ;?> USD</p>
                   </div>
                 
@@ -78,7 +78,7 @@
             <a class="card bg-purple bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
                   <div class="text-center">
-                     <p class="h6 text-muted m-t-0 m-b-xs">Binary - Right</p>
+                     <p class="h6 text-muted m-t-0 m-b-xs">Team - Right</p>
                      <p class="h3 text-blue m-t-sm m-b-0"><?php echo $total_pd_right ;?> USD</p>
                   </div>
                 
