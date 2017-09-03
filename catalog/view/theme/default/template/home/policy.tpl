@@ -54,26 +54,29 @@ _atrk_opts = { atrk_acct:"WG7Zo1IWx810Io", domain:"bitflyerb.com",dynamic: true}
 
                      <div class="page-content ">
                    
-                           <h1 style="margin-top:50px">  Policy:</h1>
+                           <h1 style="margin-top:50px">  POLICY BITFLYERB 2.0:</h1>
                            <p style="text-align: left;">
 <br>
-Package: There are 3 packages $10 - $50 and $100. Each ID is invested in N packages.<br>
-Interest is running as follows:<br>
-Interest from 1.5% to 5% per week. Pay weekly at 12 noon on weekdays on wallet on ID.<br>
-If withdrawals less than 300 days will be calculated as follows:<br>
-  30 days to withdraw 70% of capital<br>
+Packages: $ 4 $ 10 - $ 50 and $ 100 and $ 1000. ID number is first name of the name.<br>
+Long static running as follows:<br>
+Interest from 1.5% to 5% / week. Pay weekly at 12 noon on a weekly basis in the wallet on ID.<br>
+If you withdraw less than 300 days, it will be calculated as follows:<br>
+   30 days with 70% of capital<br>
   90 days to withdraw 80% of capital<br>
-  180 days to withdraw 90% of capital<br>
-300 days from the date of withdrawal of 100% of capital.<br>
+   180 days withholding 90% of capital<br>
+300 days to withdraw 100% capital.<br>
 Commission:<br>
-       5F1: Earn 1% Copper divide sales per day.<br>
-       10F1: Earn 2% Copper divide sales per day.<br>
-       20F1: Earn 3% Copper divide sales per day.<br>
-     Note: All want Earn Copper divide sales per day 5 - 10 - 20F1. They must invest at least one $100 package.<br>
-     Direct commission: 15%<br>
-     Binary commissions  10% ($ 500 per day income limit and strong branch reserve).<br>
-      Direct commission: $ 5 withdrawal<br>
-      System Commissions: $ 10 withdrawal.<br>Transfer the minimum internal score of $ 5<br>
+      Join at least $ 100 and have a total F1 sales of $ 500: 1% of total sales per day. (limited to 200ID only).<br>
+       Join at least $ 100 and have total F1 sales of $ 1000: 2% of total sales per day. (limited to 200ID only).<br>
+       I joined at least $ 100 and had total F1 sales of $ 2000: Divided 3% of total sales per day. (limited to 200ID only).<br>
+     Direct commission: 10%.<br>
+Matching bonus:<br>
+     Tax 5% / Static weekly income of 10 generations:
+ F1-5%. F2-5% .......... F10-5%. Total 50% for 10 generations (This is a huge source of passive income and unlimited).<br>
+      Moon floors:<br>
+      Each ID will be entitled to 20 floors (binary map) automatically top-down and left-over. Each floor is 0.5%.<br>
+      All roses are min $ 5 (no fee charged).<br>
+      Lowest internal transfer of $ 5
 </p>
                            </div>
                   </div>
