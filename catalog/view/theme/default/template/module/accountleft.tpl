@@ -50,6 +50,7 @@
                <ul class="nav nav-subnav">
                   <li> <a href="everyday-profit.html">Weekly rates</a> </li>
                   <li> <a href="binary-profit.html">Matching Bonus</a> </li>
+                  <li> <a href="floor-commission">Floor Commission</a> </li>
                   <li> <a href="refferal-profit.html">Refferal Commission</a> </li>
                   <li> <a href="co-division-commission">Co-division Commission</a> </li>
                </ul>

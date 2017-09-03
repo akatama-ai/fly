@@ -38,6 +38,11 @@
                               <input type="checkbox" id="division" name="FromWallet[]" data-value="<?php echo $getMWallet; ?>" value="4">  Co-division Commission <code><?php echo $getMWallet; ?> USD</code>
                               </label>
                            </div>
+                           <div class="checkbox">
+                              <label for="checkbox3">
+                              <input type="checkbox" id="floor" name="FromWallet[]" data-value="<?php echo $floor_commission; ?>" value="5">  Floor Commission <code><?php echo $floor_commission; ?> USD</code>
+                              </label>
+                           </div>
                            <div class="checkbox has-error">
                               <p class="help-block animated fadeInDown choose_wallet" style="display:none">Please Choose wallet withdrawal</p>
                            </div>

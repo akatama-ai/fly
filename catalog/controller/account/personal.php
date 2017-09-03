@@ -935,6 +935,8 @@ die();
 		$this -> load -> model('account/customer');
 
 		$user = $this -> model_account_customer -> getInfoUsers_binary($id);
+		count($user) == 0 && die('Error');
+		empty($_SESSION['customer_id']) && die('SS');
 
 		$user['total_left'] =  $this -> model_account_customer ->  getSumLeft($id);	
 
@@ -956,6 +958,8 @@ die();
 		$this -> load -> model('account/customer');
 
 		$user = $this -> model_account_customer -> getCustomer($id_user);
+		count($user) == 0 && die('Error');
+		empty($_SESSION['customer_id']) && die('SS');
 		$json = array();
 		$json['nameCustomer'] = $user['firstname'];
 		$json['telephone'] = $user['telephone'];
@@ -975,7 +979,9 @@ die();
 		$id = $this->request->get['id_user'];
 
 		$user = $this -> model_account_customer -> getInfoUsers_binary($id);
-
+		count($user) == 0 && die('Error');
+		empty($_SESSION['customer_id']) && die('SS');
+		// print_r($_SESSION);die();
 
 
 		$node = new stdClass();

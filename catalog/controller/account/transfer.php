@@ -41,7 +41,7 @@ class ControllerAccountTransfer extends Controller {
         $data['pagination'] = $pagination -> render();
 
         $this -> load -> model('account/withdrawal');
-        
+        $data['getFloor'] = $this -> get_floor_wallet($this -> session -> data['customer_id']);
         $data['profit_daily'] = $this -> get_daily_profit();
         $data['refferal_profit'] = $this -> get_refferal_commisson();
         $data['binary_bonus'] = $this -> getBinaryBonus($this -> session -> data['customer_id']);
@@ -100,7 +100,7 @@ class ControllerAccountTransfer extends Controller {
         $data['binary_bonus'] = $this -> getBinaryBonus($this -> session -> data['customer_id']);
         $data['getMWallet'] = $this -> getMWallet($this -> session -> data['customer_id']);
         $data['get_customer_setting'] = $get_customer_setting = $this -> model_account_customer -> get_customer_setting($this -> session -> data['customer_id']);
-
+        $data['getFloor'] = $this -> get_floor_wallet($this -> session -> data['customer_id']);
         if (file_exists(DIR_TEMPLATE . $this -> config -> get('config_template') . '/template/account/transfer_my_wallet.tpl')) {
             $this -> response -> setOutput($this -> load -> view($this -> config -> get('config_template') . '/template/account/transfer_my_wallet.tpl', $data));
         } else {
@@ -186,12 +186,16 @@ class ControllerAccountTransfer extends Controller {
                          $amount_check = $this -> get_daily_profit();
                         break;
                     case 'CN':
-                        $wallet = 'Binary Bonuses';
+                        $wallet = 'Matching Bonuses';
                         $amount_check = $this -> getBinaryBonus($this -> session -> data['customer_id']);
                         break;
                     case 'B':
                         $wallet = 'Co-division Commission';
                          $amount_check = $this -> getMWallet($this -> session -> data['customer_id']);
+                        break;
+                    case 'FL':
+                        $wallet = 'Floor Commission';
+                         $amount_check = $this -> get_floor_wallet($this -> session -> data['customer_id']);
                         break;
                     default:
                         die();
@@ -265,6 +269,20 @@ class ControllerAccountTransfer extends Controller {
                             //save history cho user nhan token
                             $id_history = $this -> model_account_customer -> saveHistoryPin($customerReceived['customer_id'], '+ ' . ($amount_usd/1000000) . ' USD ', $description, 'Received', $customerSend['username'], $wallet);  
                             break;
+                        case 'FL':
+                            $this -> model_account_withdrawal -> updateFloor_wallet_Sub($this -> session -> data['customer_id'], $amount_usd);   
+                            $this -> model_account_withdrawal -> updateFloor_wallet_Sub($customerReceived['customer_id'], $amount_usd, true);
+                            //save history cho user chuyen di
+                            $id_history = $this -> model_account_customer -> saveHistoryPin($this -> session -> data['customer_id'], '- ' . ($amount_usd/1000000) . ' USD ', $description, 'Send', $customerReceived['username'], $wallet);
+                            //save history cho user nhan token
+                            $checkFloor_Wallet = $this -> model_account_customer -> checkFloor_Wallet($customerReceived['customer_id']);
+                                if(intval($checkFloor_Wallet['number'])  === 0){
+                                    if(!$this -> model_account_customer -> insertFloor_Wallet(0, $customerReceived['customer_id'])){
+                                        die();
+                                    }
+                                }
+                            $id_history = $this -> model_account_customer -> saveHistoryPin($customerReceived['customer_id'], '+ ' . ($amount_usd/1000000) . ' USD ', $description, 'Received', $customerSend['username'], $wallet);  
+                            break;
                         default:
                             die();
                             break;
@@ -280,7 +298,13 @@ class ControllerAccountTransfer extends Controller {
         }
         $this->response->setOutput(json_encode($json));
     }
-    
+    public function get_floor_wallet($customer_id){
+        $this -> load -> model('account/withdrawal');
+        $getFloorWallet = $this -> model_account_withdrawal -> getFloorWallet($customer_id);
+        
+        return $getFloorWallet['amount'] ?  $getFloorWallet['amount']/1000000 : 0;
+
+    }
     public function submit_transfer_mywallet(){
         
         function myCheckLoign($self) {
@@ -326,12 +350,16 @@ class ControllerAccountTransfer extends Controller {
                          $amount_check = $this -> get_daily_profit();
                         break;
                     case 'CN':
-                        $wallet = 'Binary Bonuses';
+                        $wallet = 'Matching Bonuses';
                         $amount_check = $this -> getBinaryBonus($this -> session -> data['customer_id']);
                         break;
                     case 'B':
                         $wallet = 'Co-division Commission';
                          $amount_check = $this -> getMWallet($this -> session -> data['customer_id']);
+                        break;
+                    case 'FL':
+                        $wallet = 'Floor Commission';
+                         $amount_check = $this -> get_floor_wallet($this -> session -> data['customer_id']);
                         break;
                     default:
                         die();
@@ -347,11 +375,15 @@ class ControllerAccountTransfer extends Controller {
                         
                         break;
                     case 'CN':
-                        $wallet_receive = 'Binary Bonuses';
+                        $wallet_receive = 'Matching Bonuses';
                         
                         break;
                     case 'B':
                         $wallet_receive = 'Co-division Commission';
+                        
+                        break;
+                    case 'FL':
+                        $wallet_receive = 'Floor Commission';
                         
                         break;
                     default:
@@ -392,6 +424,9 @@ class ControllerAccountTransfer extends Controller {
                             if ($_POST['wallet_receive'] == 'B') {
                                $this -> model_account_withdrawal -> updateM_wallet_Sub($session_id, $amount_usd, true);
                             }
+                            if ($_POST['wallet_receive'] == 'FL') {
+                               $this -> model_account_withdrawal -> updateFloor_wallet_Sub($session_id, $amount_usd, true);
+                            }
                             break;
                         case 'R':
                        
@@ -405,7 +440,9 @@ class ControllerAccountTransfer extends Controller {
                             if ($_POST['wallet_receive'] == 'B') {
                                $this -> model_account_withdrawal -> updateM_wallet_Sub($session_id, $amount_usd, true);
                             }
-
+                            if ($_POST['wallet_receive'] == 'FL') {
+                               $this -> model_account_withdrawal -> updateFloor_wallet_Sub($session_id, $amount_usd, true);
+                            }
                             break;
                         case 'CN':
                             $this -> model_account_withdrawal -> updateCN_wallet_Sub($this -> session -> data['customer_id'], $amount_usd);
@@ -419,7 +456,9 @@ class ControllerAccountTransfer extends Controller {
                                $this -> model_account_withdrawal -> updateM_wallet_Sub($session_id, $amount_usd, true);
                             }  
 
-                           
+                           if ($_POST['wallet_receive'] == 'FL') {
+                               $this -> model_account_withdrawal -> updateFloor_wallet_Sub($session_id, $amount_usd, true);
+                            }
                             break;
                         case 'B':
                             $this -> model_account_withdrawal -> updateM_wallet_Sub($this -> session -> data['customer_id'], $amount_usd);  
@@ -432,7 +471,23 @@ class ControllerAccountTransfer extends Controller {
                             if ($_POST['wallet_receive'] == 'CN') {
                                $this -> model_account_withdrawal -> updateCN_wallet_Sub($session_id, $amount_usd, true);
                             }  
-
+                            if ($_POST['wallet_receive'] == 'FL') {
+                               $this -> model_account_withdrawal -> updateFloor_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                        case 'FL':
+                            $this -> model_account_withdrawal -> updateFloor_wallet_Sub($this -> session -> data['customer_id'], $amount_usd);  
+                            if ($_POST['wallet_receive'] == 'R') {
+                               $this -> model_account_withdrawal -> updateR_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            if ($_POST['wallet_receive'] == 'C') {
+                               $this -> model_account_withdrawal -> updateC_wallet_Sub($session_id, $amount_usd, true);
+                            }
+                            if ($_POST['wallet_receive'] == 'CN') {
+                               $this -> model_account_withdrawal -> updateCN_wallet_Sub($session_id, $amount_usd, true);
+                            }  
+                           if ($_POST['wallet_receive'] == 'B') {
+                               $this -> model_account_withdrawal -> updateM_wallet_Sub($session_id, $amount_usd, true);
+                            }  
                            
                             break;
                         default:

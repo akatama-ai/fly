@@ -65,6 +65,24 @@ class ModelAccountWithdrawal extends Model {
 		}
 		return $query;
 	}
+	public function updateFloor_wallet_Sub($customer_id, $amount, $add = false){
+		if ($add) {
+			$query = $this -> db -> query("
+				UPDATE " . DB_PREFIX . "customer_floor_wallet
+					SET amount = amount + ".doubleval($amount)." WHERE customer_id = ".$customer_id."
+			");
+		}else{
+			$query = $this -> db -> query("
+				UPDATE " . DB_PREFIX . "customer_floor_wallet
+					SET amount = amount - ".doubleval($amount)." WHERE customer_id = ".$customer_id."
+			");
+		}
+		return $query;
+	}
+	public function getFloorWallet($customer_id){
+		$query = $this -> db -> query("SELECT * FROM " . DB_PREFIX . "customer_floor_wallet WHERE customer_id = '".$this->db->escape($customer_id)."' ");
+		return $query->row;
+	}
 	public function get_daily_payment($customer_id){
 		$query = $this -> db -> query("SELECT * FROM " . DB_PREFIX . "customer_r_wallet WHERE customer_id = '".$this->db->escape($customer_id)."' ");
 		return $query->row;

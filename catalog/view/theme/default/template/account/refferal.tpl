@@ -10,7 +10,7 @@
          <div class="card-block">
             <div class="table-responsive" style="padding:0px;" >
                <select name="" id="Floor" class="form-control" required="required" style="width:200px;">
-                  <option value="null">FLOOR</option>
+                  
                   <?php 
                      $totalFloor = intval($self -> sumFloor());
                      $total = intval($totalFloor) > 10 ? 10 : $totalFloor;
@@ -20,18 +20,21 @@
                      
                      } ?>
                </select>
+               <h3 class="totalInvest panel-title" style=" text-align: center; font-size: 20px; color: #e74854; border-bottom: 1px solid #f5d11b; padding-bottom: 10px; text-transform: uppercase; display: none;"> </h3>
                <div  id="customerFloor" data-id="<?php echo $self->session -> data['customer_id'] ?>" data-link="<?php echo $self->url->link('account/refferal/customerFloor', '', 'SSL'); ?>">
                   <?php 
                      $totalFloor = intval($self -> sumFloor());
                      //  for ($i=1; $i <= $totalFloor; $i++) { 
                      $total = intval($totalFloor) > 10 ? 10 : $totalFloor;
                         for ($i=1; $i <= $total; $i++) { 
-                         echo ' <div class="resetFloor" id="customerFloor'.$i.'">
+                         echo ' <div class="resetFloor" id="customerFloor'.$i.'" style=" position: relative; ">
                                          </div>';
                      } ?>
                </div>
             </div>
             <div class="table-responsive" id="default">
+
+            <h3 class="panel-title" style=" text-align: center; font-size: 20px; color: #e74854; border-bottom: 1px solid #f5d11b; padding-bottom: 10px; text-transform: uppercase; ">F1 - TOTAL INVEST: <?php echo number_format($sum['filled']); ?> USD</h3>
                <table class="table table-striped table-borderless table-vcenter">
                   <thead>
                      <tr>
@@ -39,8 +42,8 @@
                         <th>Username</th>
                         <!-- <th>Level</th> --> <!-- <th>QR Code</th> --> 
                         <th>Phone</th>
-                        <th>Email</th>
-                        <th>Country</th>
+                        <th>Sponsor</th>
+                       <th>Deposit</th>
                         <th>Status</th>
                      </tr>
                   </thead>
@@ -50,8 +53,8 @@
                         <td data-title="<?php echo $lang['NO'] ?>." align="center"><?php echo $count ?></td>
                         <td data-title="<?php echo $lang['USERNAME'] ?>"><?php echo $value['username'] ?></td>
                         <td data-title="<?php echo $lang['TELEPHONE'] ?>" > <?php echo $value['telephone']; ?> </td>
-                        <td data-title="<?php echo $lang['EMAIL'] ?>"><?php echo $value['email'] ?></td>
-                        <td data-title="<?php echo $lang['COUNTRY'] ?>"><?php echo $self->getCountry($value['country_id']); ?></td>
+                        <td data-title="Sponsor"><?php echo $self -> getParrent($value['p_node']) ?></td>
+                      <td data-title="Deposit"><?php echo $self -> getPD($value['customer_id']) ?> USD</td>
                         <td data-title="Status"><?php if ($value['level'] == 1) { ?>
                            <a href="javascript:void(0);" class="btn btn-danger btn-xs">InAvtive</a>
                            <?php } else{?>
@@ -75,7 +78,8 @@
    var sumFloor = '<?php echo intval($self -> sumFloor()); ?>';  
      $('#Floor').change(function(){
          $('#default').hide();
-
+         window.funLazyLoad.start();
+             window.funLazyLoad.show();
          var Floor = $('#Floor').val();
          for (var i = 1; i <= sumFloor; i++) {
              if (Floor == 'floor'+i) {
@@ -95,13 +99,16 @@
                   for (var i = 1; i <= sumFloor; i++) {
    
                      if (Floor == 'floor'+i) {
-                       
-                         var appends = _.values(result)[0];
+                        
+                         var appends = _.values(result)[1];
+                          var SumAmount = _.values(result)[0];
+                          var floorss = 'F'+i;
                      }
                  }
                 // console.log(result);
                  $('.resetFloor').html('');
-                 
+                 $('.totalInvest').show().html(' '+floorss+' - Total Invest: '+SumAmount+' USD');
+                   window.funLazyLoad.reset();
                  floors.append(appends);
                   next();
                   prev();
@@ -134,7 +141,10 @@
                  setTimeout(function(){ window.funLazyLoad.reset(); }, 500);
                  for (var i = 1; i <= sumFloor; i++) {
                      if (_.has(result, 'fl'+i)) {                      
-                         $('#customerFloor'+i).append(_.values(result)[0]);
+                         $('#customerFloor'+i).append(_.values(result)[1]);
+                         var SumAmount = _.values(result)[0];
+                          var floorss = 'F'+i;
+                          // $('.totalInvest').show().html(' '+floorss+' - Total Invest: '+SumAmount+' USD');
                         next();
                          prev();
                          
@@ -171,7 +181,10 @@
                  setTimeout(function(){ window.funLazyLoad.reset(); }, 500);
                  for (var i = 1; i <= sumFloor; i++) {
                      if (_.has(result, 'fl'+i)) {                      
-                         $('#customerFloor'+i).append(_.values(result)[0]);
+                         $('#customerFloor'+i).append(_.values(result)[1]);
+                         var SumAmount = _.values(result)[0];
+                          var floorss = 'Floor '+i;
+                          // $('.totalInvest').show().html(' '+floorss+' - Total Invest: '+SumAmount+' USD');
                         next();
                          prev();
                          

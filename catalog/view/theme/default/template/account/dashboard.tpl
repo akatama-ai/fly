@@ -67,8 +67,8 @@
             <a class="card bg-orange bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
                   <div class="text-center">
-                     <p class="h6 text-muted m-t-0 m-b-xs">Team - Left</p>
-                     <p class="h3 m-t-sm m-b-0"><?php echo $total_pd_left ;?> USD</p>
+                     <p class="h6 text-muted m-t-0 m-b-xs">Floor commission</p>
+                     <p class="h3 m-t-sm m-b-0"><?php echo $floor_commission ;?> USD</p>
                   </div>
                 
                </div>
@@ -78,8 +78,8 @@
             <a class="card bg-purple bg-inverse" href="javascript:void(0)">
                <div class="card-block clearfix">
                   <div class="text-center">
-                     <p class="h6 text-muted m-t-0 m-b-xs">Team - Right</p>
-                     <p class="h3 text-blue m-t-sm m-b-0"><?php echo $total_pd_right ;?> USD</p>
+                     <p class="h6 text-muted m-t-0 m-b-xs">All Team Invest</p>
+                     <p class="h3 text-blue m-t-sm m-b-0"><?php echo number_format(intval($total_pd_right)+intval($total_pd_left)) ;?> USD</p>
                   </div>
                 
                </div>

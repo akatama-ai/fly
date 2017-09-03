@@ -110,10 +110,11 @@ function validateChecks() {
     $('#tranfer_my_wallet #wallet').change(function() {
         var wallet = $('#wallet').val();
         var html ='';
-        if (wallet == 'CN') {html += '<option value="C"> Refferal Commission </option> <option value="R"> Profit Daily </option> <option value="B"> Co-division Commission </option>';}
-        if (wallet == 'R') {html += '<option value="C"> Refferal Commission </option> <option value="CN"> Binary Bonuses </option> <option value="B"> Co-division Commission </option>';}
-        if (wallet == 'C') {html += '<option value="R"> Profit Daily </option> <option value="CN"> Binary Bonuses </option> <option value="B"> Co-division Commission </option>';}
-        if (wallet == 'B') {html += '<option value="C"> Refferal Commission </option> <option value="R"> Profit Daily </option> <option value="CN"> Binary Bonuses </option>';}
+        if (wallet == 'CN') {html += '<option value="FL"> Floor Commission </option><option value="C"> Refferal Commission </option> <option value="R"> Profit Daily </option> <option value="B"> Co-division Commission </option>';}
+        if (wallet == 'R') {html += '<option value="FL"> Floor Commission </option><option value="C"> Refferal Commission </option> <option value="CN"> Matching Bonuses </option> <option value="B"> Co-division Commission </option>';}
+        if (wallet == 'C') {html += '<option value="FL"> Floor Commission </option><option value="R"> Profit Daily </option> <option value="CN"> Matching Bonuses </option> <option value="B"> Co-division Commission </option>';}
+        if (wallet == 'B') {html += '<option value="FL"> Floor Commission </option><option value="C"> Refferal Commission </option> <option value="R"> Profit Daily </option> <option value="CN"> Matching Bonuses </option>';}
+        if (wallet == 'FL') {html += '<option value="C"> Refferal Commission </option> <option value="R"> Profit Daily </option> <option value="CN"> Matching Bonuses </option><option value="B"> Co-division Commission </option>';}
         $('#wallet_receive').empty();
         $('#wallet_receive').append(html);
     });

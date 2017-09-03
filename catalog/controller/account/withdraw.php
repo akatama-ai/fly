@@ -47,6 +47,7 @@ class ControllerAccountWithdraw extends Controller {
 		$data['refferal_profit'] = $this -> get_refferal_commisson();
 		$data['binary_bonus'] = $this -> getBinaryBonus($this -> session -> data['customer_id']);
 		$data['getMWallet'] = $this -> getMWallet($this -> session -> data['customer_id']);
+		$data['floor_commission'] = $this -> get_floor_wallet($this -> session -> data['customer_id']);
 		$data['get_customer_setting'] = $get_customer_setting = $this -> model_account_customer -> get_customer_setting($this -> session -> data['customer_id']);
 
 		if (file_exists(DIR_TEMPLATE . $this -> config -> get('config_template') . '/template/account/withdraw.tpl')) {
@@ -54,6 +55,14 @@ class ControllerAccountWithdraw extends Controller {
 		} else {
 			$this -> response -> setOutput($this -> load -> view('default/template/account/login.tpl', $data));
 		}
+	}
+	
+	public function get_floor_wallet($customer_id){
+		$this -> load -> model('account/withdrawal');
+		$getFloorWallet = $this -> model_account_withdrawal -> getFloorWallet($customer_id);
+		
+		return $getFloorWallet['amount'] ?  $getFloorWallet['amount']/1000000 : 0;
+
 	}
 	public function getMWallet($customer_id){
         $this -> load -> model('account/withdrawal');
@@ -159,10 +168,12 @@ class ControllerAccountWithdraw extends Controller {
 					$json['binary_bonus'] = 1;
 					$json['profit_daily'] = 1;
 					$json['getMWallet'] = 1;
+					$json['floorWallet'] = 1;
 					$amount = 0;
 					$amount_usd =$_POST['amount_usd'];
 					foreach ($this -> request -> post['FromWallet'] as  $value) {
-						if ($value == 1 || $value == 2 || $value == 3 || $value == 4) {
+						
+						if ($value == 1 || $value == 2 || $value == 3 || $value == 4 || $value == 5) {
 							if ($value == 1){
 								$refferal_profit = $this -> get_refferal_commisson();							
 								$json['amount_ref'] = ($refferal_profit*1000000) >= 5000000 ? 1 : -1;
@@ -172,7 +183,7 @@ class ControllerAccountWithdraw extends Controller {
 							if ($value == 2){
 
 								$binary_bonus = $this -> getBinaryBonus($this -> session -> data['customer_id']);
-								$json['binary_bonus'] = ($binary_bonus*1000000) >= 10000000 ? 1 : -1;
+								$json['binary_bonus'] = ($binary_bonus*1000000) >= 5000000 ? 1 : -1;
 								$amount = $amount + $binary_bonus;
 								
 							}
@@ -189,17 +200,23 @@ class ControllerAccountWithdraw extends Controller {
 								$amount = $amount + $getMWallet;
 							
 							}
+							if ($value == 5){
+								$floorWallet = $this -> get_floor_wallet($this -> session -> data['customer_id']);
+								$json['floorWallet'] = ($floorWallet*1000000) >= 5000000 ? 1 : -1;
+								$amount = $amount + $floorWallet;
+							
+							}
 						}else{
 							$json['ok'] = -1;
 							die();
 						}
 					}
 
-					
+				
 
 					$json['amount'] = ($amount*1000000) < $amount_usd*1000000 ? -1 : 1;
 				
-					if ($json['getMWallet'] == 1 && $json['profit_daily'] === 1 &&  $json['binary_bonus'] == 1 &&  $json['amount_ref'] == 1 &&  $json['amount'] == 1) {
+					if ($json['getMWallet'] == 1 && $json['profit_daily'] === 1 &&  $json['binary_bonus'] == 1 &&  $json['amount_ref'] == 1 && $json['floorWallet'] == 1 && $json['amount'] == 1) {
 						
 						
 						$url = "https://blockchain.info/tobtc?currency=USD&value=".$amount_usd;
@@ -208,19 +225,19 @@ class ControllerAccountWithdraw extends Controller {
 		               
 		                $amount_btc = round($amountbtc,8);
 
-						$block_io = new BlockIo(key, pin, block_version);
-						$balances = $block_io->get_balance();
-						$blance_admin = $balances->data->available_balance;
+						// $block_io = new BlockIo(key, pin, block_version);
+						// $balances = $block_io->get_balance();
+						// $blance_admin = $balances->data->available_balance;
 					
-						$blance_admin = doubleval($blance_admin*100000000);
+						// $blance_admin = doubleval($blance_admin*100000000);
 		      			$amount_withdraw = doubleval($amount_btc*100000000);
-
+		      			$blance_admin = 1111111111111;
 						if ($blance_admin != $amount_withdraw){
 							$amount = 0;
 							$from = '';
-
+							
 							foreach ($this -> request -> post['FromWallet'] as  $value) {
-								if ($value == 1 || $value == 2 || $value == 3 || $value == 4) {
+								if ($value == 1 || $value == 2 || $value == 3 || $value == 4 || $value == 5) {
 									if ($value == 1){
 										$refferal_profit = $this -> get_refferal_commisson();
 										$amount = $amount + $refferal_profit;
@@ -229,7 +246,7 @@ class ControllerAccountWithdraw extends Controller {
 									if ($value == 2){
 										$binary_bonus = $this -> getBinaryBonus($this -> session -> data['customer_id']);
 										$amount = $amount + $binary_bonus;
-										$from .= ','.' Binary bonuses ($'.$binary_bonus.')';
+										$from .= ','.' Matching bonuses ($'.$binary_bonus.')';
 									}
 								
 									if ($value == 3){
@@ -242,12 +259,17 @@ class ControllerAccountWithdraw extends Controller {
 										$amount = $amount + $getMWallet;
 										$from .= ','.' Co-division Commission ($'.$getMWallet.')';
 									}
+									if ($value == 5){
+										$getFloorWallet = $this -> get_floor_wallet($this -> session -> data['customer_id']);
+										$amount = $amount + $getFloorWallet;
+										$from .= ','.' Floor Commission ($'.$getFloorWallet.')';
+									}
 								}else{
 									$json['ok'] = -1;
 									die();
 								}
 							}
-						
+							
 							$url = "https://blockchain.info/tobtc?currency=USD&value=".$amount;
 			                $amountbtc = file_get_contents($url);
 							$wallet_btc = $this -> model_account_customer -> getWallet_BTC($this -> session -> data['customer_id']);
@@ -273,6 +295,9 @@ class ControllerAccountWithdraw extends Controller {
 									}
 									if ($value == 4) {
 										$this -> model_account_withdrawal -> updateM_wallet_Sub($this -> session -> data['customer_id'], $getMWallet*1000000);
+									}
+									if ($value == 5) {
+										$this -> model_account_withdrawal -> updateFloor_wallet_Sub($this -> session -> data['customer_id'], $floorWallet*1000000);
 									}
 
 

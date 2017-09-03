@@ -556,12 +556,18 @@ class ControllerAccountPd extends Controller {
 
                 if (count($p_binary_id) > 0 && $p_binary_id['p_binary'] != 0)
                 {
+                    $checkFloor_Wallet = $this -> model_account_customer -> checkFloor_Wallet($p_binary_id['p_binary']);
+                        if(intval($checkFloor_Wallet['number'])  === 0){
+                            if(!$this -> model_account_customer -> insertFloor_Wallet(0, $p_binary_id['p_binary'])){
+                                die();
+                            }
+                        }
                     $id_history = $this -> model_account_customer -> saveTranstionHistory(
                         $p_binary_id['p_binary'],
-                        'Matching Commission', 
+                        'Floor Commission', 
                         '+ '.($amountUSD/1000000).' USD',
                         "Earn 0.5%  from ".$customer['username']." active packag (".($amountPD)." USD)",' ');
-                    $this -> model_account_customer ->update_binary_wallet_cn0($amountUSD,$p_binary_id['p_binary']);                    
+                    $this -> model_account_customer ->updateFloorwallet($amountUSD,$p_binary_id['p_binary']);                    
                 }   
                 else
                 {

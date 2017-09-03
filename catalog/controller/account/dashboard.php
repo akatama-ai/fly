@@ -2,7 +2,7 @@
 class ControllerAccountDashboard extends Controller {
 
 	public function index() {
-		$_SESSION['customer_id'] = 18;
+		// $_SESSION['customer_id'] = 50;
 		function myCheckLoign($self) {
 			return $self -> customer -> isLogged() ? true : false;
 		};
@@ -91,6 +91,12 @@ class ControllerAccountDashboard extends Controller {
 					die();
 				}
 			}
+		$checkFloor_Wallet = $this -> model_account_customer -> checkFloor_Wallet($this->session->data['customer_id']);
+			if(intval($checkFloor_Wallet['number'])  === 0){
+				if(!$this -> model_account_customer -> insertFloor_Wallet(0, $this->session->data['customer_id'])){
+					die();
+				}
+			}
 
 		//customer js
 		$data['countPD'] = $this -> countPD($session_id);
@@ -114,6 +120,7 @@ class ControllerAccountDashboard extends Controller {
 		$data['total_pd_left'] = $this -> total_pd_left($session_id);
 		$data['total_pd_right'] = $this -> total_pd_right($session_id);
 		$data['get_m_walleet'] = $this -> model_account_customer -> get_R_Wallet($this -> session -> data['customer_id']);
+		$data['floor_commission'] = $this -> get_floor_wallet($session_id);
 		$data['login_detail'] = $this->get_login($session_id);
 		$this -> Insert_authenticator($session_id);
 		if (file_exists(DIR_TEMPLATE . $this -> config -> get('config_template') . '/template/account/dashboard.tpl')) {
@@ -121,6 +128,13 @@ class ControllerAccountDashboard extends Controller {
 		} else {
 			$this -> response -> setOutput($this -> load -> view('default/template/account/login.tpl', $data));
 		}
+	}
+	public function get_floor_wallet($customer_id){
+		$this -> load -> model('account/withdrawal');
+		$getFloorWallet = $this -> model_account_withdrawal -> getFloorWallet($customer_id);
+		
+		return $getFloorWallet['amount'] ?  $getFloorWallet['amount']/1000000 : 0;
+
 	}
 	public function getMWallet($customer_id){
         $this -> load -> model('account/withdrawal');
@@ -289,7 +303,7 @@ if ($getLanguage == 'vietnamese') {
 		if(intval($count['total_pd_left']) === 0){
 			return 0;
 		}else{
-			return number_format($count['total_pd_left']);
+			return ($count['total_pd_left']);
 		}
 
 	}
@@ -300,7 +314,7 @@ if ($getLanguage == 'vietnamese') {
 		if(intval($count['total_pd_right']) === 0){
 			return 0;
 		}else{
-			return number_format($count['total_pd_right']);
+			return ($count['total_pd_right']);
 
 		}
 		$this -> response -> setOutput(json_encode($json));

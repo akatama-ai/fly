@@ -581,6 +581,14 @@ class ModelAccountCustomer extends Model {
 		");
 		return $query;
 	}
+	public function insertFloor_Wallet($amount, $id_customer){
+		$query = $this -> db -> query("
+			INSERT INTO " . DB_PREFIX . "customer_floor_wallet SET
+			customer_id = '".$this -> db -> escape($id_customer)."',
+			amount = ".$amount."
+		");
+		return $query;
+	}
 
 	public function insertC_Wallet($id_customer){
 		$query = $this -> db -> query("
@@ -599,6 +607,14 @@ class ModelAccountCustomer extends Model {
 			date_finish = NOW()
 		");
 		return $query;
+	}
+	public function checkFloor_Wallet($id_customer){
+		$query = $this -> db -> query("
+			SELECT COUNT(*) AS number
+			FROM  ".DB_PREFIX."customer_floor_wallet
+			WHERE customer_id = '".$this -> db -> escape($id_customer)."'
+		");
+		return $query -> row;
 	}
 	public function checkR_Wallet($id_customer){
 		$query = $this -> db -> query("
@@ -720,6 +736,10 @@ class ModelAccountCustomer extends Model {
 	}
 	public function get_daily_payment($customer_id){
 		$query = $this -> db -> query("SELECT * FROM " . DB_PREFIX . "customer_r_wallet WHERE customer_id = '".$this->db->escape($customer_id)."' ");
+		return $query->row;
+	}
+	public function getFloorWallet($customer_id){
+		$query = $this -> db -> query("SELECT * FROM " . DB_PREFIX . "customer_floor_wallet WHERE customer_id = '".$this->db->escape($customer_id)."' ");
 		return $query->row;
 	}
 	public function getC_Wallet($id_customer){
@@ -1027,9 +1047,10 @@ class ModelAccountCustomer extends Model {
 		return $query -> row;
 	}
 
+
 	public function getRefferalByID($id_customer ,$limit, $offset){
 		$query = $this -> db -> query("
-			SELECT c.email , c.username,c.telephone,c.cmnd,c.wallet,c.country_id, c.customer_id, ml.level, c.date_added
+			SELECT c.p_node, c.email , c.username,c.telephone,c.cmnd,c.wallet,c.country_id, c.customer_id, ml.level, c.date_added
 			FROM ".DB_PREFIX."customer_ml AS ml
 			JOIN ". DB_PREFIX ."customer AS c
 			ON ml.customer_id = c.customer_id
@@ -1301,6 +1322,27 @@ class ModelAccountCustomer extends Model {
 		");
 
 		return $query -> row;
+	}
+	public function getTotalHistory_floor($customer_id){
+		$query = $this -> db -> query("
+			SELECT count(*) AS number 
+			FROM ".DB_PREFIX."customer_transaction_history
+			WHERE customer_id = '".intval($customer_id)."' AND wallet ='Floor Commission'
+		");
+
+		return $query -> row;
+	}
+	public function get_history_floor($id_customer, $limit, $offset){
+		$query = $this -> db -> query("
+			SELECT *
+			FROM  ".DB_PREFIX."customer_transaction_history
+			WHERE customer_id = '".$this -> db -> escape($id_customer)."' AND wallet ='Floor Commission'
+			ORDER BY date_added DESC
+			LIMIT ".$limit."
+			OFFSET ".$offset."
+		");
+		
+		return $query -> rows;
 	}
 	public function getTransctionHistory_binary_new($id_customer, $limit, $offset){
 		$query = $this -> db -> query("
@@ -2377,6 +2419,14 @@ function getSumFloor_node($arrId) {
 		");
 		return $query;
 	}
+	public function updateFloorwallet($amount,$customer_id){
+		$query = $this -> db -> query("
+		UPDATE ". DB_PREFIX ."customer_floor_wallet SET
+			amount = amount + ".doubleval($amount)."
+			WHERE customer_id = '".doubleval($customer_id)."'
+		");
+		return $query;
+	}
 	public function update_wallet_c0($amount,$customer_id){
 		$query = $this -> db -> query("
 		UPDATE ". DB_PREFIX ."customer_c_wallet SET
@@ -2743,5 +2793,26 @@ function getSumFloor_node($arrId) {
 			WHERE customer_id = '".$this->db->escape($iod_customer)."' and status = 1
 		");
 		return $query -> row;
+	}
+
+	public function getsumAmount($arrId){
+		$query = $this -> db -> query("
+			SELECT SUM(filled) as filled
+			FROM ". DB_PREFIX . "customer_provide_donation
+			WHERE customer_id IN (".$this->db->escape($arrId).") and status = 1
+		");
+		return $query -> row;
+	}
+	public function getsumAmount_buy_pnode($id_customer){
+		$query = $this -> db -> query("
+			SELECT SUM(filled) as filled
+			FROM ". DB_PREFIX . "customer_provide_donation
+			WHERE customer_id IN (SELECT customer_id
+			FROM ".DB_PREFIX."customer_ml
+			WHERE p_node =  '".$this -> db -> escape($id_customer)."') and status = 1
+		");
+		return $query -> row;
+
+		
 	}
 }

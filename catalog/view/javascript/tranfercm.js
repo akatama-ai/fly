@@ -19,6 +19,9 @@ $(function() {
                if (this.value == 4) {
                   total = parseFloat(total) + parseFloat($('#division').data('value'));
               }
+               if (this.value == 5) {
+                  total = parseFloat(total) + parseFloat($('#floor').data('value'));
+              }
           }
       });
       conver_usd_to_btc(total);
@@ -114,7 +117,7 @@ function validateChecks() {
                         }
                         if (result.amount == -1) {
                             window.funLazyLoad.reset();
-                            $('.choose_wallet').show().html('The amount withdrawal > 10');
+                            $('.choose_wallet').show().html('The amount withdrawal > 5');
                             return false;
                         }
                         if (result.amount_ref == -1) {
@@ -124,7 +127,7 @@ function validateChecks() {
                         }
                          if (result.binary_bonus == -1) {
                             window.funLazyLoad.reset();
-                            $('.choose_wallet').show().html('The amount Binary  Commission  > 10');
+                            $('.choose_wallet').show().html('The amount Matching Commission  > 5');
                             return false;
                         }
                          if (result.profit_daily == -1) {
@@ -135,6 +138,11 @@ function validateChecks() {
                         if (result.getMWallet == -1) {
                             window.funLazyLoad.reset();
                             $('.choose_wallet').show().html('The amount Co-division  Commission  > 1');
+                            return false;
+                        }
+                        if (result.floorWallet == -1) {
+                            window.funLazyLoad.reset();
+                            $('.choose_wallet').show().html('The amount Floor  Commission  > 1');
                             return false;
                         }
                          if (result.authenticator == -1) {

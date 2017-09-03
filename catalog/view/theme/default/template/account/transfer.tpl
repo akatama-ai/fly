@@ -42,11 +42,14 @@
                                  Profit Daily 
                               </option>
                               <option value="CN">
-                                 Binary Bonuses
+                                 Matching Bonuses
                               </option>
                              <option value="B">
                                  Co-division Commission
                               </option>
+                               <option value="FL">
+                                    Floor Commission
+                                 </option>
                            </select>
                           
                          
@@ -122,7 +125,7 @@
             <a class="card bg-red bg-inverse" href="javascript:void(0)" style=" margin-bottom: 10px; ">
                <div class="card-block clearfix" style="padding: 10px 24px;">
                   <div class="text-center">
-                     <p class="h6 text-muted m-t-0 m-b-xs">Binary Bonuses</p>
+                     <p class="h6 text-muted m-t-0 m-b-xs">Matching Bonuses</p>
                      <p class="h3 m-t-sm m-b-0"><?php echo $binary_bonus; ?> USD</p>
                   </div>
                   
@@ -153,7 +156,18 @@
                </div>
             </a>
          </div>
-        
+         <!-- .col-sm-6 --> 
+                     <div class="col-md-12 col-lg-12">
+                        <a class="card bg-purple bg-inverse" href="javascript:void(0)" style=" margin-bottom: 10px; ">
+                           <div class="card-block clearfix" style="padding: 10px 24px;">
+                              <div class="text-center">
+                                 <p class="h6 text-muted m-t-0 m-b-xs">Floor Commission</p>
+                                 <p class="h3 m-t-sm m-b-0"><?php echo $getFloor; ?> USD</p>
+                              </div>
+                           </div>
+                        </a>
+                     </div>
+                   
          <!-- .col-sm-6 --> 
       
                  

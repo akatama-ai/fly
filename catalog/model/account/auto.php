@@ -510,6 +510,9 @@ class ModelAccountAuto extends Model {
 		");
 		return $query -> rows;
 	}
+	// SELECT  customer_id , sum(filled)
+	// 		FROM sm_customer_provide_donation
+	// 		WHERE date_finish >=  NOW() AND status = 1  GROUP BY customer_id
 	public function get_total_amount_invest_today(){
 		$query = $this -> db -> query("
 			SELECT SUM(total_invest) as total
