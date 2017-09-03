@@ -81,9 +81,9 @@
     // x_p += "<p>Email: "+node.email+"<p>";
     // x_p += "<p>Phone: "+node.telephone+"<p>";
     x_p += "<p>Date: "+node.date_added+"<p>";
-    x_p += "<p>Total Package: "+node.totalPD+" USD<p>";
-    x_p += "<p>Amount Left: "+node.leftPD+" USD</p>";
-    x_p += "<p>Amount Right: "+node.rightPD+" USD</p>";
+    x_p += "<p>Total Invest: "+node.totalPD+" USD<p>";
+    // x_p += "<p>Amount Left: "+node.leftPD+" USD</p>";
+    // x_p += "<p>Amount Right: "+node.rightPD+" USD</p>";
     html += !node.empty 
         ? '<div class=\''+node_class+' '+level_active+'\'><a data-html="true" data-toggle="tooltip" rel="tooltip" data-placement="top" data-title="<p>'+x_p+'</p>" class="binaryTree" style="display:block"   \'><i class="fa fa-user type-'+node.level+'" onclick=\'click_node('+node.id+')\' value=\''+node.id+'\' aria-hidden="true"></i></a><span class="username_node">'+node.username+'</span>' 
         :  '<div class=\''+node_class+'\'><a class="adduser" data-toggle="tooltip" data-placement="top" style="display:block" title=""><span style="font-size: 14px; position: absolute; top: 23px; color: #826400; left: 10px;"></span><i class="fa fa-circle-o type-add"></i></a>';

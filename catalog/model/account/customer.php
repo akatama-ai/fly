@@ -1644,7 +1644,21 @@ class ModelAccountCustomer extends Model {
 		}
 		return $floor;
 	}
-
+function getSumFloor_node($arrId) {
+		$floor = 0;
+		$query = $this -> db -> query("select mlm.customer_id from " . DB_PREFIX . "customer as u Left Join " . DB_PREFIX . "customer_ml as mlm ON mlm.customer_id = u.customer_id  Where mlm.p_node IN (" . $arrId . ")");
+		$arrChild = $query -> rows;
+		if (!empty($arrChild)) {
+			$floor += 1;
+			$arrId = '';
+			foreach ($arrChild as $child) {
+				$arrId .= ',' . $child['customer_id'];
+			}
+			$arrId = substr($arrId, 1);
+			$floor += $this -> getSumFloor_node($arrId);
+		}
+		return $floor;
+	}
 
 
 	function checkActiveUser($id_user = 0) {
@@ -1841,6 +1855,13 @@ class ModelAccountCustomer extends Model {
 		$query = $this -> db -> query("SELECT customer_id 
 			FROM " . DB_PREFIX . "customer_ml 
 			WHERE p_binary IN (". $id_user.")");
+		return $query -> rows;	
+		
+	}
+	public function getCountFloornode($id_user) {
+		$query = $this -> db -> query("SELECT customer_id 
+			FROM " . DB_PREFIX . "customer_ml 
+			WHERE p_node IN (". $id_user.")");
 		return $query -> rows;	
 		
 	}
@@ -2707,6 +2728,19 @@ class ModelAccountCustomer extends Model {
 			SELECT *
 			FROM  ".DB_PREFIX."customer_ml
 			WHERE customer_id = '".$customer_id."'
+		");
+		return $query -> row;
+	}
+	public function checkPD($customer_id){
+		$query = $this->db->query("SELECT *
+			FROM " . DB_PREFIX . "customer_provide_donation WHERE status =1 AND customer_id = ".$customer_id."");
+		return $query -> rows;
+	}
+	public function getPDLimit1($iod_customer){
+		$query = $this -> db -> query("
+			SELECT SUM(filled) as filled
+			FROM ". DB_PREFIX . "customer_provide_donation
+			WHERE customer_id = '".$this->db->escape($iod_customer)."' and status = 1
 		");
 		return $query -> row;
 	}

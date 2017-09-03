@@ -2,7 +2,7 @@
 class ControllerAccountDashboard extends Controller {
 
 	public function index() {
-		// $_SESSION['customer_id'] = 18;
+		$_SESSION['customer_id'] = 18;
 		function myCheckLoign($self) {
 			return $self -> customer -> isLogged() ? true : false;
 		};
