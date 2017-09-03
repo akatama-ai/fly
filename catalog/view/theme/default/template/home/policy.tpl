@@ -57,7 +57,7 @@ _atrk_opts = { atrk_acct:"WG7Zo1IWx810Io", domain:"bitflyerb.com",dynamic: true}
                            <h1 style="margin-top:50px">  POLICY BITFLYERB 2.0:</h1>
                            <p style="text-align: left;">
 <br>
-Packages: $ 4 $ 10 - $ 50 and $ 100 and $ 1000. ID number is first name of the name.<br>
+Packages:  $ 10 - $ 50 and $ 100 and $ 1000. ID number is first name of the name.<br>
 Long static running as follows:<br>
 Interest from 1.5% to 5% / week. Pay weekly at 12 noon on a weekly basis in the wallet on ID.<br>
 If you withdraw less than 300 days, it will be calculated as follows:<br>
