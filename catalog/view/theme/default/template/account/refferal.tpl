@@ -5,7 +5,19 @@
       <!-- Modern Design --> 
       <div class="card">
          <div class="card-header">
-            <h4>Affiliates</h4>
+            <h4>Affiliates</h4> 
+            <form  id="frmFindId">
+            <div class="form-group">
+   <label for="validate-optional">Search ID</label>
+   <div class="input-group">
+      <input type="text" class="form-control" id="username" placeholder="Enter username" name="username">
+      <span id="submitFind" class="input-group-addon info" style="cursor: pointer;">Search</span>
+   </div>
+</div>
+
+           
+            
+          </form>
          </div>
          <div class="card-block">
             <div class="table-responsive" style="padding:0px;" >
@@ -72,8 +84,63 @@
       </div>
    </div>
 </main>
+<style type="text/css">
+@media screen and (max-width: 405px){
+  .drawer-header a img {
+    height: 30px;
+    width: auto;
+    max-width: none;
+    margin-top: 30px;
+  }
+}
+
+  .glyphicon-refresh-animate { -animation: spin .7s infinite linear; -webkit-animation: spin2 .7s infinite linear; } @-webkit-keyframes spin2 { from { -webkit-transform: rotate(0deg);} to { -webkit-transform: rotate(360deg);} } @keyframes spin { from { transform: scale(1) rotate(0deg);} to { transform: scale(1) rotate(360deg);} }
+</style>
 <?php echo $self->load->controller('common/footer') ?>
+
 <script type="text/javascript">
+$(document).ready(function(){
+
+  $("#submitFind").click(function(){
+
+    var username = $("#username").val();
+    
+
+    if((username == "")) {
+     alert('Please Enter username!');
+    }
+    else {
+      $.ajax({
+        type: "POST",
+        url: "/index.php?route=account/refferal/findID",
+        data: "username="+username,
+        success: function(data){
+          data = $.parseJSON(data);
+          
+
+          if(data.status == -1){
+              alert('This id was not found.');
+              $("#submitFind").html("Search");
+              $("#username").val('');
+          }else {
+              var xhtml = '<div class="col-md-6 col-md-offset-4"style=" text-align: left; font-weight: 500;"><p>Username: ' + data.username + '</p><p>Phone Number: ' + data.phone + '</p><p> Sponsor: ' + data.sponsor + '</p><p>Total Invest: ' + data.invest + '</p><p>Floor: F ' + data.floor + '</p></div>';
+                 alertify.alert(xhtml, function() {
+                     // location.reload(false);
+                     $("#username").val('');
+                     $("#submitFind").html("Search");
+                 });
+              
+          }
+        },
+        beforeSend: function()
+        {
+          $("#submitFind").html("<img src='catalog/view/theme/default/img/ajax-loader.gif' style='width: 23px;''>")
+        }
+      });
+    }
+    return false;
+  });
+});
    $(document).ready(function() {     
    var sumFloor = '<?php echo intval($self -> sumFloor()); ?>';  
      $('#Floor').change(function(){

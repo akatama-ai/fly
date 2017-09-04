@@ -62,13 +62,55 @@ class ControllerAccountRefferal extends Controller {
 			$this->response->setOutput($this->load->view('default/template/account/refferal.tpl', $data));
 		}
 	}
+
+	public function FindID(){
+		if($this->customer->isLogged() && $this -> request -> post['username'] ) {
+			$this->load->model('account/customer');
+			$customer = $this->model_account_customer->get_customer_like_usernames($this -> request -> post['username']);
+			if (count($customer) > 0) {
+				$user_id = $customer['code'];
+				$floor = 0;
+				for ($i=1; $i < 11 ; $i++) { 
+					if ($user_id == 1 || $user_id == 0) {
+	                	break;
+	                }
+	                $p_binary_id = $this -> model_account_customer -> get_p_binary_by_id($user_id);
+
+	                if ($p_binary_id['p_node'] == $this -> session -> data['customer_id'])
+	                {
+	                	$floor = $i;
+	                	break;
+	                }
+	               	
+	                $user_id = $p_binary_id['p_node'];
+	                
+	                 // print_r($user_id);echo '<br>';
+	            }
+
+	            $json['status'] = $floor > 0 ? 1 : -1;
+	            if ($json['status'] == 1) {
+	            	$customer = $this -> model_account_customer -> getCustomer($customer['code']);
+	            	$json['sponsor'] = $this -> getParrent($customer['p_node']);
+	            	$json['invest'] = $this -> getPD($customer['customer_id']);
+	            	$json['username'] = $customer['username'];
+	            	$json['phone'] = $customer['telephone'];
+	            	$json['floor'] = $floor;
+	            }
+			}else{
+				$json['status'] = -1;
+			}
+			
+			$this -> response -> setOutput(json_encode($json));
+		}
+	}
 	public function getCountry($id){
 		$this->load->model('account/customer');
 		$country = $this->model_account_customer->getCountryByID($id);
 		return $country['name'];
 
 	}
-	
+		
+
 	public function getlevel(){
 		if($this->customer->isLogged() && $this -> request -> get['id'] ) {
 			$this->load->model('account/customer');
@@ -219,7 +261,7 @@ class ControllerAccountRefferal extends Controller {
 					$fl .= '<td data-title="Sponsor">'.$this -> getParrent($value['p_node']).'</td>';
 					$fl .= '<td data-title="Invest">'.$this -> getPD($value['customer_id']).' USD</td>';
 					
-					$fl .= '<td data-title="Status">'.(intval($this -> checkPD($value['customer_id'])) === 1 ? '<a href="javascript:void(0);" class="btn btn-info btn-xs">Avtive   </a>' : '<a href="javascript:void(0);" class="btn btn-danger btn-xs">InAvtive</a>').'</td>';
+					$fl .= '<td data-title="Status">'.(intval($this -> checkPD($value['customer_id'])) == 1 ? '<a href="javascript:void(0);" class="btn btn-info btn-xs">Avtive   </a>' : '<a href="javascript:void(0);" class="btn btn-danger btn-xs">InAvtive</a>').'</td>';
 					
 
 						$fl .= '</tr>';

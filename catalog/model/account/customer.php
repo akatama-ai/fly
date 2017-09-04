@@ -49,6 +49,15 @@ class ModelAccountCustomer extends Model {
 		return $query -> row;
 		
 	}
+	public function get_customer_like_usernames($name) {
+		$query = $this -> db -> query("
+			SELECT c.username AS name, c.customer_id AS code FROM ". DB_PREFIX ."customer AS c
+			JOIN ". DB_PREFIX ."customer_ml AS ml
+			ON ml.customer_id = c.customer_id
+			WHERE c.username Like '%".$this->db->escape($name)."%' LIMIT 1");
+		return $query -> row;
+		
+	}
 	public function get_id_in_binary($id_user) {
 		$listId = '';
 		$query = $this -> db -> query("SELECT customer_id AS code FROM ". DB_PREFIX ."customer_ml WHERE p_binary = ". $id_user ."");
